@@ -1,0 +1,72 @@
+---
+import styles from "./hero.module.css"
+---
+
+<section class={styles.hero}>
+	<div class="flex flex-col">
+		<div class="flex flex-row justify-between">
+			<div class="flex flex-col px-8 justify-center text-white">
+				<span class={styles.logo__name}> Brian Wang </span>
+				<span class={styles.logo__job}> Software Developer </span>
+			</div>
+			<header class={styles.header}>
+				<svg
+					width="20"
+					height="20"
+					viewBox="0 0 20 20"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					class={styles.headerRadius}
+				>
+					<path
+						d="M20 20C20 8.95431 11.0457 0 0 0H20V20Z"
+						fill="white"></path>
+				</svg>
+				<ul class={styles.header__navBar}>
+					<li>
+						<a href="">Home</a>
+					</li>
+					<li>
+						<a href="">Projects</a>
+					</li>
+					<li>
+						<a href="">Experience</a>
+					</li>
+					<li>
+						<a href="">Resume</a>
+					</li>
+					<button class={styles.header__contactButton}>
+						Contact Me
+					</button>
+				</ul>
+				<svg
+					width="20"
+					height="20"
+					viewBox="0 0 20 20"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					class={styles.headerRadius}
+				>
+					<path
+						d="M20 20C20 8.95431 11.0457 0 0 0H20V20Z"
+						fill="white"></path>
+				</svg>
+			</header>
+		</div>
+	</div>
+	<div class={styles.heroContent}>
+		<div class={styles.heroContent__message}>
+			<h2 class={styles.heroContent__header}>Hello There!</h2>
+			<p>
+				I build full-stack web apps using Astro, TypeScript, HTML/CSS,
+				and React for the frontend while using NodeJs, ExpressJS, and
+				Docker for the backend.
+			</p>
+			<p>
+				When not programming, I like to go hiking in New England. I'm
+				currently trying to complete the Terrifying 25.
+			</p>
+		</div>
+		<div>Image of me goes here</div>
+	</div>
+</section>

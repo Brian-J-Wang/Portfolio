@@ -10,6 +10,8 @@
 
 :root {
 	font-family: "Outfit", sans-serif;
+
+	--content-width: 1240px;
 }
 
 * {
@@ -20,4 +22,8 @@
 body {
 	margin: 0;
 	padding: 0;
+}
+
+p {
+	font-size: var(--text-lg);
 }

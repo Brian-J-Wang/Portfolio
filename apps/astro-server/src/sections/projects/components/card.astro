@@ -1,0 +1,42 @@
+---
+import styles from "./card.module.css";
+
+const { class: className, title, siteLink, repoLink } = Astro.props;
+---
+
+<div class={`${className} ${styles.card}`}>
+	<div class="flex justify-between items-center">
+		<div class={styles.card__whiteSpace}>
+			<svg
+				width="20"
+				height="20"
+				viewBox="0 0 20 20"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				class={styles.card__negativeRadius}
+			>
+				<path d="M20 0C8.95431 0 0 8.95431 0 20V0H20Z" fill="white"
+				></path>
+			</svg>
+
+			<h3 class={styles.card__title}>
+				{title ?? "Title is Missing"}
+			</h3>
+			<svg
+				width="20"
+				height="20"
+				viewBox="0 0 20 20"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				class={styles.card__negativeRadius}
+			>
+				<path d="M20 0C8.95431 0 0 8.95431 0 20V0H20Z" fill="white"
+				></path>
+			</svg>
+		</div>
+		<div>
+			<button> Github </button>
+			<button> Site </button>
+		</div>
+	</div>
+</div>

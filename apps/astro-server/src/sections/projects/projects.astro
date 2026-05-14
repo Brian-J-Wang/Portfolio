@@ -1,0 +1,15 @@
+---
+import Card from "./components/card.astro";
+import styles from "./project.module.css";
+---
+
+<section class={styles.project}>
+	<h2 class={styles.project__title}>My Projects</h2>
+	<p class={styles.project__desc}>Here is a list of something that I do</p>
+	<div class={styles.project__list}>
+		<Card title="KanaNinja" class={styles.project__listItem} />
+		<Card title="DevCL" class={styles.project__listItem} />
+		<Card title="KanaNinja" class={styles.project__listItem} />
+		<Card title="DevCL" class={styles.project__listItem} />
+	</div>
+</section>

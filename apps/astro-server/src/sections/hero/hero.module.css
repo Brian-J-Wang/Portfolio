@@ -64,9 +64,17 @@
 
 .header__navBar a {
 	text-decoration: none;
-	color: black;
-	opacity: 50%;
+	color: var(--color-neutral-400);
 	font-size: 18px;
+	transition: var(--transition-fast);
+}
+
+.header__navBar a:hover {
+	color: var(--color-neutral-900);
+}
+
+.header__navBar a:active {
+	color: var(--color-secondary);
 }
 
 .header__contactButton {

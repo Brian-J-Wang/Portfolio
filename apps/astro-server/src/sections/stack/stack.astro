@@ -1,0 +1,29 @@
+---
+import SectionHeader from "../../components/sectionHeader/sectionHeader.astro";
+import styles from "./stack.module.css";
+---
+
+<section class={styles.stack}>
+	<SectionHeader
+		title="My Stack"
+		subTitle="The tools I use to make great websites."
+	/>
+	<div class={styles.stack__list}>
+		<div class={styles.stack__listItem}>
+			<h4 class={styles.stack__listItemTitle}>Frontend</h4>
+			<div>Astro, React, HTML/CSS</div>
+		</div>
+		<div class={styles.stack__listItem}>
+			<h4 class={styles.stack__listItemTitle}>Backend</h4>
+			<div>NodeJs, ExpressJS, MongoDB</div>
+		</div>
+		<div class={styles.stack__listItem}>
+			<h4 class={styles.stack__listItemTitle}>Tooling</h4>
+			<div>Git, Figma</div>
+		</div>
+		<div class={styles.stack__listItem}>
+			<h4 class={styles.stack__listItemTitle}>Infrastructure</h4>
+			<div>CloudFlare, Google Cloud Platform</div>
+		</div>
+	</div>
+</section>

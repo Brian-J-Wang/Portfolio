@@ -8,6 +8,7 @@ const {
 	repoLink,
 	projectLink,
 	desc,
+	skills,
 } = Astro.props;
 ---
 
@@ -60,6 +61,9 @@ const {
 		<h3 class={styles.card__title}>
 			{title ?? "Title is Missing"}
 		</h3>
+		<span>
+			{skills}
+		</span>
 		<p class={styles.card__desc}>{desc}</p>
 		<a class={styles.card__moreInfoButton} href={projectLink}>
 			Read More

@@ -30,6 +30,9 @@
 	--radius-sm: 8px;
 	--radius-md: 16px;
 	--radius-lg: 20px;
+
+	--transition-fast: all 0.1s ease-out;
+	--transition: all 0.2s ease-out;
 }
 
 :root {

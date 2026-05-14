@@ -1,15 +1,14 @@
 ---
+import SectionHeader from "../../components/sectionHeader/sectionHeader.astro";
 import Card from "./components/card.astro";
 import styles from "./project.module.css";
 ---
 
 <section class={styles.project}>
-	<div class={styles.project__header}>
-		<h2 class={styles.project__title}>My Projects</h2>
-		<p class={styles.project__desc}>
-			Explore some of the things I build on my free time.
-		</p>
-	</div>
+	<SectionHeader
+		title="Projects"
+		subTitle="Some of the things I build on my free time."
+	/>
 	<div class={styles.project__list}>
 		<Card
 			title="KanaNinja"
@@ -18,6 +17,7 @@ import styles from "./project.module.css";
 			This was one of my first projects and I update it as my skill in Japanese grows.`
 			projectLink="/project/jp-type"
 			repoLink="as"
+			skills="React HTML/CSS Typescript"
 		/>
 		<Card
 			title="DevCL"
@@ -28,6 +28,13 @@ import styles from "./project.module.css";
 		that I pay 15.99 a month to maintain.`
 		/>
 		<Card title="KanaNinja" class={styles.project__listItem} />
-		<Card title="DevCL" class={styles.project__listItem} />
+		<div class={styles.project__exploreContainer}>
+			<p class={styles.project__exploreText}>
+				Interested in my other projects?
+			</p>
+			<a href="/projects" class={styles.project__exploreButton}>
+				Explore more</a
+			>
+		</div>
 	</div>
 </section>

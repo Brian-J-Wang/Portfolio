@@ -1,22 +1,27 @@
 .card {
 	--border-radius: 20px;
-	background: linear-gradient(290deg, #4b6cb7 0%, #182848 100%);
-	border-radius: var(--border-radius);
-	height: 360px;
+	display: flex;
+	height: 320px;
 }
 
-.card__title {
-	font-size: var(--text-4xl);
-	line-height: 1;
-	font-weight: 500;
+.card__projectImage {
+	background: linear-gradient(290deg, #4b6cb7 0%, #182848 100%);
+	border-radius: var(--border-radius);
+	height: 100%;
+	width: 480px;
 }
 
 .card__whiteSpace {
 	position: relative;
-	background-color: white;
+	display: flex;
+	gap: 8px;
+	flex-direction: column;
+	max-width: 64px;
+	background-color: var(--color-neutral-50);
 	width: fit-content;
-	padding: 8px 16px;
-	border-radius: 0px 0px var(--border-radius) 0px;
+	padding: 8px 8px;
+	border-radius: 0px 0px 0px var(--border-radius);
+	margin-left: auto;
 }
 
 .card__whiteSpace button {
@@ -34,12 +39,59 @@
 
 .card__negativeRadius:first-of-type {
 	top: 0px;
-	right: 0px;
-	transform: translateX(100%);
+	left: 0px;
+	transform: translateX(-100%);
+	fill: var(--color-neutral-50);
 }
 
 .card__negativeRadius:last-of-type {
 	bottom: 0px;
-	left: 0px;
+	right: 0px;
 	transform: translateY(100%);
+	fill: var(--color-neutral-50);
+}
+
+.card__content {
+	display: flex;
+	flex-direction: column;
+	max-width: 600px;
+	padding: 8px 48px;
+	height: 100%;
+}
+
+.card__title {
+	position: relative;
+	font-size: var(--text-5xl);
+	line-height: 1;
+	font-weight: 600;
+	letter-spacing: -0.03rem;
+	margin-bottom: 8px;
+	color: var(--color-neutral-800);
+}
+
+.card__desc {
+	color: var(--color-neutral-800);
+}
+
+.card__moreInfoButton {
+	margin: 12px 0px 0px 0px;
+	padding: 8px 24px;
+	width: fit-content;
+	border: 1px solid var(--color-neutral-800);
+	color: var(--color-neutral-700);
+	background-color: var(--color-neutral-50);
+	border-radius: var(--radius-sm);
+	font-size: var(--text-lg);
+	transition:
+		color 0.15s ease-out,
+		background-color 0.15s ease-out;
+}
+
+.card__moreInfoButton:hover {
+	color: var(--color-neutral-50);
+	background-color: var(--color-neutral-800);
+}
+
+.card__moreInfoButton:active {
+	color: var(--color-secondary);
 }

@@ -101,16 +101,11 @@
 	line-height: 1;
 	margin-bottom: 24px;
 	letter-spacing: -0.03em;
-
-	/* Text Gradient */
-	background: linear-gradient(135deg, #f75c03 0%, #ff8c42 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-
-	/* Subtle depth */
-	filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.15));
+	color: var(--color-secondary);
+	filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.5));
 }
 
 .heroContent__message p {
 	margin-bottom: 12px;
+	filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.5));
 }

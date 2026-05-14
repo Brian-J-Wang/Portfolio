@@ -1,5 +1,12 @@
 .project {
 	margin: 64px 16px;
+	width: var(--content-width);
+	margin: 0px auto;
+}
+
+.project__header {
+	width: var(--content-width);
+	margin: 0px auto;
 }
 
 .project__title {
@@ -17,9 +24,9 @@
 .project__list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 24px;
+	gap: 48px;
 }
 
 .project__listItem {
-	flex: 1 0 45%;
+	flex: 1 0 100%;
 }

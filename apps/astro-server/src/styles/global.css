@@ -8,10 +8,33 @@
 	font-style: normal;
 }
 
+@theme {
+	--color-neutral-50: #fffcfa;
+	--color-neutral-100: #e6e3e1;
+	--color-neutral-200: #cdcac8;
+	--color-neutral-300: #b4b1af;
+	--color-neutral-400: #9b9896;
+	--color-neutral-500: #827f7d;
+	--color-neutral-600: #686664;
+	--color-neutral-700: #4f4d4b;
+	--color-neutral-800: #363432;
+	--color-neutral-900: #1d1b19;
+	--color-neutral-950: #040200;
+
+	--color-primary: #182848;
+
+	--color-secondary: #f75c03;
+
+	--content-width: 1100px;
+
+	--radius-sm: 8px;
+	--radius-md: 16px;
+	--radius-lg: 20px;
+}
+
 :root {
 	font-family: "Outfit", sans-serif;
-
-	--content-width: 1240px;
+	background-color: var(--color-neutral-50);
 }
 
 * {

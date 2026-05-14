@@ -4,11 +4,28 @@ import styles from "./project.module.css";
 ---
 
 <section class={styles.project}>
-	<h2 class={styles.project__title}>My Projects</h2>
-	<p class={styles.project__desc}>Here is a list of something that I do</p>
+	<div class={styles.project__header}>
+		<h2 class={styles.project__title}>My Projects</h2>
+		<p class={styles.project__desc}>
+			Here is a list of something that I do
+		</p>
+	</div>
 	<div class={styles.project__list}>
-		<Card title="KanaNinja" class={styles.project__listItem} />
-		<Card title="DevCL" class={styles.project__listItem} />
+		<Card
+			title="KanaNinja"
+			class={styles.project__listItem}
+			desc=`I built this web app to help me practice typing Japanese characters.
+			This was one of my first projects and I update it as my skill in Japanese grows.`
+			projectLink="/project/jp-type"
+		/>
+		<Card
+			title="DevCL"
+			class={styles.project__listItem}
+			desc=`The project management tool
+		that I use to manage my projects. All my ideas and plans are stored here so that I can 
+		quickly return to a project that has been gathering dust. In other words, a To-Do list
+		that I pay 15.99 a month to maintain.`
+		/>
 		<Card title="KanaNinja" class={styles.project__listItem} />
 		<Card title="DevCL" class={styles.project__listItem} />
 	</div>

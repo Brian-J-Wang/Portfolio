@@ -4,9 +4,10 @@
 	background: linear-gradient(290deg, #4b6cb7 0%, #182848 100%);
 	height: 55vh;
 	border-radius: var(--border-radius);
-	margin: 16px;
+	margin: 16px auto;
 	display: flex;
 	flex-direction: column;
+	width: var(--page-width);
 }
 
 .logo {
@@ -35,20 +36,28 @@
 	border-radius: 0px 0px 0px var(--border-radius);
 }
 
-.headerRadius {
+.header::before,
+.header::after {
+	content: "";
 	position: absolute;
 	width: var(--border-radius);
 	height: var(--border-radius);
+	background: radial-gradient(
+		circle at 0 100%,
+		transparent calc(var(--border-radius) - 0.3px),
+		white var(--border-radius)
+	);
 }
 
-.headerRadius:first-of-type {
-	left: 0px;
+.header::before {
+	top: 0;
+	left: 0;
 	transform: translateX(-100%);
 }
 
-.headerRadius:last-of-type {
-	bottom: 0px;
-	right: 0px;
+.header::after {
+	bottom: 0;
+	right: 0;
 	transform: translateY(100%);
 }
 

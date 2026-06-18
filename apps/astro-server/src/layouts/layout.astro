@@ -13,6 +13,31 @@ import styles from "./layout.module.css";
 		<title>Brian Wang</title>
 	</head>
 	<body>
+		<header class={styles.header}>
+			<div class={styles.header__content}>
+				<div class="flex flex-col justify-center">
+					<span class={styles.logo__name}> Brian Wang </span>
+					<span class={styles.logo__job}> Software Developer </span>
+				</div>
+				<ul class={styles.header__navBar}>
+					<li>
+						<a href="">Home</a>
+					</li>
+					<li>
+						<a href="">Projects</a>
+					</li>
+					<li>
+						<a href="">Experience</a>
+					</li>
+					<li>
+						<a href="">Resume</a>
+					</li>
+					<button class={styles.header__contactButton}>
+						Contact Me
+					</button>
+				</ul>
+			</div>
+		</header>
 		<slot />
 	</body>
 </html>

@@ -3,34 +3,7 @@ import styles from "./hero.module.css";
 ---
 
 <section class={styles.hero}>
-	<div class="flex flex-col">
-		<div class="flex flex-row justify-between">
-			<div class="flex flex-col px-8 justify-center text-white">
-				<span class={styles.logo__name}> Brian Wang </span>
-				<span class={styles.logo__job}> Software Developer </span>
-			</div>
-			<header class={styles.header}>
-				<ul class={styles.header__navBar}>
-					<li>
-						<a href="">Home</a>
-					</li>
-					<li>
-						<a href="">Projects</a>
-					</li>
-					<li>
-						<a href="">Experience</a>
-					</li>
-					<li>
-						<a href="">Resume</a>
-					</li>
-					<button class={styles.header__contactButton}>
-						Contact Me
-					</button>
-				</ul>
-			</header>
-		</div>
-	</div>
-	<div class={styles.heroContent}>
+	<div class={styles.hero__content}>
 		<div class={styles.heroContent__message}>
 			<h2 class={styles.heroContent__header}>Hello There!</h2>
 			<p>
@@ -43,6 +16,34 @@ import styles from "./hero.module.css";
 				currently trying to complete the Terrifying 25.
 			</p>
 		</div>
-		<div>Image of me goes here</div>
+		<div class={styles.hero__displayCase}></div>
+	</div>
+	<div class={styles.hero__profileImageContainer}>
+		<img
+			src="profile.png"
+			alt="Casual image of me waving"
+			class={styles.hero__profileImage}
+		/>
+		<div class={styles.hero__socials}>
+			<div class={styles.hero__socialsNegativeRadius}>
+				<img src="neg-radius-bottom-right.svg" alt="" />
+			</div>
+			<div class={styles.hero__socialsIcon}>
+				<a
+					href="https://www.linkedin.com/in/brian-j-wang/"
+					target="_blank"
+				>
+					<img src="linkedin.svg" alt="linkedin svg" /></a
+				>
+			</div>
+			<div class={styles.hero__socialsIcon}>
+				<a href="https://github.com/Brian-J-Wang" target="_blank">
+					<img src="github.svg" alt="github svg" />
+				</a>
+			</div>
+			<div class={styles.hero__socialsNegativeRadius}>
+				<img src="neg-radius-bottom-right.svg" alt="" />
+			</div>
+		</div>
 	</div>
 </section>

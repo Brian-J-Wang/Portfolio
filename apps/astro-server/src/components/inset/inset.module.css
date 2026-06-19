@@ -1,0 +1,28 @@
+.inset {
+	min-width: calc(var(--border-radius) * 2);
+	min-height: calc(var(--border-radius) * 2);
+}
+
+.inset__topLeftRadius {
+	border-bottom-right-radius: var(--border-radius);
+}
+
+.inset__topRightRadius {
+	border-bottom-left-radius: var(--border-radius);
+}
+
+.inset__bottomLeftRadius {
+	border-top-right-radius: var(--border-radius);
+}
+
+.inset__bottomRightRadius {
+	border-top-left-radius: var(--border-radius);
+}
+
+.inset__topNegativeRadius {
+	width: var(--border-radius);
+}
+
+.inset__bottomNegativeRadius {
+	height: var(--border-radius);
+}

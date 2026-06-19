@@ -1,4 +1,5 @@
 ---
+import Inset from "../../components/inset/inset.astro";
 import styles from "./hero.module.css";
 ---
 
@@ -24,10 +25,7 @@ import styles from "./hero.module.css";
 			alt="Casual image of me waving"
 			class={styles.hero__profileImage}
 		/>
-		<div class={styles.hero__socials}>
-			<div class={styles.hero__socialsNegativeRadius}>
-				<img src="neg-radius-bottom-right.svg" alt="" />
-			</div>
+		<Inset position="bottom-right" className={styles.hero__socials}>
 			<div class={styles.hero__socialsIcon}>
 				<a
 					href="https://www.linkedin.com/in/brian-j-wang/"
@@ -41,9 +39,6 @@ import styles from "./hero.module.css";
 					<img src="github.svg" alt="github svg" />
 				</a>
 			</div>
-			<div class={styles.hero__socialsNegativeRadius}>
-				<img src="neg-radius-bottom-right.svg" alt="" />
-			</div>
-		</div>
+		</Inset>
 	</div>
 </section>

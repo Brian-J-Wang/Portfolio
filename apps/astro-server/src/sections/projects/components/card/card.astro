@@ -3,6 +3,7 @@ import styles from "./card.module.css";
 import type { SkillChipKeys } from "../skillChip/chips";
 import Chip from "../skillChip/chip.astro";
 import LinkButton from "../../../../components/linkButton/linkButton.astro";
+import Inset from "../../../../components/inset/inset.astro";
 
 interface Props {
 	class: string;
@@ -29,13 +30,7 @@ const {
 	<div class={styles.card__projectImage}>
 		{
 			(siteLink || repoLink) && (
-				<div class={styles.card__whiteSpace}>
-					<img
-						src="neg-radius-top-left.svg"
-						alt="negative-radius"
-						aria-hidden="true"
-						class={styles.card__negativeRadius}
-					/>
+				<Inset position="top-right" className={styles.card__whiteSpace}>
 					{repoLink && (
 						<LinkButton
 							link={repoLink}
@@ -50,13 +45,7 @@ const {
 							alt="link to site"
 						/>
 					)}
-					<img
-						src="neg-radius-top-left.svg"
-						alt="negative-radius"
-						aria-hidden="true"
-						class={styles.card__negativeRadius}
-					/>
-				</div>
+				</Inset>
 			)
 		}
 	</div>

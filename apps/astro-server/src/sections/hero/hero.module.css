@@ -17,6 +17,7 @@
 }
 
 .hero__displayCase {
+	position: relative;
 	height: 240px;
 	background: linear-gradient(320deg, #1c376e 0%, #182848 100%);
 	border-radius: var(--border-radius);
@@ -74,31 +75,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: white;
-	border-top-left-radius: var(--border-radius);
+	background-color: var(--color-neutral-50);
 	height: 100px;
-	right: 0px;
-	bottom: 0px;
 	padding: 8px;
 	gap: 8px;
-}
-
-.hero__socialsNegativeRadius {
-	position: absolute;
-	height: var(--border-radius);
-	width: var(--border-radius);
-}
-
-.hero__socialsNegativeRadius:first-of-type {
-	top: 0px;
-	right: 0px;
-	transform: translateY(-100%);
-}
-
-.hero__socialsNegativeRadius:last-of-type {
-	bottom: 0px;
-	left: 0px;
-	transform: translateX(-100%);
 }
 
 .hero__socialsIcon {
@@ -116,7 +96,6 @@
 	background-color: rgba(0, 0, 0, 0.2);
 }
 
-.hero__socials img {
+.hero__socialsIcon img {
 	width: 100%;
-	height: 100%;
 }

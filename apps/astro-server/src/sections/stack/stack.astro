@@ -1,5 +1,6 @@
 ---
 import SectionHeader from "../../components/sectionHeader/sectionHeader.astro";
+import Icon from "./component/icon.astro";
 import styles from "./stack.module.css";
 ---
 
@@ -10,24 +11,43 @@ import styles from "./stack.module.css";
 	/>
 	<div class={styles.stack__list}>
 		<div class={styles.stack__listItem}>
+			<h4 class={styles.stack__listItemTitle}>Languages</h4>
+			<div class={styles.stack__listIcons}>
+				<Icon img="icons/JavaScript.svg" name="JavaScript" />
+				<Icon img="icons/TypeScript.svg" name="TypeScript" />
+				<Icon img="icons/CSharp.svg" name="CSharp" />
+			</div>
+		</div>
+		<div class={styles.stack__listItem}>
 			<h4 class={styles.stack__listItemTitle}>Frontend</h4>
-			<div>Astro, React, HTML/CSS</div>
+			<div class={styles.stack__listIcons}>
+				<Icon img="icons/Astro.svg" name="astro" />
+				<Icon img="icons/React.svg" name="react" />
+				<Icon img="icons/HTML5.svg" name="html" />
+				<Icon img="icons/CSS3.svg" name="css" />
+			</div>
 		</div>
 		<div class={styles.stack__listItem}>
 			<h4 class={styles.stack__listItemTitle}>Backend</h4>
-			<div>NodeJs, ExpressJS, MongoDB</div>
-		</div>
-		<div class={styles.stack__listItem}>
-			<h4 class={styles.stack__listItemTitle}>Tooling</h4>
-			<div>Git, Figma</div>
+			<div class={styles.stack__listIcons}>
+				<Icon img="icons/Node.js.svg" name="NodeJs" />
+				<Icon img="icons/Express.svg" name="ExpressJS" />
+				<Icon img="icons/MongoDB.svg" name="MongoDB" />
+			</div>
 		</div>
 		<div class={styles.stack__listItem}>
 			<h4 class={styles.stack__listItemTitle}>Infrastructure</h4>
-			<div>CloudFlare, Google Cloud Platform</div>
+			<div class={styles.stack__listIcons}>
+				<Icon img="icons/Cloudflare.svg" name="CloudFlare" />
+				<Icon img="icons/Google Cloud.svg" name="Google Cloud" />
+			</div>
 		</div>
 		<div class={styles.stack__listItem}>
 			<h4 class={styles.stack__listItemTitle}>Other</h4>
-			<div>Photography, Video Editing</div>
+			<div class={styles.stack__listIcons}>
+				<Icon img="icons/mdi--camera.svg" name="Photography" />
+				<Icon img="icons/gridicons--video.svg" name="Video Editing" />
+			</div>
 		</div>
 	</div>
 </section>

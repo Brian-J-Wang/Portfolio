@@ -1,0 +1,23 @@
+---
+import { skillChips } from "./chips";
+import type { SkillChipKeys } from "./chips";
+import { colord } from "colord";
+
+interface Props {
+	chip: SkillChipKeys;
+}
+
+const { chip } = Astro.props as Props;
+
+const { icon, color, name } = skillChips[chip];
+const accentColor = colord(color).alpha(0.25).toHex();
+const primaryColor = colord(color).darken(0.4).toHex();
+---
+
+<div
+	style={{ backgroundColor: accentColor }}
+	class="flex flex-row py-1 px-1.5 h-6 gap-2 items-center rounded-xs"
+>
+	<img src={icon} alt={chip} class="h-full" />
+	<span style={{ color: primaryColor }} class="text-sm">{name}</span>
+</div>

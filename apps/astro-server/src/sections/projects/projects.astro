@@ -18,7 +18,7 @@ import styles from "./project.module.css";
 			projectLink="/project/jp-type"
 			repoLink="as"
 			siteLink="as"
-			skills="React HTML/CSS Typescript"
+			skills={["typescript", "react"]}
 		/>
 		<Card
 			title="DevCL"
@@ -27,8 +27,13 @@ import styles from "./project.module.css";
 		that I use to manage my projects. All my ideas and plans are stored here so that I can 
 		quickly return to a project that has been gathering dust. In other words, a To-Do list
 		that I pay 15.99 a month to maintain.`
+			skills={["typescript", "react", "csharp"]}
 		/>
-		<Card title="KanaNinja" class={styles.project__listItem} />
+		<Card
+			title="KanaNinja"
+			class={styles.project__listItem}
+			desc="Something Something Something"
+		/>
 		<div class={styles.project__exploreContainer}>
 			<p class={styles.project__exploreText}>
 				Interested in my other projects?

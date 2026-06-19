@@ -1,5 +1,17 @@
 ---
 import styles from "./card.module.css";
+import type { SkillChipKeys } from "../skillChip/chips";
+import Chip from "../skillChip/chip.astro";
+
+interface Props {
+	class: string;
+	title: string;
+	siteLink?: string;
+	repoLink?: string;
+	projectLink?: string;
+	desc: string;
+	skills?: SkillChipKeys[];
+}
 
 const {
 	class: className,
@@ -8,8 +20,8 @@ const {
 	repoLink,
 	projectLink,
 	desc,
-	skills,
-} = Astro.props;
+	skills = [],
+} = Astro.props as Props;
 ---
 
 <div class={`${className} ${styles.card}`}>
@@ -17,16 +29,12 @@ const {
 		{
 			(siteLink || repoLink) && (
 				<div class={styles.card__whiteSpace}>
-					<svg
-						width="20"
-						height="20"
-						viewBox="0 0 20 20"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+					<img
+						src="neg-radius-top-left.svg"
+						alt="negative-radius"
+						aria-hidden="true"
 						class={styles.card__negativeRadius}
-					>
-						<path d="M20 20C20 8.95431 11.0457 0 0 0H20V20Z" />
-					</svg>
+					/>
 					{repoLink && (
 						<button>
 							<svg
@@ -42,28 +50,25 @@ const {
 						</button>
 					)}
 					{siteLink && <button> Site </button>}
-
-					<svg
-						width="20"
-						height="20"
-						viewBox="0 0 20 20"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+					<img
+						src="neg-radius-top-left.svg"
+						alt="negative-radius"
+						aria-hidden="true"
 						class={styles.card__negativeRadius}
-					>
-						<path d="M20 20C20 8.95431 11.0457 0 0 0H20V20Z" />
-					</svg>
+					/>
 				</div>
 			)
 		}
 	</div>
 	<div class={styles.card__content}>
-		<h3 class={styles.card__title}>
-			{title ?? "Title is Missing"}
-		</h3>
-		<span>
-			{skills}
-		</span>
+		<div class="mb-4">
+			<h3 class={styles.card__title}>
+				{title ?? "Title is Missing"}
+			</h3>
+			<span class="flex flex-row gap-2">
+				{skills.map((skill) => <Chip chip={skill} />)}
+			</span>
+		</div>
 		<p class={styles.card__desc}>{desc}</p>
 		<a class={styles.card__moreInfoButton} href={projectLink}>
 			Read More

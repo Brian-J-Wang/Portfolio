@@ -1,5 +1,5 @@
 .card {
-	--border-radius: 20px;
+	--border-radius: 16px;
 	display: flex;
 	height: 320px;
 }
@@ -25,10 +25,10 @@
 	margin-left: auto;
 }
 
-.card__whiteSpace button {
-	background-color: grey;
-	height: 32px;
-	width: 32px;
+.card__link {
+	height: 40px;
+	width: 40px;
+	padding: 8px;
 	border-radius: 50%;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .card__title {
-	font-size: var(--text-5xl);
+	font-size: var(--text-3xl);
 	line-height: 1;
 	font-weight: 600;
 	letter-spacing: -0.03rem;

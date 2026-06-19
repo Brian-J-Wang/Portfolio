@@ -71,12 +71,16 @@
 
 .hero__socials {
 	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	background-color: white;
 	border-top-left-radius: var(--border-radius);
 	height: 100px;
 	right: 0px;
 	bottom: 0px;
 	padding: 8px;
+	gap: 8px;
 }
 
 .hero__socialsNegativeRadius {

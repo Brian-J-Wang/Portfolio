@@ -10,7 +10,7 @@ This is the Astro-based frontend for the portfolio project. It is configured for
 - **Code Quality**: ESLint and Prettier configured for code formatting and linting.
 - **Docker Ready**: Includes a Dockerfile for easy containerization.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -49,7 +49,7 @@ Preview the production build locally:
 npm run preview
 ```
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 A `Dockerfile` is provided to run the application in a container.
 
@@ -67,12 +67,12 @@ docker run -p 4321:4321 astro-server
 
 The server will be exposed on port `4321` inside the container and mapped to port `4321` on your host.
 
-## 🧞 Scripts
+## Scripts
 
-| Command | Action |
-| :--- | :--- |
-| `npm run dev` | Starts the local dev server at `localhost:4321` |
-| `npm run build` | Builds the production site to `./dist/` |
-| `npm run preview` | Previews the build locally |
-| `npm run lint` | Runs ESLint on the project |
-| `npm run format` | Runs Prettier to format code |
+| Command           | Action                                          |
+| :---------------- | :---------------------------------------------- |
+| `npm run dev`     | Starts the local dev server at `localhost:4321` |
+| `npm run build`   | Builds the production site to `./dist/`         |
+| `npm run preview` | Previews the build locally                      |
+| `npm run lint`    | Runs ESLint on the project                      |
+| `npm run format`  | Runs Prettier to format code                    |

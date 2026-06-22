@@ -1,43 +1,78 @@
-# Astro Starter Kit: Minimal
+# Astro Server
+
+This is the Astro-based frontend for the portfolio project. It is configured for Server-Side Rendering (SSR) using the standalone Node.js adapter and styled with Tailwind CSS v4.
+
+## Features
+
+- **Astro**: Fast, content-focused web framework.
+- **Node.js SSR**: Uses `@astrojs/node` in standalone mode for server-side rendering.
+- **Tailwind CSS**: Integrated with Vite and Tailwind CSS v4.
+- **Code Quality**: ESLint and Prettier configured for code formatting and linting.
+- **Docker Ready**: Includes a Dockerfile for easy containerization.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (>= 22.12.0)
+- npm
+
+### Installation
+
+Install the project dependencies:
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Development
 
-## 🚀 Project Structure
+Start the local development server:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The app will be available at `http://localhost:4321`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Build and Preview
 
-Any static assets, like images, can be placed in the `public/` directory.
+Build the application for production:
 
-## 🧞 Commands
+```sh
+npm run build
+```
 
-All commands are run from the root of the project, from a terminal:
+Preview the production build locally:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```sh
+npm run preview
+```
 
-## 👀 Want to learn more?
+## 🐳 Docker Deployment
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+A `Dockerfile` is provided to run the application in a container.
+
+Build the Docker image:
+
+```sh
+docker build -t astro-server .
+```
+
+Run the container:
+
+```sh
+docker run -p 4321:4321 astro-server
+```
+
+The server will be exposed on port `4321` inside the container and mapped to port `4321` on your host.
+
+## 🧞 Scripts
+
+| Command | Action |
+| :--- | :--- |
+| `npm run dev` | Starts the local dev server at `localhost:4321` |
+| `npm run build` | Builds the production site to `./dist/` |
+| `npm run preview` | Previews the build locally |
+| `npm run lint` | Runs ESLint on the project |
+| `npm run format` | Runs Prettier to format code |

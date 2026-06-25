@@ -35,3 +35,19 @@ If the metadata does not include at least the title and the description, it will
 1. Add this url to your repo as a webhook
 2. Push the changes to the main branch
 3. Call this webhook to get a list of projects
+
+## Testing
+
+You can run this server on your local machine using the following line:
+
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+And then tunnel it using ngrok to test it on a test repo.
+
+```bash
+ngrok http 8000
+```
+
+this will give you a url that you can use as the webhook url.

@@ -1,5 +1,10 @@
-from pymongo import MongoClient
+from repository.schemas.project import Project
 from config import settings
+from pymongo import AsyncMongoClient
+from beanie import init_beanie
 
-client = MongoClient(settings.MONGO_URI)
-projects = client["projects"]
+async def init_database():
+	client = AsyncMongoClient(settings.MONGO_URI)
+	projects = client["projects"]
+
+	await init_beanie(database=projects, document_models=[Project])

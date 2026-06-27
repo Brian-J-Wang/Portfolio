@@ -1,7 +1,12 @@
-class ProjectService:
-	def __init__(self, collection):
-		self.project_collection = collection
+from repository.schemas.project import Project
 
-	def getProjects(self):
-		return self.project_collection.find({})
-		
+class ProjectService:
+	async def get_projects(self) -> list[Project]:
+		return await Project.find().to_list()
+	
+	async def get_project(self, node_id: str ) -> Project | None:
+		return await Project.find_one({ "node_id": node_id })
+
+project_service = ProjectService()
+def get_project_service():
+	return project_service

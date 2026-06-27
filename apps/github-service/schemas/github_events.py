@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class Repository(BaseModel):
-	id: int
+	node_id: str
 	name: str
 	full_name: str
 	html_url: str
@@ -14,5 +14,6 @@ class Commits(BaseModel):
 	timestamp: str
 
 class PushEvent(BaseModel):
+	ref: str
 	commits: list[Commits]
 	repository: Repository

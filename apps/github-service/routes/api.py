@@ -5,7 +5,7 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/")
+@router.get("")
 async def get_projects(
 	project_service = Depends(get_project_service)
 ):

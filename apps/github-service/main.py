@@ -10,4 +10,4 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 app.include_router(webhook.router, prefix="/github/webhook")
-app.include_router(api.router, prefix="/api")
+app.include_router(api.router, prefix="/projects")

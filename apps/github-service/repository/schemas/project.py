@@ -1,3 +1,4 @@
+from datetime import timezone
 from typing import Annotated
 from datetime import datetime
 from beanie import Replace, Insert, Save, Indexed, Document, before_event
@@ -6,6 +7,7 @@ from schemas.portfolio_md import Portfolio_MD
 class Project(Document):
 	node_id: Annotated[str, Indexed(unique=True)]
 	project_data: Portfolio_MD
+	created_at: datetime | None = None
 	updated_at: datetime | None = None
 	
 	class Settings:
@@ -13,8 +15,8 @@ class Project(Document):
 	
 	@before_event([Insert])
 	def set_updated(self):
-		self.updated_at = datetime.now()
+		self.updated_at = datetime.now(timezone.utc)
 	
 	@before_event([Replace, Save])
 	def update_updated_at(self):
-		self.updated_at = datetime.now()
+		self.updated_at = datetime.now(timezone.utc)

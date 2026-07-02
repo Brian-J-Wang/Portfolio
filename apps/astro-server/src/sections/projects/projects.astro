@@ -1,46 +1,33 @@
 ---
-import SectionHeader from "../../components/sectionHeader/sectionHeader.astro";
-import Card from "./components/card/card.astro";
-import styles from "./project.module.css";
+import styles from "./projects.module.css";
+import SectionHeader from "@components/sectionHeader/sectionHeader.astro";
+import ProjectList from "./components/projectList/projectList.astro";
 ---
 
-<section class={styles.project}>
+<section class={styles.project__section}>
+	<SectionHeader title="My Work" subTitle="Check out my latest projects" />
+	<ProjectList type="work" server:defer />
+	<div class={styles.project__explore}>
+		<p class={styles.project__exploreText}>
+			Interested in my other projects?
+		</p>
+		<a href="/projects" class={styles.project__exploreButton}>
+			Explore more</a
+		>
+	</div>
+</section>
+<section class={styles.project__section}>
 	<SectionHeader
 		title="Projects"
-		subTitle="Some of the things I build on my free time."
+		subTitle="Some of the recent projects I worked on."
 	/>
-	<div class={styles.project__list}>
-		<Card
-			title="KanaNinja"
-			class={styles.project__listItem}
-			desc=`I built this web app to help me practice typing Japanese characters.
-			This was one of my first projects and I update it as my skill in Japanese grows.`
-			projectLink="/project/jp-type"
-			repoLink="https://github.com/Brian-J-Wang/KanaNinja"
-			siteLink="https://www.kananinja.net/"
-			skills={["typescript", "react"]}
-		/>
-		<Card
-			title="DevCL"
-			class={styles.project__listItem}
-			desc=`The project management tool
-		that I use to manage my projects. All my ideas and plans are stored here so that I can 
-		quickly return to a project that has been gathering dust. In other words, a To-Do list
-		that I pay 15.99 a month to maintain.`
-			skills={["typescript", "react", "csharp"]}
-		/>
-		<Card
-			title="KanaNinja"
-			class={styles.project__listItem}
-			desc="Something Something Something"
-		/>
-		<div class={styles.project__exploreContainer}>
-			<p class={styles.project__exploreText}>
-				Interested in my other projects?
-			</p>
-			<a href="/projects" class={styles.project__exploreButton}>
-				Explore more</a
-			>
-		</div>
+	<ProjectList server:defer />
+	<div class={styles.project__explore}>
+		<p class={styles.project__exploreText}>
+			Interested in my other projects?
+		</p>
+		<a href="/projects" class={styles.project__exploreButton}>
+			Explore more</a
+		>
 	</div>
 </section>

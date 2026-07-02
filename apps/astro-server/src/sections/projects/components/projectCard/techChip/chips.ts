@@ -1,3 +1,5 @@
+import { colord } from "colord";
+
 export const skillChips = {
 	astro: {
 		icon: "icons/Astro.svg",
@@ -82,3 +84,26 @@ export const skillChips = {
 };
 
 export type SkillChipKeys = keyof typeof skillChips;
+
+export class Chip {
+	icon?: string;
+	color: string;
+	backgroundColor: string;
+	textColor: string;
+	name: string;
+
+	constructor(chip: SkillChipKeys | string) {
+		const { icon, color, name } = skillChips[
+			chip.toLowerCase() as SkillChipKeys
+		] ?? {
+			icon: undefined,
+			color: "#888888",
+			name: chip,
+		};
+		this.icon = icon;
+		this.color = color;
+		this.backgroundColor = colord(color).alpha(0.25).toHex();
+		this.textColor = colord(color).darken(0.4).toHex();
+		this.name = name;
+	}
+}

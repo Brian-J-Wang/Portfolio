@@ -1,4 +1,5 @@
-from services.project import get_project_service
+from schemas.github_events import PingEvent
+from services.project_service import get_project_service
 from services.github_service import get_github_service
 from repository.schemas.project import Project
 from pydantic import ValidationError
@@ -11,42 +12,25 @@ router = APIRouter()
 async def github_webhook(
 	request: Request, 
 	event_type = Header(alias="X-GitHub-Event"), 
-	github_service = Depends(get_github_service),
-	project_service = Depends(get_project_service)
+	github_service = Depends(get_github_service)
 ):
-	if event_type != "push":
-		return Response(status_code=204)
 
-	try:
-		payload = PushEvent.model_validate(await request.json())
-		if payload.ref != "refs/heads/main":
-			return Response(status_code=204)
-	except ValidationError as exc:
-		return Response(status_code=500)
-	
-	node_id = payload.repository.node_id
-	repo = await project_service.get_project(node_id)
-
-	if repo is None:
+	if event_type == "push":
 		try:
-			metadata = github_service.get_project_metadata(payload.repository.full_name)
-		except ValidationError as exc:
-			return Response(status_code=400, content={ "message": f"Invalid metadata format: {str(exc)}" })
+			payload = PushEvent.model_validate(await request.json())
+			await github_service.handle_push_event(payload)
 		except Exception as exc:
-			return Response(status_code=204, content={ "message": "portfolio.yaml not found"})
-		project = Project(
-			node_id = node_id,
-			project_data = metadata
-		)
-		await project.insert()
-	else:
+			print(exc)
+			return Response(status_code=500)
+	elif event_type == "ping":
 		try:
-			metadata = github_service.get_project_metadata(payload.repository.full_name)
-		except ValidationError as exc:
-			return Response(status_code=400, content={ "message": f"Invalid metadata format: {str(exc)}" })
+			payload = PingEvent.model_validate(await request.json())
+			await github_service.handle_ping_event(payload)
 		except Exception as exc:
-			return Response(status_code=204, content={ "message": "portfolio.yaml not found"})
-		repo.project_data = metadata
-		await repo.save()
+			print(exc)
+			return Response(status_code=500, content=str(exc), headers={
+				"Content-Type": "application/json"
+			})
 
 	return Response(status_code=200)
+

@@ -1,6 +1,9 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 class Repository(BaseModel):
+	created_at: datetime
+	updated_at: datetime
 	node_id: str
 	name: str
 	full_name: str
@@ -16,4 +19,8 @@ class Commits(BaseModel):
 class PushEvent(BaseModel):
 	ref: str
 	commits: list[Commits]
+	repository: Repository
+
+
+class PingEvent(BaseModel):
 	repository: Repository

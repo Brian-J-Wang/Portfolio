@@ -1,0 +1,12 @@
+---
+import { getProjects } from "@lib/project/project.api";
+import ProjectCard from "../projectCard/projectCard.astro";
+
+const { type: ProjectType = "personal", limit = 5 } = Astro.props;
+
+const projects = await getProjects(ProjectType, limit);
+---
+
+<div class="w-(--page-width) mx-auto flex flex-col gap-8">
+	{projects && projects.map((project) => <ProjectCard project={project} />)}
+</div>

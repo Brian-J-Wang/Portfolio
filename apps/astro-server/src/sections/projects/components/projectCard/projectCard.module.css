@@ -2,6 +2,7 @@
 	--border-radius: 16px;
 	display: flex;
 	height: 320px;
+	width: 100%;
 }
 
 .card__projectImage {

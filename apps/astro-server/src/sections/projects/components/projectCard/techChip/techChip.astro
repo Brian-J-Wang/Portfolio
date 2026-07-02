@@ -1,0 +1,26 @@
+---
+import type { SkillChipKeys } from "./chips";
+import { Chip } from "./chips";
+
+interface Props {
+	chip: SkillChipKeys | string;
+}
+
+const { chip } = Astro.props as Props;
+const chipData = new Chip(chip);
+---
+
+<div
+	style={{
+		backgroundColor: chipData.backgroundColor,
+		color: chipData.textColor,
+	}}
+	class="flex flex-row py-1 px-1.5 h-6 gap-2 items-center rounded-xs"
+>
+	{
+		chipData.icon && (
+			<img src={chipData.icon} alt={chipData.name} class="h-full" />
+		)
+	}
+	<span class="text-sm">{chipData.name}</span>
+</div>

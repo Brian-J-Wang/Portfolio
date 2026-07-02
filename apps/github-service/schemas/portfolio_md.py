@@ -6,5 +6,5 @@ class Portfolio_MD(BaseModel):
 	project_type: Literal["personal", "work"] = "personal"
 	description: str
 	tech_stack: list[str]
-	links: list[dict[str, str]] = []
+	links: dict[str, str] = {}
 	featured: bool = False

@@ -1,0 +1,50 @@
+---
+import styles from "./projectCard.module.css";
+import TechChip from "./techChip/techChip.astro";
+import LinkButton from "@components/linkButton/linkButton.astro";
+import Inset from "@components/inset/inset.astro";
+import type { Project } from "@lib/project/project.types";
+import getLinkIcon from "./getLinkIcon";
+
+interface Props {
+	project: Project;
+	className?: string;
+}
+
+const { className = "", project } = Astro.props as Props;
+const { project_data } = project;
+const links = Object.entries(project_data.links);
+---
+
+<div class={`${className} ${styles.card}`}>
+	<div class={styles.card__projectImage}>
+		{
+			links.length != 0 && (
+				<Inset position="top-right" className={styles.card__whiteSpace}>
+					{links.map(([key, value]) => (
+						<LinkButton
+							link={value}
+							icon={getLinkIcon(key)}
+							alt={`link to ${key} repo`}
+						/>
+					))}
+				</Inset>
+			)
+		}
+	</div>
+	<div class={styles.card__content}>
+		<div class="mb-4">
+			<h3 class={styles.card__title}>
+				{project_data.name}
+			</h3>
+			<span class="flex flex-row gap-2">
+				{
+					project_data.tech_stack.map((skill) => (
+						<TechChip chip={skill} />
+					))
+				}
+			</span>
+		</div>
+		<p class={styles.card__desc}>{project_data.description}</p>
+	</div>
+</div>

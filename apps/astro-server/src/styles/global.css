@@ -34,6 +34,17 @@
 
 	--transition-fast: all 0.1s ease-out;
 	--transition: all 0.2s ease-out;
+
+	--padding-1: 4px;
+	--padding-2: 8px;
+	--padding-3: 12px;
+	--padding-4: 16px;
+	--padding-5: 24px;
+	--padding-6: 32px;
+	--padding-7: 48px;
+	--padding-8: 72px;
+	--padding-9: 96px;
+	--padding-10: 120px;
 }
 
 :root {

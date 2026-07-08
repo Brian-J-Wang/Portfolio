@@ -81,6 +81,7 @@ jobs:
                       ghcr.io/${{ secrets.GHCR_TAG }}/frontend:${{ github.sha }}
 
     backend-build:
+        needs: changes
         runs-on: ubuntu-latest
         if: ${{needs.changes.outputs.backend == 'true'}}
         defaults:

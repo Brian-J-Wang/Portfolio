@@ -6,15 +6,15 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-      plugins: [tailwindcss()],
-      resolve: {
-          //@ts-ignore
-          tsconfigPaths: true,
-      },
+	vite: {
+		plugins: [tailwindcss()],
+		resolve: {
+			//@ts-ignore
+			tsconfigPaths: true,
+		},
 	},
 
-  adapter: node({
-    mode: "standalone",
-  }),
+	adapter: node({
+		mode: "standalone",
+	}),
 });

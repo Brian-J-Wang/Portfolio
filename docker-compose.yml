@@ -4,14 +4,16 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - BACKEND_URL=http://api-server:4000
+      - BACKEND_URL=http://backend:4000
   backend:
     build:
       context: ./apps/api-server
     ports:
       - "4000:4000"
     environment:
-      - MONGO_URI=mongodb://mongo_db:27017
+      - MONGO_URI=mongodb://mongo_db:27017/webhook
+    env_file:
+      - .env.backend
     depends_on:
       - mongo_db
   mongo_db:

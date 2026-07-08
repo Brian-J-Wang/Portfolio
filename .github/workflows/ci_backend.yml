@@ -1,0 +1,18 @@
+name: CI_backend
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "apps/github-service/**"
+
+jobs:
+    link:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: apps/github-service
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4

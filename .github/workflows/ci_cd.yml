@@ -82,6 +82,7 @@ jobs:
 
     backend-build:
         runs-on: ubuntu-latest
+        if: ${{needs.changes.outputs.backend == 'true'}}
         defaults:
             run:
                 working-directory: apps/github-service

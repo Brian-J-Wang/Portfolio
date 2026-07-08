@@ -6,6 +6,7 @@ on:
             - main
         paths:
             - "apps/astro-server/**"
+            - ".github/workflows/ci_frontend.yml"
 
 permissions:
     contents: read

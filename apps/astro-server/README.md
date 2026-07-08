@@ -1,6 +1,6 @@
 # Astro Server
 
-This is the Astro-based frontend for the portfolio project. It is configured for Server-Side Rendering (SSR) using the standalone Node.js adapter and styled with Tailwind CSS v4.
+This is the Astro-based frontend for the portfolio project. It is configured for Server-Side Rendering (SSR) using the standalone Node.js adapter and styled with Tailwind CSS v4. It connects with the backend to retrieve github projects
 
 ## Features
 

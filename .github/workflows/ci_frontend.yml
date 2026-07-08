@@ -65,5 +65,5 @@ jobs:
                   cache-from: type=gha
                   cache-to: type=gha,mode=max
                   tags: |
-                      ghcr.io/${{ steps.meta.outputs.tags }}/frontend:latest
-                      ghcr.io/${{ steps.meta.outputs.tags }}/frontend:${{ github.sha }}
+                      ${{ steps.meta.outputs.tags }}/frontend:latest
+                      ${{ steps.meta.outputs.tags }}/frontend:${{ github.sha }}

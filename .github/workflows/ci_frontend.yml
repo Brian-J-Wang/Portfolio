@@ -50,11 +50,6 @@ jobs:
                   registry: ghcr.io
                   username: ${{ github.actor }}
                   password: ${{ secrets.GHCR_PASSWORD }}
-            - name: Extract Docker image name
-              id: meta
-              uses: docker/metadata-action@v6
-              with:
-                  images: ghcr.io/${{ github.repository }}
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v4
             - name: Build and Push to GitHub Container Registry
@@ -65,5 +60,5 @@ jobs:
                   cache-from: type=gha
                   cache-to: type=gha,mode=max
                   tags: |
-                      ${{ steps.meta.outputs.tags }}/frontend:latest
-                      ${{ steps.meta.outputs.tags }}/frontend:${{ github.sha }}
+                      ${{ secrets.GHCR_TAG }}/frontend:latest
+                      ${{ secrets.GHCR_TAG }}/frontend:${{ github.sha }}

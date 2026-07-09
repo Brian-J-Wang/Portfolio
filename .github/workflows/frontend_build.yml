@@ -30,7 +30,7 @@ jobs:
             - name: Build and Push to GitHub Container Registry
               uses: docker/build-push-action@v6
               with:
-                  context: .
+                  context: ./apps/astro-server
                   file: ./apps/astro-server/dockerfile
                   push: true
                   cache-from: type=gha

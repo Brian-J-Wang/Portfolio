@@ -49,68 +49,15 @@ jobs:
               run: npx prettier --check "**/*.{js,ts,astro,css}"
 
     frontend-build:
-        runs-on: ubuntu-latest
         needs: frontend-lint
-        defaults:
-            run:
-                working-directory: apps/astro-server
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "24.x"
-                  cache: "npm"
-            - name: Login to GitHub Container Registry
-              uses: docker/login-action@v3
-              with:
-                  registry: ghcr.io
-                  username: ${{ github.actor }}
-                  password: ${{ secrets.GHCR_PASSWORD }}
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v4
-            - name: Build and Push to GitHub Container Registry
-              uses: docker/build-push-action@v6
-              with:
-                  context: .
-                  file: ./apps/astro-server/dockerfile
-                  push: true
-                  cache-from: type=gha
-                  cache-to: type=gha,mode=max
-                  tags: |
-                      ghcr.io/${{ secrets.GHCR_TAG }}/frontend:latest
-                      ghcr.io/${{ secrets.GHCR_TAG }}/frontend:${{ github.sha }}
+        uses: ./.github/workflows/frontend_build.yml
+        secrets: inherit
 
     backend-build:
         needs: changes
-        runs-on: ubuntu-latest
         if: ${{needs.changes.outputs.backend == 'true'}}
-        defaults:
-            run:
-                working-directory: apps/github-service
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Login to GHCR
-              uses: docker/login-action@v3
-              with:
-                  registry: ghcr.io
-                  username: ${{ github.actor }}
-                  password: ${{ secrets.GHCR_PASSWORD }}
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v4
-            - name: Build and push to GHCR
-              uses: docker/build-push-action@v6
-              with:
-                  context: ./apps/github-service
-                  file: ./apps/github-service/Dockerfile
-                  push: true
-                  cache-from: type=gha
-                  cache-to: type=gha,mode=max
-                  tags: |
-                      ghcr.io/${{ secrets.GHCR_TAG }}/backend:latest
-                      ghcr.io/${{ secrets.GHCR_TAG }}/backend:${{ github.sha }}
+        uses: ./.github/workflows/backend_build.yml
+        secrets: inherit
 
     deploy:
         needs: [frontend-build, backend-build]

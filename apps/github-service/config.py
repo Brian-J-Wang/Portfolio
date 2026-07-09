@@ -7,10 +7,6 @@ class Settings(BaseSettings):
 	DB_PASS: str
 	DB_HOST: str
 
-	class Config:
-		env_file = ".env"
-		env_file_encoding = "utf-8"
-	
 	@computed_field
 	@property
 	def MONGO_URI(self) -> str:

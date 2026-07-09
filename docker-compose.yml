@@ -1,12 +1,12 @@
 services:
   frontend:
-    image: ghcr.io/brian-j-wang/portfolio-frontend:latest
+    image: ghcr.io/brian-j-wang/portfolio/frontend:latest
     ports:
       - "3000:3000"
     environment:
       - BACKEND_URL=http://backend:4000
   backend:
-    image: ghcr.io/brian-j-wang/portfolio-backend:latest
+    image: ghcr.io/brian-j-wang/portfolio/backend:latest
     ports:
       - "4000:4000"
     env_file:

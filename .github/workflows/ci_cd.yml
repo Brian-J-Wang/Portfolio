@@ -134,14 +134,14 @@ jobs:
                   password: ${{ secrets.GHCR_PASSWORD }}
             - name: Create Env Variables
               run: |
-                cat > .env.backend <<EOF
+                cat > .env.backend << EOF
                 MONGODB_USER=${{ secrets.DB_USER }}
                 MONGODB_PASS=${{ secrets.DB_PASS }}
                 MONGODB_HOST=${{ secrets.DB_HOST }}
-                GITHUB_PAT=${{ secrets.GH_PAT }}
+                GH_TOKEN=${{ secrets.GH_TOKEN }}
                 EOF
 
-                cat > .env.mongo <<EOF
+                cat > .env.mongo << EOF
                 MONGODB_INITDB_ROOT_USERNAME=${{ secrets.DB_USER }}
                 MONGODB_INITDB_ROOT_PASSWORD=${{ secrets.DB_PASS }}
                 EOF
@@ -153,6 +153,7 @@ jobs:
                   key: ${{ secrets.VPS_SSH_KEY }}
                   source: "docker-compose.yml,.env.backend,.env.mongo"
                   target: "/home/${{secrets.VPS_USER}}/"
+                  overwrite: true
             - name: Login to VPS
               uses: appleboy/ssh-action@v1.0.3
               with:

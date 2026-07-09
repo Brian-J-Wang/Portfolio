@@ -2,7 +2,7 @@ from pydantic import computed_field
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-	GH_PAT: str
+	GH_TOKEN: str
 	DB_USER: str
 	DB_PASS: str
 	DB_HOST: str

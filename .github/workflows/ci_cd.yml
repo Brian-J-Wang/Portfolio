@@ -134,7 +134,8 @@ jobs:
                 MONGODB_HOST=${{ secrets.DB_HOST }}
                 GH_TOKEN=${{ secrets.GH_TOKEN }}
                 EOF
-
+            - name: Create Mongo Env Variables
+              run: |
                 cat > .env.mongo << EOF
                 MONGODB_INITDB_ROOT_USERNAME=${{ secrets.DB_USER }}
                 MONGODB_INITDB_ROOT_PASSWORD=${{ secrets.DB_PASS }}

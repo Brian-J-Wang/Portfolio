@@ -1,17 +1,14 @@
 services:
   frontend:
-    image: ghcr.io/brwwang/portfolio-frontend:latest
+    image: ghcr.io/brian-j-wang/portfolio-frontend:latest
     ports:
       - "3000:3000"
     environment:
       - BACKEND_URL=http://backend:4000
   backend:
-    build:
-      context: ./apps/api-server
+    image: ghcr.io/brian-j-wang/portfolio-backend:latest
     ports:
       - "4000:4000"
-    environment:
-      - MONGO_URI=mongodb://mongo_db:27017/webhook
     env_file:
       - .env.backend
     depends_on:
@@ -22,9 +19,8 @@ services:
       - "27017"
     volumes:
       - mongo_data:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=[PASSWORD]
+    env_file:
+      - .env.mongo
 
 volumes:
   mongo_data:

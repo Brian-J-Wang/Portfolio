@@ -44,7 +44,7 @@ class Github_Service:
 			
 		await self.project_service.upsert_project(payload.repository.node_id, portfolio_yaml)
 
-github_service = Github_Service(settings.GITHUB_PAT, get_project_service())
+github_service = Github_Service(settings.GH_PAT, get_project_service())
 def get_github_service():
 	return github_service
 	

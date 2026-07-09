@@ -12,6 +12,9 @@ export default defineConfig({
 			//@ts-ignore
 			tsconfigPaths: true,
 		},
+		ssr: {
+			noExternal: true,
+		},
 	},
 
 	adapter: node({

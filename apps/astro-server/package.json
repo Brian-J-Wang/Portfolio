@@ -18,6 +18,7 @@
 		"@tailwindcss/vite": "^4.3.0",
 		"astro": "^7.0.7",
 		"colord": "^2.9.3",
+		"is-docker": "^4.0.0",
 		"tailwindcss": "^4.3.0"
 	},
 	"devDependencies": {

@@ -13,3 +13,10 @@ async def get_projects(
 	limit: int = 5
 ):
 	return await project_service.get_projects(type, limit)
+
+@router.get("/{project_id:int}")
+async def get_project(
+	project_id: int,
+	project_service = Depends(get_project_service)
+):
+	return await project_service.get_project(project_id)

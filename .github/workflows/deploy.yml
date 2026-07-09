@@ -17,9 +17,9 @@ jobs:
             - name: Create Env Variables
               run: |
                 cat > .env.backend << EOF
-                MONGODB_USER=${{ secrets.DB_USER }}
-                MONGODB_PASS=${{ secrets.DB_PASS }}
-                MONGODB_HOST=${{ secrets.DB_HOST }}
+                DB_USER=${{ secrets.DB_USER }}
+                DB_PASS=${{ secrets.DB_PASS }}
+                DB_HOST=${{ secrets.DB_HOST }}
                 GH_TOKEN=${{ secrets.GH_TOKEN }}
                 EOF
             - name: Create Mongo Env Variables

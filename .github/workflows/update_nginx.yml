@@ -26,7 +26,7 @@ jobs:
                   key: ${{ secrets.VPS_SSH_KEY }}
                   source: "./nginx/conf.d/default.conf"
                   target: "./nginx/conf.d/"
-                  strip_components: 1
+                  strip_components: 2
                   overwrite: true
             - name: Restart 
               uses: appleboy/ssh-action@v1

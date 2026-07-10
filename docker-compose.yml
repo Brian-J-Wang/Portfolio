@@ -1,26 +1,54 @@
 services:
-  frontend:
-    image: ghcr.io/brian-j-wang/portfolio/frontend:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - BACKEND_URL=http://backend:4000
-  backend:
-    image: ghcr.io/brian-j-wang/portfolio/backend:latest
-    ports:
-      - "4000:4000"
-    env_file:
-      - .env.backend
-    depends_on:
-      - mongo_db
-  mongo_db:
-    image: mongo:8.0
-    expose:
-      - "27017"
-    volumes:
-      - mongo_data:/data/db
-    env_file:
-      - .env.mongo
+    nginx:
+        image: nginx:1.28-alpine
+        ports:
+            - "443:443"
+            - "80:80"
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+        depends_on:
+            - frontend
+            - backend
+        networks:
+            - public
+    
+    frontend:
+        image: ghcr.io/brian-j-wang/portfolio/frontend:latest
+        expose: 
+          - "3000"
+        environment:
+        - BACKEND_URL=http://backend:4000
+        networks:
+        - public
+        - private
+
+    backend:
+        image: ghcr.io/brian-j-wang/portfolio/backend:latest
+        expose: 
+          - "4000"
+        env_file:
+          - .env.backend
+        depends_on:
+          - mongo_db
+        networks:
+          - public
+          - private
+
+    mongo_db:
+        image: mongo:8.0
+        expose:
+          - "27017"
+        volumes:
+          - mongo_data:/data/db
+        env_file:
+          - .env.mongo
+        networks:
+          - private
+
+networks:
+    public:
+    private:
+        internal: true
 
 volumes:
-  mongo_data:
+    mongo_data:

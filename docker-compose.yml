@@ -6,6 +6,7 @@ services:
             - "80:80"
         volumes:
             - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./certbot/www:/var/www/certbot:ro
         depends_on:
             - frontend
             - backend

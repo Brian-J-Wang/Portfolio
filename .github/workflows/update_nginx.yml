@@ -1,0 +1,35 @@
+name: Update NGINX Config
+
+on: 
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: read
+
+jobs:
+    push:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Copy NGINX to VPS
+              uses: appleboy/scp-action@v1
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USER }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  source: "nginx/conf.d/default.conf"
+                  target: "/etc/nginx/conf.d/default.conf"
+                  overwrite: true
+            - name: Restart 
+              uses: appleboy/ssh-action@v1
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USER }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  script: |
+                      docker compose exec nginx nginx -t
+                      docker compose exec nginx nginx -s reload

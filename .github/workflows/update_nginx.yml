@@ -4,6 +4,9 @@ on:
     push:
         branches:
             - main
+        paths:
+            - "nginx/**"
+            - ".github/workflows/update_nginx.yml"
 
 permissions:
     contents: read
@@ -21,7 +24,7 @@ jobs:
                   host: ${{ secrets.VPS_HOST }}
                   username: ${{ secrets.VPS_USER }}
                   key: ${{ secrets.VPS_SSH_KEY }}
-                  source: "nginx/conf.d/default.conf"
+                  source: "./nginx/conf.d/default.conf"
                   target: "/etc/nginx/conf.d/default.conf"
                   overwrite: true
             - name: Restart 

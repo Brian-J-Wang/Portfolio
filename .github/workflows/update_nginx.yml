@@ -25,7 +25,7 @@ jobs:
                   username: ${{ secrets.VPS_USER }}
                   key: ${{ secrets.VPS_SSH_KEY }}
                   source: "./nginx/conf.d/default.conf"
-                  target: "/etc/nginx/conf.d/"
+                  target: "./nginx/conf.d/"
                   strip_components: 1
                   overwrite: true
             - name: Restart 

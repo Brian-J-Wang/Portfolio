@@ -7,6 +7,7 @@ on:
         paths:
             - "nginx/**"
             - ".github/workflows/update_nginx.yml"
+    workflow_dispatch: 
 
 permissions:
     contents: read

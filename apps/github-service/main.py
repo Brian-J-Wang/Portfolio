@@ -11,3 +11,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.include_router(webhook.router, prefix="/github/webhook")
 app.include_router(api.router, prefix="/projects")
+
+@app.get("/ping")
+async def ping():
+	return {"message": "pong"}

@@ -10,7 +10,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"lint": "eslint .",
+		"lint": "prettier --check **/*.{js,ts,astro,css}",
 		"format": "prettier --write ."
 	},
 	"dependencies": {

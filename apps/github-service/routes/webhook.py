@@ -8,7 +8,7 @@ from fastapi import Response, Depends, Request, APIRouter, Header
 
 router = APIRouter()
 
-@router.post("/")
+@router.post("")
 async def github_webhook(
 	request: Request, 
 	event_type = Header(alias="X-GitHub-Event"), 

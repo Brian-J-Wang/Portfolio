@@ -19,7 +19,7 @@ services:
         expose: 
           - "3000"
         environment:
-        - PUBLIC_BACKEND_URL=http://backend:4000
+        - BACKEND_URL=http://backend:4000
         networks:
         - public
         - private

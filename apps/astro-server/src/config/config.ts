@@ -1,3 +1,3 @@
 export const config = {
-	BACKEND_URL: import.meta.env.PUBLIC_BACKEND_URL,
+	BACKEND_URL: process.env.BACKEND_URL,
 };

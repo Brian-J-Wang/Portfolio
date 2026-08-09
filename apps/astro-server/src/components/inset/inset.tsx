@@ -1,0 +1,103 @@
+import styles from "./inset.module.css";
+import negRadiusTopLeft from "./neg-radius-top-left.svg";
+import negRadiusTopRight from "./neg-radius-top-right.svg";
+import negRadiusBottomLeft from "./neg-radius-bottom-left.svg";
+import negRadiusBottomRight from "./neg-radius-bottom-right.svg";
+import type { ReactNode } from "react";
+
+type Position = "top-left" | "top-right" | "bottom-left" | "bottom-right";
+
+interface InsetProps {
+	className?: string;
+	position: Position;
+	children: ReactNode;
+}
+
+export default function Inset({ className, position, children }: InsetProps) {
+	const insetPosition = (() => {
+		switch (position) {
+			case "top-left":
+				return "top-0 left-0";
+			case "top-right":
+				return "top-0 right-0";
+			case "bottom-left":
+				return "bottom-0 left-0";
+			case "bottom-right":
+				return "bottom-0 right-0";
+		}
+	})();
+
+	const insetRadiusPosition = (() => {
+		switch (position) {
+			case "top-left":
+				return styles.inset__topLeftRadius;
+			case "top-right":
+				return styles.inset__topRightRadius;
+			case "bottom-left":
+				return styles.inset__bottomLeftRadius;
+			case "bottom-right":
+				return styles.inset__bottomRightRadius;
+		}
+	})();
+
+	const negativeRadius = (() => {
+		switch (position) {
+			case "top-left":
+				return negRadiusTopLeft;
+			case "top-right":
+				return negRadiusTopRight;
+			case "bottom-left":
+				return negRadiusBottomLeft;
+			case "bottom-right":
+				return negRadiusBottomRight;
+		}
+	})();
+
+	const topNegativeRadiusClass = (() => {
+		switch (position) {
+			case "top-left":
+				return "top-0 right-0 translate-x-full";
+			case "top-right":
+				return "top-0 left-0 -translate-x-full";
+			case "bottom-left":
+				return "top-0 left-0 -translate-y-full";
+			case "bottom-right":
+				return "top-0 right-0 -translate-y-full";
+		}
+	})();
+
+	const bottomNegativeRadiusClass = (() => {
+		switch (position) {
+			case "top-left":
+				return "bottom-0 left-0 translate-y-full";
+			case "top-right":
+				return "bottom-0 right-0 translate-y-full";
+			case "bottom-left":
+				return "bottom-0 right-0 translate-x-full";
+			case "bottom-right":
+				return "bottom-0 left-0 -translate-x-full";
+		}
+	})();
+
+	return (
+		<>
+			<div
+				className={`${className} ${insetPosition} ${styles.inset} ${insetRadiusPosition} absolute bg-neutral-50`}
+			>
+				<img
+					src={negativeRadius.src}
+					alt="negativeRadius"
+					aria-hidden
+					className={`${topNegativeRadiusClass} ${styles.inset__topNegativeRadius} absolute`}
+				/>
+				{children}
+				<img
+					src={negativeRadius.src}
+					alt="negativeRadius"
+					aria-hidden
+					className={`${bottomNegativeRadiusClass} ${styles.inset__bottomNegativeRadius} absolute`}
+				/>
+			</div>
+		</>
+	);
+}

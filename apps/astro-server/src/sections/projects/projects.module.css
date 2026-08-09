@@ -1,7 +1,7 @@
 .project__section {
 	display: flex;
 	flex-direction: column;
-	width: var(--page-width);
+	width: var(--max-page-width);
 	margin: 0px auto;
 }
 

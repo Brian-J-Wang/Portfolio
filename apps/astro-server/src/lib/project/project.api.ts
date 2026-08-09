@@ -5,10 +5,17 @@ export async function getProjects(
 	type: ProjectType = "personal",
 	limit = 5,
 ): Promise<Project[]> {
-	const res = await fetch(
-		`${config.BACKEND_URL}/projects?type=${type}&limit=${limit}`,
-	);
-	return await res.json();
+	try {
+		const res = await fetch(
+			`${config.BACKEND_URL}/projects?type=${type}&limit=${limit}`,
+		);
+		return await res.json();
+	} catch {
+		console.warn(
+			`Was not able to retrieve projects at ${config.BACKEND_URL}/projects`,
+		);
+		return [];
+	}
 }
 
 export async function getProject(node: string): Promise<Project> {

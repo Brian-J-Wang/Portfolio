@@ -3,6 +3,7 @@
 	"include": [".astro/types.d.ts", "**/*"],
 	"exclude": ["dist"],
 	"compilerOptions": {
+		"ignoreDeprecations": "6.0",
 		"baseUrl": ".",
 		"paths": {
 			"@config/*": ["src/config/*"],
@@ -11,6 +12,8 @@
 			"@pages/*": ["src/pages/*"],
 			"@styles/*": ["src/styles/*"],
 			"@sections/*": ["src/sections/*"]
-		}
+		},
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	}
 }

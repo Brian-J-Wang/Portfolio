@@ -1,28 +1,28 @@
 .inset {
-	min-width: calc(var(--border-radius) * 2);
-	min-height: calc(var(--border-radius) * 2);
+	min-width: calc(var(--inset-radius) * 2);
+	min-height: calc(var(--inset-radius) * 2);
 }
 
 .inset__topLeftRadius {
-	border-bottom-right-radius: var(--border-radius);
+	border-bottom-right-radius: var(--inset-radius);
 }
 
 .inset__topRightRadius {
-	border-bottom-left-radius: var(--border-radius);
+	border-bottom-left-radius: var(--inset-radius);
 }
 
 .inset__bottomLeftRadius {
-	border-top-right-radius: var(--border-radius);
+	border-top-right-radius: var(--inset-radius);
 }
 
 .inset__bottomRightRadius {
-	border-top-left-radius: var(--border-radius);
+	border-top-left-radius: var(--inset-radius);
 }
 
 .inset__topNegativeRadius {
-	width: var(--border-radius);
+	width: var(--inset-radius);
 }
 
 .inset__bottomNegativeRadius {
-	height: var(--border-radius);
+	height: var(--inset-radius);
 }

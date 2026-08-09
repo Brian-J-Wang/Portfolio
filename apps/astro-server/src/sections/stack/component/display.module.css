@@ -1,0 +1,35 @@
+.projectShowcase {
+	position: relative;
+	border-radius: var(--radius-md);
+	background-color: var(--background-color, rgba(0, 0, 0, 0));
+	transition: background-color 0.4s ease;
+}
+
+.projectShowcase__inset {
+	--inset-radius: var(--radius-md);
+	font-size: 24px;
+	padding: 8px 16px;
+}
+
+.iconArm {
+	border-radius: 8px 0px 0px 8px;
+	background-color: var(--background-color, rgba(0, 0, 0, 0));
+	transition:
+		translate 0.35s ease-out,
+		width 0.35s ease-out,
+		height 0.2s ease,
+		background-color 0.4s ease;
+}
+
+.iconWrapper {
+	border-radius: 8px;
+	background-color: var(--background-color-dark, rgba(0, 0, 0, 0));
+	transition: width 0.35s ease-out;
+}
+
+.iconWrapperInset {
+	height: var(--inset-radius);
+	width: var(--inset-radius);
+	fill: var(--background-color, rgba(0, 0, 0, 0));
+	transition: fill 0.4s ease;
+}

@@ -115,7 +115,7 @@ const SkillDisplay: React.FC = () => {
 			</div>
 			<div
 				className={clsx(
-					"flex-1 relative rounded-2xl",
+					"flex flex-col flex-1 relative rounded-2xl",
 					styles.projectShowcase,
 				)}
 				ref={projectDisplay}
@@ -157,12 +157,21 @@ const SkillDisplay: React.FC = () => {
 					</div>
 				</div>
 
-				<Inset
-					position="top-left"
-					className={styles.projectShowcase__inset}
-				>
-					Projects that uses {activeSkill?.name}
-				</Inset>
+				{activeSkill ? (
+					<>
+						<Inset
+							position="top-left"
+							className={styles.projectShowcase__inset}
+						>
+							Projects that uses {activeSkill?.name}
+						</Inset>
+					</>
+				) : (
+					<div className="text-center my-auto text-4xl text-neutral-200 px-24">
+						Click on an icon to see the different projects that its
+						used in
+					</div>
+				)}
 			</div>
 		</div>
 	);

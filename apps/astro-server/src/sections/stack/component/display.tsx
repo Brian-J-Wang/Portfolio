@@ -169,7 +169,7 @@ const SkillDisplay: React.FC = () => {
 				) : (
 					<div className="text-center my-auto text-4xl text-neutral-200 px-24">
 						Click on an icon to see the different projects that its
-						used in
+						used in.
 					</div>
 				)}
 			</div>

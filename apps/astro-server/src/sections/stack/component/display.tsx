@@ -1,11 +1,12 @@
 import styles from "./display.module.css";
-import techIcons, { type TechIcon } from "src/data/techIcons";
 import clsx from "clsx";
 
 import Inset from "@components/inset/inset";
 import { skillCategories } from "../skills";
 import { useRef, useState, type RefObject } from "react";
 import { colord } from "colord";
+import type { TechIcon } from "@lib/technologies/technologies.types";
+import techIcons from "@lib/technologies/technologies.data";
 
 const SkillDisplay: React.FC = () => {
 	const [activeSkill, setActiveSkill] = useState<TechIcon | null>(null);
@@ -47,7 +48,7 @@ const SkillDisplay: React.FC = () => {
 		<div className="flex gap-8">
 			<div className="flex-1">
 				<div className="mb-8 px-12">
-					<h2 className="text-6xl text-center mb-2">My Stack</h2>
+					<h2 className="text-6xl text-center mb-6">My Stack</h2>
 					<p>
 						These are the tools and technologies I use to build
 						modern applications. Why don't you click around and see
@@ -58,7 +59,10 @@ const SkillDisplay: React.FC = () => {
 					<div>
 						{skillCategories.map((category) => {
 							return (
-								<div className="select-none">
+								<div
+									className="select-none"
+									key={category.name}
+								>
 									<h3 className="mb-2 text-neutral-600">
 										{category.name}
 									</h3>

@@ -3,7 +3,7 @@ export type Project = {
 	project_data: ProjectData;
 };
 
-export type ProjectType = "work" | "personal";
+export type ProjectType = "work" | "personal" | "all";
 
 type ProjectData = {
 	name: string;

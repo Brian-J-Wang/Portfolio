@@ -1,0 +1,38 @@
+services:
+    nginx: !reset null
+    frontend:
+        image: !reset null
+        build:
+            context: ./apps/astro-server
+            target: development
+        expose: !reset
+        ports:
+            - "127.0.0.1:4321:4321"
+        develop:
+            watch:
+                - action: sync
+                  path: "./apps/astro-server"
+                  target: "/app"
+                  ignore:
+                      - ".astro"
+                      - ".vscode"
+                      - "node_modules"
+                      - ".git"
+                      - "README.md"
+                - action: restart
+                  path: "./apps/astro-server/package.json"
+    backend:
+        image: !reset null
+        build: ./apps/github-service
+        develop:
+            watch:
+                - action: sync
+                  path: "./apps/github-service"
+                  target: "/app"
+                  ignore:
+                      - ".vscode"
+                - action: restart
+                  path: "./apps/github-service/requirements.txt"
+    mongo_db:
+        volumes:
+            - "./apps/mongo-db/init.js:/docker-entrypoint-initdb.d/init.js:ro"

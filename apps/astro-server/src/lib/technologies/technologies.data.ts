@@ -1,8 +1,4 @@
-export type TechIcon = {
-	icon: string;
-	color: string;
-	name: string;
-};
+import type { TechIcon } from "./technologies.types";
 
 export const techIcons: Record<string, TechIcon> = {
 	astro: {
@@ -86,5 +82,7 @@ export const techIcons: Record<string, TechIcon> = {
 		name: "Photography",
 	},
 };
+
+export type ValidTechIcons = keyof typeof techIcons;
 
 export default techIcons;

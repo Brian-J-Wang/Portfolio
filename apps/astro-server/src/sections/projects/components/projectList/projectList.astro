@@ -2,11 +2,31 @@
 import { getProjects } from "@lib/project/project.api";
 import ProjectCard from "../projectCard/projectCard.astro";
 
-const { type: ProjectType = "personal", limit = 5 } = Astro.props;
+const { type: projectType = "personal", limit = 5 } = Astro.props;
 
-const projects = await getProjects(ProjectType, limit);
+const projects = getProjects({
+	type: projectType,
+	limit: limit,
+});
 ---
 
 <div class="w-(--max-page-width) mx-auto flex flex-col gap-8">
-	{projects && projects.map((project) => <ProjectCard project={project} />)}
+	{
+		projects
+			.then((result) => {
+				if (result.length == 0) {
+					return (
+						<div class="text-center text-neutral-200">
+							There are no projects found with the given
+							parameters!
+						</div>
+					);
+				}
+
+				return result.map((project) => (
+					<ProjectCard project={project} />
+				));
+			})
+			.catch((err) => <div>Something went wrong on the server</div>)
+	}
 </div>

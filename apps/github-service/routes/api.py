@@ -9,9 +9,11 @@ router = APIRouter()
 @router.get("")
 async def get_projects(
 	project_service = Depends(get_project_service),
-	type: Literal["work", "personal"] = "personal",
-	limit: int = 5
+	type: Literal["work", "personal", "all"] = "personal",
+	limit: int = 5,
+	tagFilter: str = ""
 ):
+	print(tagFilter)
 	return await project_service.get_projects(type, limit)
 
 @router.get("/{project_id:int}")

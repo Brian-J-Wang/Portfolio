@@ -23,7 +23,9 @@ services:
                   path: "./apps/astro-server/package.json"
     backend:
         image: !reset null
-        build: ./apps/github-service
+        build:
+            context: ./apps/github-service
+            target: development
         develop:
             watch:
                 - action: sync
@@ -33,6 +35,8 @@ services:
                       - ".vscode"
                 - action: restart
                   path: "./apps/github-service/requirements.txt"
+        ports:
+            - "127.0.0.1:4000:4000"
     mongo_db:
         volumes:
             - "./apps/mongo-db/init.js:/docker-entrypoint-initdb.d/init.js:ro"

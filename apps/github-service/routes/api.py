@@ -11,10 +11,9 @@ async def get_projects(
 	project_service = Depends(get_project_service),
 	type: Literal["work", "personal", "all"] = "personal",
 	limit: int = 5,
-	tagFilter: str = ""
+	tagFilter: str | None = None
 ):
-	print(tagFilter)
-	return await project_service.get_projects(type, limit)
+	return await project_service.get_projects(type, limit, tagFilter)
 
 @router.get("/{project_id:int}")
 async def get_project(

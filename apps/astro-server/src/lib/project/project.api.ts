@@ -4,7 +4,6 @@ import type { Project, ProjectType } from "@lib/project/project.types";
 type ProjectParams = {
 	type?: ProjectType;
 	limit?: number;
-	tagFilter?: string;
 };
 
 export const getProjects = (params: ProjectParams): Promise<Project[]> => {
@@ -16,22 +15,22 @@ export const getProjects = (params: ProjectParams): Promise<Project[]> => {
 		params,
 	);
 
-	const paramString = Object.keys(params).map(
-		(key) => `${key}=${params[key as keyof ProjectParams]}`,
-	);
+	const paramString = Object.keys(params)
+		.map((key) => `${key}=${params[key as keyof ProjectParams]}`)
+		.join("&");
 
-	return fetch(
-		`${config.BACKEND_URL}/projects?${paramString.join("&")}`,
-	).then((res) => {
-		if (res.ok) {
-			return res.json();
-		} else {
-			throw new Error(res.statusText);
-		}
-	});
+	return fetch(`${config.BACKEND_URL}/projects?${paramString}`).then(
+		(res) => {
+			if (res.ok) {
+				return res.json();
+			} else {
+				throw new Error(res.statusText);
+			}
+		},
+	);
 };
 
 export async function getProject(node: string): Promise<Project> {
-	const res = await fetch(`${config.BACKEND_URL}/projects/${node}`);
+	const res = await fetch(`/api/projects/${node}`);
 	return await res.json();
 }

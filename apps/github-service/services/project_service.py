@@ -12,16 +12,22 @@ class ProjectService:
 				)
 			)
 
-	async def get_projects(self, type: Literal["work", "personal", "all"], limit: int = 5, tagFilter: None | str = None) -> list[Project]:
+	async def get_projects(self, project_type: Literal["work", "personal", "all"], limit: int = 5, tagFilter: None | str = None) -> list[Project]:
 		query = {}
 
-		if type != "all": 
-			query["project_data.project_type": type]
+		if project_type != "all": 
+			query["project_data.project_type"] = project_type
 
 		if tagFilter is not None:
-			query["project_data.tech_stack": str]
+			query["project_data.tech_stack"] = tagFilter
+
+		print("type:", repr(type))
+		print("tagFilter:", repr(tagFilter))
+		print(query)
 
 		projects = await Project.find(query).limit(limit).sort("-updated_at").to_list()
+
+		print(projects)
 
 		return projects
 	

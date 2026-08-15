@@ -1,6 +1,6 @@
 import type { TechIcon } from "./technologies.types";
 
-export const techIcons: Record<string, TechIcon> = {
+export const techIcons = {
 	astro: {
 		icon: "icons/Astro.svg",
 		color: "#ff5d01",
@@ -81,7 +81,7 @@ export const techIcons: Record<string, TechIcon> = {
 		color: "#888888",
 		name: "Photography",
 	},
-};
+} satisfies Record<string, TechIcon>;
 
 export type ValidTechIcons = keyof typeof techIcons;
 

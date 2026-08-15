@@ -1,12 +1,27 @@
-import { getProjects } from "@lib/project/project.api";
+import { getProjects } from "@lib/project/project.react.api";
+import type { ValidTechIcons } from "@lib/technologies/technologies.data";
 import { use } from "react";
 
 type RelevantProjectsProps = {
-    tagFilter: 
+	tagFilter: ValidTechIcons;
 };
 
 const RelevantProjects: React.FC<RelevantProjectsProps> = (props) => {
-	const projects = use(getProjects({ type: "all", limit: 3, tagFilter:  }));
+	const projects = use(
+		getProjects({ type: "all", limit: 3, tagFilter: props.tagFilter }),
+	);
 
-	return <>{projects.map((project) => {})}</>;
+	return (
+		<>
+			{projects.map(({ node_id, project_data }) => {
+				return (
+					<div key={node_id}>
+						<h3>{project_data.name}</h3>
+					</div>
+				);
+			})}
+		</>
+	);
 };
+
+export default RelevantProjects;

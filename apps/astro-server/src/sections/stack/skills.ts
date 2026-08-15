@@ -1,10 +1,4 @@
-import techIcons from "src/data/techIcons";
-
-type Skill = {
-	src: string;
-	name: string;
-	color: string;
-};
+import techIcons from "@lib/technologies/technologies.data";
 
 type SkillCategory = {
 	name: string;

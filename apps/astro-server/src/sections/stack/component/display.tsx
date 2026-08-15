@@ -6,7 +6,10 @@ import { skillCategories } from "../skills";
 import { useRef, useState, type RefObject } from "react";
 import { colord } from "colord";
 import type { TechIcon } from "@lib/technologies/technologies.types";
-import techIcons from "@lib/technologies/technologies.data";
+import techIcons, {
+	type ValidTechIcons,
+} from "@lib/technologies/technologies.data";
+import RelevantProjects from "./relevantProjects";
 
 const SkillDisplay: React.FC = () => {
 	const [activeSkill, setActiveSkill] = useState<TechIcon | null>(null);
@@ -68,7 +71,10 @@ const SkillDisplay: React.FC = () => {
 									</h3>
 									<div className="flex gap-4">
 										{category.skills.map((skill) => {
-											const techIcon = techIcons[skill];
+											const techIcon =
+												techIcons[
+													skill as ValidTechIcons
+												];
 											return (
 												<div
 													style={
@@ -169,6 +175,11 @@ const SkillDisplay: React.FC = () => {
 						>
 							Projects that uses {activeSkill?.name}
 						</Inset>
+						<div className="pt-16 px-4">
+							<RelevantProjects
+								tagFilter={activeSkill.name as ValidTechIcons}
+							/>
+						</div>
 					</>
 				) : (
 					<div className="text-center my-auto text-4xl text-neutral-200 px-24">

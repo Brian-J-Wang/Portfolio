@@ -162,9 +162,7 @@ const SkillDisplay: React.FC = () => {
 						<path d="M20 20C20 8.95431 11.0457 0 0 0H20V20Z" />
 					</svg>
 
-					<div className={styles.iconWrapper} ref={iconWrapper}>
-						{}
-					</div>
+					<div className={styles.iconWrapper} ref={iconWrapper}></div>
 				</div>
 
 				{activeSkill ? (

@@ -3,49 +3,81 @@ import clsx from "clsx";
 
 import Inset from "@components/inset/inset";
 import { skillCategories } from "../skills";
-import { useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { colord } from "colord";
 import type { TechIcon } from "@lib/technologies/technologies.types";
 import techIcons, {
 	type ValidTechIcons,
 } from "@lib/technologies/technologies.data";
 import RelevantProjects from "./relevantProjects";
+import HighlightArm from "@components/highlightArm/highlightArm";
 
 const SkillDisplay: React.FC = () => {
 	const [activeSkill, setActiveSkill] = useState<TechIcon | null>(null);
-	const projectDisplay = useRef<HTMLDivElement>(
+	const [highlightedElement, setHighlightedElement] =
+		useState<HTMLElement | null>(null);
+	const displayElement = useRef<HTMLDivElement>(
 		null,
 	) as RefObject<HTMLDivElement>;
-	const arm = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
-	const iconWrapper = useRef<HTMLDivElement>(
-		null,
-	) as RefObject<HTMLDivElement>;
+	const [armOffset, setArmOffset] = useState<{ x: number; y: number }>({
+		x: 0,
+		y: 0,
+	});
 
 	const toggleSkillChip =
 		(skill: TechIcon) =>
 		(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 			setActiveSkill(skill);
-
-			const projectDisplayBCR =
-				projectDisplay.current.getBoundingClientRect();
-			const iconElementBCR = evt.currentTarget.getBoundingClientRect();
-
-			arm.current.style.translate = `0px ${iconElementBCR.y - projectDisplayBCR.y}px`;
-			arm.current.style.height = `${iconElementBCR.height}px`;
-			arm.current.style.width = `${Math.abs(iconElementBCR.x - projectDisplayBCR.x)}px`;
-
-			projectDisplay.current.style.setProperty(
-				"--background-color",
-				colord(skill.color).alpha(0.2).toHex(),
-			);
-			projectDisplay.current.style.setProperty(
-				"--background-color-dark",
-				colord(skill.color).alpha(0.4).toHex(),
-			);
-
-			iconWrapper.current.style.width = `${iconElementBCR.width}px`;
-			iconWrapper.current.style.height = `${iconElementBCR.height}px`;
+			setHighlightedElement(evt.currentTarget);
 		};
+
+	const onSkillChipMouseEnter = (
+		evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
+	) => {
+		if (highlightedElement == null) {
+			return;
+		}
+
+		if (highlightedElement == evt.currentTarget) {
+			return;
+		}
+
+		const arm = displayElement.current?.querySelector("#highlightArm");
+		if (!arm) {
+			return;
+		}
+
+		const wrapperBCR = arm
+			.querySelector(".highlightWrapper")
+			?.getBoundingClientRect();
+		const targetBCR = evt.currentTarget.getBoundingClientRect();
+
+		if (wrapperBCR && targetBCR) {
+			const delta = {
+				x: targetBCR.x - wrapperBCR.x,
+				y: targetBCR.y - wrapperBCR.y,
+			};
+			const magnitude = Math.hypot(delta.x, delta.y);
+			delta.x = (delta.x / magnitude) * 12;
+			delta.y = (delta.y / magnitude) * 12;
+
+			setArmOffset(delta);
+		}
+	};
+
+	const onSkillChipMouseLeave = (
+		evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
+	) => {
+		setArmOffset({
+			x: 0,
+			y: 0,
+		});
+	};
+
+	useEffect(() => {
+		const element = document.getElementById("SkillDisplay");
+		setHighlightedElement(element);
+	}, []);
 
 	return (
 		<div className="flex gap-8">
@@ -59,14 +91,14 @@ const SkillDisplay: React.FC = () => {
 					</p>
 				</div>
 				<div className="flex flex-col gap-8 items-center pb-12">
-					<div>
+					<div id="SkillDisplay" className="">
 						{skillCategories.map((category) => {
 							return (
 								<div
-									className="select-none"
+									className="select-none relative z-10 px-6 py-2"
 									key={category.name}
 								>
-									<h3 className="mb-2 text-neutral-600">
+									<h3 className="mb-2 text-neutral-900">
 										{category.name}
 									</h3>
 									<div className="flex gap-4">
@@ -104,6 +136,13 @@ const SkillDisplay: React.FC = () => {
 													onMouseDown={toggleSkillChip(
 														techIcon,
 													)}
+													onMouseEnter={
+														onSkillChipMouseEnter
+													}
+
+													onMouseLeave={
+														onSkillChipMouseLeave
+													}
 												>
 													<img
 														src={techIcon.icon}
@@ -128,42 +167,30 @@ const SkillDisplay: React.FC = () => {
 					"flex flex-col flex-1 relative rounded-2xl",
 					styles.projectShowcase,
 				)}
-				ref={projectDisplay}
+				style={
+					{
+						"--background-color": activeSkill?.color
+							? colord(activeSkill.color).alpha(0.2).toHex()
+							: "var(--color-neutral-50)",
+						"--background-color-dark": activeSkill?.color
+							? colord(activeSkill.color).alpha(0.4).toHex()
+							: "",
+					} as React.CSSProperties
+				}
+				ref={displayElement}
 			>
-				<div
-					ref={arm}
-					className={clsx("absolute right-full flex", styles.iconArm)}
-				>
-					<svg
-						width="20"
-						height="20"
-						viewBox="0 0 20 20"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						className={clsx(
-							styles.iconWrapperInset,
-							"absolute right-0 -translate-y-full",
-						)}
-					>
-						<path d="M20 20H0C11.0457 20 20 11.0457 20 0V20Z" />
-					</svg>
-
-					<svg
-						width="20"
-						height="20"
-						viewBox="0 0 20 20"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						className={clsx(
-							styles.iconWrapperInset,
-							"absolute right-0 bottom-0 translate-y-full",
-						)}
-					>
-						<path d="M20 20C20 8.95431 11.0457 0 0 0H20V20Z" />
-					</svg>
-
-					<div className={styles.iconWrapper} ref={iconWrapper}></div>
-				</div>
+				<HighlightArm
+					anchor="left"
+					highlightElement={highlightedElement}
+					initialStyles={{
+						translateX: 0,
+						translateY: 197,
+						height: 660,
+						width: 120,
+					}}
+					offset={armOffset}
+					id="highlightArm"
+				/>
 
 				{activeSkill ? (
 					<>

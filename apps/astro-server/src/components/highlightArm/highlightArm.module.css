@@ -1,0 +1,22 @@
+.arm {
+	border-radius: 8px 0px 0px 8px;
+	background-color: var(--background-color, rgba(0, 0, 0, 0));
+	transition:
+		translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+		width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+		height 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+		background-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.highlight {
+	border-radius: 8px;
+	background-color: var(--background-color-dark, rgba(0, 0, 0, 0));
+	transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.inset {
+	height: var(--inset-radius);
+	width: var(--inset-radius);
+	fill: var(--background-color, rgba(0, 0, 0, 0));
+	transition: fill 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}

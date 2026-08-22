@@ -1,3 +1,0 @@
-const ProjectFilter = () => {
-	return <></>;
-};

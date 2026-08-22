@@ -1,6 +1,6 @@
 ---
 import styles from "./projectCard.module.css";
-import TechChip from "./techChip/techChip.astro";
+import TechChip from "@components/techChip/techChip.tsx";
 import LinkButton from "@components/linkButton/linkButton.astro";
 import Inset from "@components/inset/inset";
 import type { Project } from "@lib/project/project.types";
@@ -40,7 +40,7 @@ const links = Object.entries(project_data.links);
 			<span class="flex flex-row gap-2">
 				{
 					project_data.tech_stack.map((skill) => (
-						<TechChip chip={skill} />
+						<TechChip chip={skill}/>
 					))
 				}
 			</span>

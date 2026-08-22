@@ -24,13 +24,18 @@ export const getProjects = (params: ProjectParams): Promise<Project[]> => {
 	if (!cache.has(paramString)) {
 		cache.set(
 			paramString,
-			fetch(`/api/projects?${paramString}`).then((res) => {
-				if (res.ok) {
-					return res.json();
-				} else {
-					throw new Error(res.statusText);
-				}
-			}),
+			fetch(`/api/projects?${paramString}`)
+				.then((res) => {
+					if (res.ok) {
+						return res.json();
+					} else {
+						throw new Error(res.statusText);
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+					return [];
+				}),
 		);
 	}
 

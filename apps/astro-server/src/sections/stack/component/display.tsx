@@ -200,7 +200,7 @@ const SkillDisplay: React.FC = () => {
 						>
 							Projects that uses {activeSkill?.name}
 						</Inset>
-						<div className="pt-16 px-4">
+						<div className="flex flex-col gap-4 pt-16 px-4">
 							<RelevantProjects
 								tagFilter={activeSkill.name as ValidTechIcons}
 							/>

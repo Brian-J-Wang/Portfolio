@@ -88,6 +88,7 @@ export type SkillChipKeys = keyof typeof skillChips;
 export class Chip {
 	icon?: string;
 	color: string;
+	backgroundColorSolid: string;
 	backgroundColor: string;
 	textColor: string;
 	name: string;
@@ -102,6 +103,7 @@ export class Chip {
 		};
 		this.icon = icon;
 		this.color = color;
+		this.backgroundColorSolid = colord(color).alpha(0.25).toHex();
 		this.backgroundColor = colord(color).alpha(0.25).toHex();
 		this.textColor = colord(color).darken(0.4).toHex();
 		this.name = name;

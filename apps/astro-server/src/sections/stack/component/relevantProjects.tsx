@@ -11,7 +11,6 @@ const RelevantProjects: React.FC<RelevantProjectsProps> = (props) => {
 	const projects = use(
 		getProjects({
 			type: "all",
-			limit: 3,
 			tagFilter: props.tagFilter,
 		}),
 	);
@@ -20,19 +19,20 @@ const RelevantProjects: React.FC<RelevantProjectsProps> = (props) => {
 		<>
 			{projects.map(({ node_id, project_data }) => {
 				return (
-					<div key={node_id} className="relative bg-blue-500">
+					<div key={node_id}>
 						<h3>{project_data.name}</h3>
-						<div>
+						<div className="flex gap-2 mb-3">
 							{project_data.tech_stack.map((tech) => {
 								return (
 									<TechChip
 										chip={tech as ValidTechIcons}
 										key={tech}
+										useSolidBackground={true}
 									/>
 								);
 							})}
 						</div>
-						<div className="absolute inset-0 bg-blue-500/50">
+						<div className="inset-0">
 							{project_data.description}
 						</div>
 					</div>

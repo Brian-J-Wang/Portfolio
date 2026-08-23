@@ -33,7 +33,7 @@ Starting a development server is easy. Make sure you have the following installe
 2. Run the following command:
 
     ```
-    docker compose -f docker-compose.yml -f docker-compose.dev.yml up --watch
+    docker compose -f docker-compose.yml -f docker-compose.dev.yml up --watch --build
     ```
 
 3. To connect the backend to Github, it is recommended to use [ngrok](https://ngrok.com/) as a reverse proxy.

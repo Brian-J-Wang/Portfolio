@@ -7,14 +7,6 @@ import ProjectList from "./components/projectList/projectList.astro";
 <section class={styles.project__section}>
 	<SectionHeader title="My Work" subTitle="Check out my latest projects" />
 	<ProjectList type="work" server:defer />
-	<div class={styles.project__explore}>
-		<p class={styles.project__exploreText}>
-			Interested in my other projects?
-		</p>
-		<a href="/projects" class={styles.project__exploreButton}>
-			Explore more
-		</a>
-	</div>
 </section>
 <section class={styles.project__section}>
 	<SectionHeader
@@ -22,12 +14,4 @@ import ProjectList from "./components/projectList/projectList.astro";
 		subTitle="Some of the recent projects I worked on."
 	/>
 	<ProjectList server:defer />
-	<div class={styles.project__explore}>
-		<p class={styles.project__exploreText}>
-			Interested in my other projects?
-		</p>
-		<a href="/projects" class={styles.project__exploreButton}>
-			Explore more
-		</a>
-	</div>
 </section>

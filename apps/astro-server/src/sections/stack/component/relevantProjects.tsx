@@ -20,7 +20,7 @@ const RelevantProjects: React.FC<RelevantProjectsProps> = (props) => {
 			{projects.map(({ node_id, project_data }) => {
 				return (
 					<div key={node_id}>
-						<h3>{project_data.name}</h3>
+						<h3 className="mb-1">{project_data.name}</h3>
 						<div className="flex gap-2 mb-3">
 							{project_data.tech_stack.map((tech) => {
 								return (

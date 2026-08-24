@@ -1,9 +1,8 @@
 ---
-import styles from "./sectionHeader.module.css";
 const { title, subTitle } = Astro.props;
 ---
 
-<div class={styles.header}>
-	<h3 class={styles.header__title}>{title}</h3>
-	<p class={styles.header__desc}>{subTitle}</p>
+<div class="w-(--content-width) mx-auto mt-[72px] mb-12">
+	<h2>{title}</h2>
+	<p class="text-center text-neutral-600">{subTitle}</p>
 </div>

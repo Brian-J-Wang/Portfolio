@@ -58,6 +58,7 @@
 	}
 
 	body {
+		--inset-radius: var(--radius-md);
 		margin: 0;
 		padding: 0;
 	}
@@ -79,5 +80,6 @@
 
 	p {
 		font-size: var(--text-lg);
+		color: var(--color-neutral-700);
 	}
 }

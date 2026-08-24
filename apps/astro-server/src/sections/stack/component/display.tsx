@@ -31,49 +31,6 @@ const SkillDisplay: React.FC = () => {
 			setHighlightedElement(evt.currentTarget);
 		};
 
-	const onSkillChipMouseEnter = (
-		evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
-	) => {
-		if (highlightedElement == null) {
-			return;
-		}
-
-		if (highlightedElement == evt.currentTarget) {
-			return;
-		}
-
-		const arm = displayElement.current?.querySelector("#highlightArm");
-		if (!arm) {
-			return;
-		}
-
-		const wrapperBCR = arm
-			.querySelector(".highlightWrapper")
-			?.getBoundingClientRect();
-		const targetBCR = evt.currentTarget.getBoundingClientRect();
-
-		if (wrapperBCR && targetBCR) {
-			const delta = {
-				x: targetBCR.x - wrapperBCR.x,
-				y: targetBCR.y - wrapperBCR.y,
-			};
-			const magnitude = Math.hypot(delta.x, delta.y);
-			delta.x = (delta.x / magnitude) * 12;
-			delta.y = (delta.y / magnitude) * 12;
-
-			setArmOffset(delta);
-		}
-	};
-
-	const onSkillChipMouseLeave = (
-		evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
-	) => {
-		setArmOffset({
-			x: 0,
-			y: 0,
-		});
-	};
-
 	useEffect(() => {
 		const element = document.getElementById("SkillDisplay");
 		setHighlightedElement(element);
@@ -83,7 +40,7 @@ const SkillDisplay: React.FC = () => {
 		<div className="flex gap-8">
 			<div className="flex-1">
 				<div className="mb-8 px-12">
-					<h2 className="text-6xl text-center mb-6">My Stack</h2>
+					<h2 className="text-center mb-6">My Stack</h2>
 					<p>
 						These are the tools and technologies I use to build
 						modern applications. Why don't you click around and see
@@ -136,20 +93,13 @@ const SkillDisplay: React.FC = () => {
 													onMouseDown={toggleSkillChip(
 														techIcon,
 													)}
-													onMouseEnter={
-														onSkillChipMouseEnter
-													}
-
-													onMouseLeave={
-														onSkillChipMouseLeave
-													}
 												>
 													<img
 														src={techIcon.icon}
 														alt={techIcon.name}
 														className="w-8 h-8"
 													/>
-													<p className="uppercase text-xs">
+													<p className="uppercase text-xs text-neutral-950">
 														{techIcon.name}
 													</p>
 												</div>
@@ -188,7 +138,6 @@ const SkillDisplay: React.FC = () => {
 						height: 660,
 						width: 120,
 					}}
-					offset={armOffset}
 					id="highlightArm"
 				/>
 

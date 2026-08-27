@@ -3,9 +3,9 @@
 	"include": [".astro/types.d.ts", "**/*"],
 	"exclude": ["dist"],
 	"compilerOptions": {
-		"ignoreDeprecations": "6.0",
 		"baseUrl": ".",
 		"paths": {
+			"@/*": ["src/*"],
 			"@config/*": ["src/config/*"],
 			"@lib/*": ["src/lib/*"],
 			"@components/*": ["src/components/*"],

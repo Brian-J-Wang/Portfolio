@@ -1,8 +1,26 @@
 ---
 import Layout from "src/layouts/layout.astro";
-import Projects from "@sections/projects/projects.astro";
+import ProjectList from "@sections/projects/projectList.astro";
+import SectionHeader from "@/components/section/sectionHeader";
+import SectionSubtitle from "@/components/section/sectionSubtitle";
+import SectionTitle from "@/components/section/sectionTitle";
 ---
 
 <Layout>
-	<Projects />
+	<section>
+		<SectionHeader>
+			<SectionTitle>My Work</SectionTitle>
+			<SectionSubtitle> Some work I did for my clients. </SectionSubtitle>
+		</SectionHeader>
+		<Projects type="work" server:defer />
+	</section>
+	<section>
+		<SectionHeader>
+			<SectionTitle>Projects</SectionTitle>
+			<SectionSubtitle>
+				Personal Projects that I did for fun.
+			</SectionSubtitle>
+		</SectionHeader>
+		<Projects server:defer />
+	</section>
 </Layout>

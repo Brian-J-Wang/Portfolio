@@ -1,8 +1,15 @@
 ---
 import styles from "./stack.module.css";
 import SkillDisplay from "./component/display";
+import { getProjects } from "@/components/projects/project.api";
+
+const projects = getProjects();
 ---
 
 <section class={styles.stack}>
-	<SkillDisplay client:load />
+	{
+		projects.then((projects) => (
+			<SkillDisplay client:load projects={projects} />
+		))
+	}
 </section>

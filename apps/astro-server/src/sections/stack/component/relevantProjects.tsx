@@ -1,20 +1,13 @@
-import { getProjects } from "@lib/project/project.react.api";
 import type { ValidTechIcons } from "@lib/technologies/technologies.data";
-import TechChip from "@components/techChip/techChip.tsx";
-import { use } from "react";
+import type { Project } from "@/components/projects/project.types";
+import TechIcon from "@/components/techIcon/techIcon";
 
 type RelevantProjectsProps = {
 	tagFilter: ValidTechIcons;
+	projects: Project[];
 };
 
-const RelevantProjects: React.FC<RelevantProjectsProps> = (props) => {
-	const projects = use(
-		getProjects({
-			type: "all",
-			tagFilter: props.tagFilter,
-		}),
-	);
-
+const RelevantProjects: React.FC<RelevantProjectsProps> = ({ projects }) => {
 	return (
 		<>
 			{projects.map(({ node_id, project_data }) => {
@@ -24,10 +17,11 @@ const RelevantProjects: React.FC<RelevantProjectsProps> = (props) => {
 						<div className="flex gap-2 mb-3">
 							{project_data.tech_stack.map((tech) => {
 								return (
-									<TechChip
-										chip={tech as ValidTechIcons}
+									<TechIcon
 										key={tech}
-										useSolidBackground={true}
+										name={tech as ValidTechIcons}
+										variant="chip"
+										showName={true}
 									/>
 								);
 							})}

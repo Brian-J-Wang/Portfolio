@@ -1,9 +1,8 @@
 import styles from "./display.module.css";
 import clsx from "clsx";
-
 import Inset from "@components/inset/inset";
 import { skillCategories } from "../skills";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useReducer, useRef, useState, type RefObject } from "react";
 import { colord } from "colord";
 import type { TechIcon } from "@lib/technologies/technologies.types";
 import techIcons, {
@@ -11,18 +10,16 @@ import techIcons, {
 } from "@lib/technologies/technologies.data";
 import RelevantProjects from "./relevantProjects";
 import HighlightArm from "@components/highlightArm/highlightArm";
+import type { Project } from "@/components/projects/project.types";
 
-const SkillDisplay: React.FC = () => {
+type SkillDisplayProps = {
+	projects: Project[];
+};
+
+const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 	const [activeSkill, setActiveSkill] = useState<TechIcon | null>(null);
 	const [highlightedElement, setHighlightedElement] =
 		useState<HTMLElement | null>(null);
-	const displayElement = useRef<HTMLDivElement>(
-		null,
-	) as RefObject<HTMLDivElement>;
-	const [armOffset, setArmOffset] = useState<{ x: number; y: number }>({
-		x: 0,
-		y: 0,
-	});
 
 	const toggleSkillChip =
 		(skill: TechIcon) =>
@@ -30,11 +27,6 @@ const SkillDisplay: React.FC = () => {
 			setActiveSkill(skill);
 			setHighlightedElement(evt.currentTarget);
 		};
-
-	useEffect(() => {
-		const element = document.getElementById("SkillDisplay");
-		setHighlightedElement(element);
-	}, []);
 
 	return (
 		<div className="flex gap-8">
@@ -64,22 +56,24 @@ const SkillDisplay: React.FC = () => {
 												techIcons[
 													skill as ValidTechIcons
 												];
+											const hoverColor = colord(
+												techIcon.color,
+											)
+												.alpha(0.1)
+												.toHex();
+											const activeColor = colord(
+												techIcon.color,
+											)
+												.alpha(0.2)
+												.toHex();
 											return (
 												<div
 													style={
 														{
 															"--hover-color":
-																colord(
-																	techIcon.color,
-																)
-																	.alpha(0.1)
-																	.toHex(),
+																hoverColor,
 															"--active-color":
-																colord(
-																	techIcon.color,
-																)
-																	.alpha(0.2)
-																	.toHex(),
+																activeColor,
 														} as React.CSSProperties
 													}
 													className={clsx(
@@ -127,7 +121,6 @@ const SkillDisplay: React.FC = () => {
 							: "",
 					} as React.CSSProperties
 				}
-				ref={displayElement}
 			>
 				<HighlightArm
 					anchor="left"
@@ -152,6 +145,11 @@ const SkillDisplay: React.FC = () => {
 						<div className="flex flex-col gap-4 pt-16 px-4">
 							<RelevantProjects
 								tagFilter={activeSkill.name as ValidTechIcons}
+								projects={projects.filter((project) =>
+									project.project_data.tech_stack.includes(
+										activeSkill.name,
+									),
+								)}
 							/>
 						</div>
 					</>

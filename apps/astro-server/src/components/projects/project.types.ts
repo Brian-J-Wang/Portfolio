@@ -5,7 +5,7 @@ export type Project = {
 
 export type ProjectType = "work" | "personal" | "all";
 
-type ProjectData = {
+export type ProjectData = {
 	name: string;
 	project_type: ProjectType;
 	description: string;

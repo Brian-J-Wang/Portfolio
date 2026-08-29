@@ -7,11 +7,8 @@
 	},
 	"scripts": {
 		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro",
 		"lint": "prettier --check **/*.{js,ts,astro,css}",
-		"format": "prettier --write ."
+		"format": "prettier --write **/*.{js,ts,astro,css}"
 	},
 	"dependencies": {
 		"@astrojs/node": "^11.0.2",

@@ -42,7 +42,7 @@ const ExperienceDisplay: React.FC = () => {
 
 	return (
 		<div className="flex justify-center w-full">
-			<div className={`${styles.detail} w-full max-w-[780px] px-12 py-10`}>
+			<div className={`${styles.detail} w-full max-w-195 px-12 py-10`}>
 				<div className="flex items-start justify-between gap-4 mb-6">
 					<div>
 						<h3 className="font-bold text-neutral-900 mb-1.5 tracking-[-0.02em]">
@@ -66,7 +66,10 @@ const ExperienceDisplay: React.FC = () => {
 
 				<ul className="list-none p-0 mb-8 flex flex-col gap-2.5">
 					{active.highlights.map((h) => (
-						<li key={h} className="flex items-start gap-3 text-base text-neutral-700 leading-[1.6]">
+						<li
+							key={h}
+							className="flex items-start gap-3 text-base text-neutral-700 leading-[1.6]"
+						>
 							<span className="shrink-0 w-1.5 h-1.5 rounded-full bg-secondary mt-2" />
 							{h}
 						</li>

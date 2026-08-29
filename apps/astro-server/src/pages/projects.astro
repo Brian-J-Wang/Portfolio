@@ -5,6 +5,8 @@ import SectionSubtitle from "@/components/section/sectionSubtitle";
 import SectionTitle from "@/components/section/sectionTitle";
 import { getProjects } from "@/components/projects/project.api";
 
+export const prerender = false;
+
 const projects = getProjects();
 
 const workProjects = projects.then((projects) => {

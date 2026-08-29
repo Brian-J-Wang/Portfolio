@@ -1,5 +1,4 @@
 .arm {
-	border-radius: 8px 0px 0px 8px;
 	background-color: var(--background-color, rgba(0, 0, 0, 0));
 	transition:
 		translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),

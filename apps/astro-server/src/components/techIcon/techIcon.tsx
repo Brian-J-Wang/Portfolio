@@ -40,7 +40,9 @@ const TechIcon: React.FC<TechIconProps> = ({
 					className="h-full"
 				/>
 			)}
-			{showName && <small className="whitespace-nowrap">{name}</small>}
+			{showName && (
+				<small className="whitespace-nowrap text-sm">{name}</small>
+			)}
 		</div>
 	);
 };

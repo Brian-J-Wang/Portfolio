@@ -18,7 +18,7 @@
 	border-bottom: 2px solid var(--color-gray-100);
 	position: sticky;
 	top: 0;
-	z-index: 100;
+	z-index: 20;
 	background-color: white;
 }
 
@@ -44,7 +44,7 @@
 	flex-direction: row;
 	align-items: center;
 	height: 100%;
-	gap: 24px;
+	gap: 12px;
 	padding: 0px var(--content-padding);
 }
 

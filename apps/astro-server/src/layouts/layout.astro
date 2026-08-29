@@ -1,7 +1,8 @@
 ---
-import { Button } from "@/components/ui/button";
 import "../styles/global.css";
+import ContactPopover from "./contactPopover";
 import styles from "./layout.module.css";
+import { buttonVariants } from "@/components/ui/button";
 ---
 
 <html lang="en">
@@ -21,15 +22,25 @@ import styles from "./layout.module.css";
 				</div>
 				<ul class={styles.header__navBar}>
 					<li>
-						<a href="/">Home</a>
+						<a href="/" class={buttonVariants({ variant: "link" })}
+							>Home</a
+						>
 					</li>
 					<li>
-						<a href="/projects">Projects</a>
+						<a
+							href="/projects"
+							class={buttonVariants({ variant: "link" })}
+							>Projects</a
+						>
 					</li>
 					<li>
-						<a href="">Resume</a>
+						<a
+							class={buttonVariants({ variant: "link" })}
+							href="/resume.pdf"
+							target="_blank"
+							rel="noopener noreferrer">Resume</a
+						>
 					</li>
-					<Button size="lg">Contact Me</Button>
 				</ul>
 			</div>
 		</header>

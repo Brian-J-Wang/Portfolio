@@ -9,7 +9,7 @@ import techIcons, {
 	type ValidTechIcons,
 } from "@lib/technologies/technologies.data";
 import RelevantProjects from "./relevantProjects";
-import HighlightArm from "@components/highlightArm/highlightArm";
+import Connector from "@/components/connector/connector";
 import type { Project } from "@/components/projects/project.types";
 
 type SkillDisplayProps = {
@@ -17,6 +17,7 @@ type SkillDisplayProps = {
 };
 
 const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
+	const skillContainer = useRef<HTMLDivElement>(null);
 	const [activeSkill, setActiveSkill] = useState<TechIcon | null>(null);
 	const [highlightedElement, setHighlightedElement] =
 		useState<HTMLElement | null>(null);
@@ -27,6 +28,10 @@ const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 			setActiveSkill(skill);
 			setHighlightedElement(evt.currentTarget);
 		};
+
+	useEffect(() => {
+		setHighlightedElement(skillContainer.current);
+	}, []);
 
 	return (
 		<div className="flex gap-8">
@@ -40,7 +45,7 @@ const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 					</p>
 				</div>
 				<div className="flex flex-col gap-8 items-center pb-12">
-					<div id="SkillDisplay" className="">
+					<div id="SkillDisplay" ref={skillContainer}>
 						{skillCategories.map((category) => {
 							return (
 								<div
@@ -122,18 +127,17 @@ const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 					} as React.CSSProperties
 				}
 			>
-				<HighlightArm
-					anchor="left"
-					highlightElement={highlightedElement}
+				<Connector
+					targetElement={highlightedElement}
 					initialStyles={{
 						translateX: 0,
 						translateY: 197,
 						height: 660,
 						width: 120,
 					}}
+					className={styles.connector}
 					id="highlightArm"
 				/>
-
 				{activeSkill ? (
 					<>
 						<Inset

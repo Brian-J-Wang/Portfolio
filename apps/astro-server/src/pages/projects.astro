@@ -1,9 +1,23 @@
 ---
 import Layout from "src/layouts/layout.astro";
-import ProjectList from "@sections/projects/projectList.astro";
 import SectionHeader from "@/components/section/sectionHeader";
 import SectionSubtitle from "@/components/section/sectionSubtitle";
 import SectionTitle from "@/components/section/sectionTitle";
+import { getProjects } from "@/components/projects/project.api";
+
+const projects = getProjects();
+
+const workProjects = projects.then((projects) => {
+	return projects.filter(
+		(project) => project.project_data.project_type === "work",
+	);
+});
+
+const personalProjects = projects.then((projects) => {
+	return projects.filter(
+		(project) => project.project_data.project_type === "personal",
+	);
+});
 ---
 
 <Layout>
@@ -12,7 +26,11 @@ import SectionTitle from "@/components/section/sectionTitle";
 			<SectionTitle>My Work</SectionTitle>
 			<SectionSubtitle> Some work I did for my clients. </SectionSubtitle>
 		</SectionHeader>
-		<Projects type="work" server:defer />
+		{
+			<div>
+				
+			</div>
+		}
 	</section>
 	<section>
 		<SectionHeader>
@@ -21,6 +39,5 @@ import SectionTitle from "@/components/section/sectionTitle";
 				Personal Projects that I did for fun.
 			</SectionSubtitle>
 		</SectionHeader>
-		<Projects server:defer />
 	</section>
 </Layout>

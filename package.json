@@ -1,5 +1,33 @@
 {
-  "devDependencies": {
-    "prettier-plugin-astro": "^0.14.1"
-  }
+    "name": "portfolio",
+    "version": "1.0.0",
+    "description": "Portfolio Project",
+    "keywords": [
+        "portfolio"
+    ],
+    "homepage": "https://github.com/Brian-J-Wang/Portfolio#readme",
+    "bugs": {
+        "url": "https://github.com/Brian-J-Wang/Portfolio/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Brian-J-Wang/Portfolio.git"
+    },
+    "license": "ISC",
+    "author": "Brian Wang",
+    "type": "commonjs",
+    "main": " ",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build --watch"
+    },
+    "dependencies": {
+        "prettier": "^3.9.6",
+        "s.color": "^0.0.15",
+        "sass-formatter": "^0.7.9",
+        "suf-log": "^2.5.3"
+    },
+    "devDependencies": {
+        "prettier-plugin-astro": "^0.14.1"
+    }
 }

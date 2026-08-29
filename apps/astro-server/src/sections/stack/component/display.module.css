@@ -1,3 +1,7 @@
+.connector {
+	transition: all 0.4s ease;
+}
+
 .projectShowcase {
 	position: relative;
 	border-radius: var(--radius-md);

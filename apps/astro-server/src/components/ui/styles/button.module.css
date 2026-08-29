@@ -1,0 +1,32 @@
+.base {
+	display: inline-flex;
+	align-items: center;
+	font-size: var(--text-lg);
+	white-space: nowrap;
+	border-radius: 8px;
+}
+
+.variant_default {
+	background-color: var(--color-primary);
+	color: var(--color-neutral-100);
+}
+
+.variant_default:hover {
+	background-color: var(--color-primary);
+	color: var(--color-neutral-50);
+}
+
+.variant_outline {
+	border: 1px solid var(--color-neutral-50);
+}
+
+.variant_link {
+	color: var(--color-neutral-700);
+}
+
+.variant_link:hover {
+	color: var(--color-neutral-900);
+}
+
+.size_default {
+}

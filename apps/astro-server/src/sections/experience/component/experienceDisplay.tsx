@@ -1,5 +1,5 @@
+import TechIcon from "@/components/techIcon/techIcon";
 import styles from "./experienceDisplay.module.css";
-import TechChip from "@components/techChip/techChip";
 import type { ValidTechIcons } from "@lib/technologies/technologies.data";
 
 type ExperienceEntry = {
@@ -19,7 +19,7 @@ const experiences: ExperienceEntry[] = [
 		period: "Jan 2023 – Present",
 		location: "Remote",
 		description:
-			"Designed and deployed full-stack web applications for small businesses and personal projects, handling everything from architecture to deployment.",
+			"Designed and deployed full-stack web applications for small businesses and personal projects, handling everything from design to deployment.",
 		highlights: [
 			"Delivered client projects end-to-end, from design mockups to production",
 			"Containerized apps with Docker and deployed to cloud via CI/CD pipelines",
@@ -78,11 +78,7 @@ const ExperienceDisplay: React.FC = () => {
 
 				<div className="flex flex-wrap gap-2">
 					{active.techStack.map((tech) => (
-						<TechChip
-							key={tech}
-							chip={tech}
-							useSolidBackground={true}
-						/>
+						<TechIcon key={tech} name={tech} showName />
 					))}
 				</div>
 			</div>

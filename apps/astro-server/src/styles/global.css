@@ -124,7 +124,8 @@
 		color: var(--color-neutral-700);
 	}
 
-	section {
+	section,
+	footer {
 		display: flex;
 		flex-direction: column;
 		width: var(--max-page-width);

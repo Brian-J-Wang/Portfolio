@@ -18,7 +18,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ className, project }) => {
 			<div className={styles.card__projectImage}>
 				{Object.keys(links).length !== 0 && (
 					<Inset
-						position="top-right"
+						anchor="topRight"
 						className={styles.card__whiteSpace}
 					>
 						{Object.entries(links).map(([key, value]) => (

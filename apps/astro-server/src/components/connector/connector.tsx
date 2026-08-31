@@ -88,7 +88,7 @@ const Connector: React.FC<HighlightArmProps> = ({
 				styles.translate = `0px 0px`;
 				break;
 			case "bottom":
-				styles.bottom = 0;
+				//TODO: Implement positioning
 				break;
 			case "left":
 				styles.right = "100%";
@@ -98,7 +98,7 @@ const Connector: React.FC<HighlightArmProps> = ({
 				styles.borderRadius = "16px 0px 0px 16px";
 				break;
 			case "right":
-				styles.right = 0;
+				//TODO: Implement positioning
 				break;
 			default:
 				break;
@@ -129,7 +129,7 @@ const Connector: React.FC<HighlightArmProps> = ({
 				xmlns="http://www.w3.org/2000/svg"
 				className={clsx(
 					"absolute right-0 -translate-y-full",
-					armStyles.inset,
+					styles.inset,
 				)}
 			>
 				<path d="M20 20H0C11.0457 20 20 11.0457 20 0V20Z" />
@@ -142,19 +142,11 @@ const Connector: React.FC<HighlightArmProps> = ({
 				xmlns="http://www.w3.org/2000/svg"
 				className={clsx(
 					"absolute right-0 bottom-0 translate-y-full -rotate-90",
-					armStyles.inset,
+					styles.inset,
 				)}
 			>
 				<path d="M20 20H0C11.0457 20 20 11.0457 20 0V20Z" />
 			</svg>
-			{/* <div
-				ref={iconWrapper}
-				className={clsx(styles.highlight, "highlightWrapper")}
-				style={{
-					width: `${armStyles.wrapperWidth}px`,
-					height: `${armStyles.wrapperHeight}px`,
-				}}
-			></div> */}
 		</div>
 	);
 };

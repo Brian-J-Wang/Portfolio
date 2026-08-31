@@ -11,6 +11,9 @@ import techIcons, {
 import RelevantProjects from "./relevantProjects";
 import Connector from "@/components/connector/connector";
 import type { Project } from "@/components/projects/project.types";
+import SectionHeader from "@/components/section/sectionHeader";
+import SectionTitle from "@/components/section/sectionTitle";
+import SectionSubtitle from "@/components/section/sectionSubtitle";
 
 type SkillDisplayProps = {
 	projects: Project[];
@@ -36,14 +39,14 @@ const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 	return (
 		<div className="flex gap-8">
 			<div className="flex-1">
-				<div className="mb-8 px-12">
-					<h2 className="text-center mb-6">My Stack</h2>
-					<p>
+				<SectionHeader>
+					<SectionTitle> My Stack</SectionTitle>
+					<SectionSubtitle>
 						These are the tools and technologies I use to build
 						modern applications. Why don't you click around and see
 						which projects I've done that uses them?
-					</p>
-				</div>
+					</SectionSubtitle>
+				</SectionHeader>
 				<div className="flex flex-col gap-8 items-center pb-12">
 					<div id="SkillDisplay" ref={skillContainer}>
 						{skillCategories.map((category) => {
@@ -141,7 +144,7 @@ const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 				{activeSkill ? (
 					<>
 						<Inset
-							position="top-left"
+							anchor="topLeft"
 							className={styles.projectShowcase__inset}
 						>
 							Projects that uses {activeSkill?.name}

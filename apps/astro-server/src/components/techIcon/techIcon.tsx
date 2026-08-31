@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { TechSkill } from "./skills";
-import { cn } from "@/lib/utils";
+import clsx from "clsx";
 
 const techIconVariants = cva("flex", {
 	variants: {
@@ -28,7 +28,7 @@ const TechIcon: React.FC<TechIconProps> = ({
 			style={{
 				backgroundColor: backgroundColor,
 			}}
-			className={cn(
+			className={clsx(
 				techIconVariants({ variant }),
 				"flex flex-row py-1 px-1.5 h-6 gap-2 items-center rounded-xs",
 			)}

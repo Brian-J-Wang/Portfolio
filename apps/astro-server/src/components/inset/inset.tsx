@@ -1,103 +1,65 @@
-import styles from "./inset.module.css";
-import negRadiusTopLeft from "./neg-radius-top-left.svg";
-import negRadiusTopRight from "./neg-radius-top-right.svg";
-import negRadiusBottomLeft from "./neg-radius-bottom-left.svg";
-import negRadiusBottomRight from "./neg-radius-bottom-right.svg";
 import type { ReactNode } from "react";
+import { cva } from "class-variance-authority";
+import clsx from "clsx";
+import ConcaveRadius from "../concaveRadius/concaveRadius";
 
-type Position = "top-left" | "top-right" | "bottom-left" | "bottom-right";
+type Position = "topLeft" | "topRight" | "bottomLeft" | "bottomRight";
 
 interface InsetProps {
 	className?: string;
-	position: Position;
+	anchor: Position;
 	children: ReactNode;
 }
 
-export default function Inset({ className, position, children }: InsetProps) {
-	const insetPosition = (() => {
-		switch (position) {
-			case "top-left":
-				return "top-0 left-0";
-			case "top-right":
-				return "top-0 right-0";
-			case "bottom-left":
-				return "bottom-0 left-0";
-			case "bottom-right":
-				return "bottom-0 right-0";
-		}
-	})();
+const insetVariants = cva(
+	"min-h-(calc(var(--inset-radius) * 2)) min-w-(calc(var(--inset-radius) * 2)) absolute bg-neutral-50 w-fit h-fit",
+	{
+		variants: {
+			anchor: {
+				topLeft: "top-0 left-0 rounded-br-(--inset-radius)",
+				topRight: "top-0 right-0 rounded-bl-(--inset-radius)",
+				bottomLeft: "bottom-0 left-0 rounded-tr-(--inset-radius)",
+				bottomRight: "bottom-0 right-0 rounded-tl-(--inset-radius)",
+			},
+		},
+	},
+);
 
-	const insetRadiusPosition = (() => {
-		switch (position) {
-			case "top-left":
-				return styles.inset__topLeftRadius;
-			case "top-right":
-				return styles.inset__topRightRadius;
-			case "bottom-left":
-				return styles.inset__bottomLeftRadius;
-			case "bottom-right":
-				return styles.inset__bottomRightRadius;
-		}
-	})();
+const concaveRadiusClasses = {
+	top: {
+		topLeft: "top-0 right-0 translate-x-full",
+		topRight: "top-0 right-0 -translate-x-full",
+		bottomLeft: "top-0 left-0 -translate-y-full",
+		bottomRight: "top-0 right-0 -translate-y-full",
+	},
+	bottom: {
+		topLeft: "bottom-0 left-0 translate-y-full",
+		topRight: "bottom-0 right-0 translate-y-full",
+		bottomLeft: "bottom-0 right-0 translate-x-full",
+		bottomRight: "bottom-0 left-0 -translate-x-full",
+	},
+};
 
-	const negativeRadius = (() => {
-		switch (position) {
-			case "top-left":
-				return negRadiusTopLeft;
-			case "top-right":
-				return negRadiusTopRight;
-			case "bottom-left":
-				return negRadiusBottomLeft;
-			case "bottom-right":
-				return negRadiusBottomRight;
-		}
-	})();
-
-	const topNegativeRadiusClass = (() => {
-		switch (position) {
-			case "top-left":
-				return "top-0 right-0 translate-x-full";
-			case "top-right":
-				return "top-0 left-0 -translate-x-full";
-			case "bottom-left":
-				return "top-0 left-0 -translate-y-full";
-			case "bottom-right":
-				return "top-0 right-0 -translate-y-full";
-		}
-	})();
-
-	const bottomNegativeRadiusClass = (() => {
-		switch (position) {
-			case "top-left":
-				return "bottom-0 left-0 translate-y-full";
-			case "top-right":
-				return "bottom-0 right-0 translate-y-full";
-			case "bottom-left":
-				return "bottom-0 right-0 translate-x-full";
-			case "bottom-right":
-				return "bottom-0 left-0 -translate-x-full";
-		}
-	})();
-
+export default function Inset({ className, anchor, children }: InsetProps) {
 	return (
-		<>
-			<div
-				className={`${className} ${insetPosition} ${styles.inset} ${insetRadiusPosition} absolute bg-neutral-50`}
-			>
-				<img
-					src={negativeRadius.src}
-					alt="negativeRadius"
-					aria-hidden
-					className={`${topNegativeRadiusClass} ${styles.inset__topNegativeRadius} absolute`}
-				/>
-				{children}
-				<img
-					src={negativeRadius.src}
-					alt="negativeRadius"
-					aria-hidden
-					className={`${bottomNegativeRadiusClass} ${styles.inset__bottomNegativeRadius} absolute`}
-				/>
-			</div>
-		</>
+		<div className={insetVariants({ anchor })}>
+			<ConcaveRadius
+				anchor={anchor}
+				size="medium"
+				className={clsx(
+					"absolute",
+					concaveRadiusClasses["top"][anchor],
+				)}
+			/>
+			<div className={className}>{children}</div>
+			<ConcaveRadius
+				anchor={anchor}
+				size="medium"
+				className={clsx(
+					"absolute",
+					concaveRadiusClasses["bottom"][anchor],
+				)}
+			/>
+		</div>
 	);
 }

@@ -1,4 +1,4 @@
-import { config } from "@config/config";
+import { config } from "@/config/config";
 import type { Project, ProjectType } from "./project.types";
 
 export const getProjects = (): Promise<Project[]> => {

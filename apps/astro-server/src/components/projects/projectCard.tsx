@@ -1,7 +1,7 @@
 import styles from "./styles/projectCard.module.css";
-import TechChip from "@components/techChip/techChip.tsx";
-import LinkButton from "@components/linkButton/linkButton.astro";
-import Inset from "@components/inset/inset";
+import TechChip from "@/components/techChip/techChip.tsx";
+import LinkButton from "@/components/linkButton/linkButton.astro";
+import Inset from "@/components/inset/inset";
 import type { Project } from "./project.types";
 import getLinkIcon from "./getLinkIcon";
 import TechIcon from "../techIcon/techIcon";

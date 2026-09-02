@@ -1,11 +1,12 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { TechSkill } from "./skills";
 import clsx from "clsx";
+import type React from "react";
 
 const techIconVariants = cva("flex", {
 	variants: {
 		variant: {
-			card: "flex-col",
+			card: "flex-col items-center",
 			chip: "flex-row",
 		},
 	},
@@ -13,12 +14,14 @@ const techIconVariants = cva("flex", {
 
 type TechIconProps = VariantProps<typeof techIconVariants> & {
 	name: string;
+	className?: string;
 	showName?: boolean;
 };
 
 const TechIcon: React.FC<TechIconProps> = ({
 	variant,
 	name,
+	className,
 	showName = false,
 }) => {
 	const { icon, color, backgroundColor } = new TechSkill(name);
@@ -31,6 +34,7 @@ const TechIcon: React.FC<TechIconProps> = ({
 			className={clsx(
 				techIconVariants({ variant }),
 				"flex flex-row py-1 px-1.5 h-6 gap-2 items-center rounded-xs",
+				className,
 			)}
 		>
 			{icon && (
@@ -41,7 +45,9 @@ const TechIcon: React.FC<TechIconProps> = ({
 				/>
 			)}
 			{showName && (
-				<small className="whitespace-nowrap text-sm">{name}</small>
+				<small className="whitespace-nowrap text-sm capitalize">
+					{name}
+				</small>
 			)}
 		</div>
 	);

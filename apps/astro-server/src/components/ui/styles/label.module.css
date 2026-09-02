@@ -1,0 +1,19 @@
+.base {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+	line-height: 1;
+	font-weight: 500;
+	user-select: none;
+}
+
+:global([data-disabled="true"]) .base {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+:global(.peer:disabled) ~ .base {
+	cursor: not-allowed;
+	opacity: 0.5;
+}

@@ -1,0 +1,213 @@
+.set {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+.set:has(> :global([data-slot="checkbox-group"])),
+.set:has(> :global([data-slot="radio-group"])) {
+	gap: 12px;
+}
+
+.legend {
+	margin-bottom: 12px;
+	font-weight: 500;
+}
+.legend[data-variant="label"] {
+	font-size: 14px;
+}
+.legend[data-variant="legend"] {
+	font-size: 16px;
+}
+
+.group {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	gap: 28px;
+	container-type: normal;
+	container-name: field-group;
+}
+.group[data-slot="checkbox-group"] {
+	gap: 12px;
+}
+.group > :global([data-slot="field-group"]) {
+	gap: 16px;
+}
+
+.field {
+	display: flex;
+	width: 100%;
+	gap: 12px;
+}
+.field[data-invalid="true"] {
+	color: var(--destructive);
+}
+.field_vertical {
+	flex-direction: column;
+}
+.field_vertical > * {
+	width: 100%;
+}
+.field_vertical > :global(.sr-only) {
+	width: auto;
+}
+.field_horizontal {
+	flex-direction: row;
+	align-items: center;
+}
+.field_horizontal:has(> :global([data-slot="field-content"])) {
+	align-items: flex-start;
+}
+.field_horizontal > :global([data-slot="field-label"]) {
+	flex: 1 1 auto;
+}
+.field_horizontal:has(> :global([data-slot="field-content"])) > :global([role="checkbox"]),
+.field_horizontal:has(> :global([data-slot="field-content"])) > :global([role="radio"]) {
+	margin-top: 1px;
+}
+
+.field_responsive {
+	flex-direction: column;
+}
+.field_responsive > * {
+	width: 100%;
+}
+.field_responsive > :global(.sr-only) {
+	width: auto;
+}
+@container field-group (min-width: 768px) {
+	.field_responsive {
+		flex-direction: row;
+		align-items: center;
+	}
+	.field_responsive > * {
+		width: auto;
+	}
+	.field_responsive:has(> :global([data-slot="field-content"])) {
+		align-items: flex-start;
+	}
+	.field_responsive > :global([data-slot="field-label"]) {
+		flex: 1 1 auto;
+	}
+	.field_responsive:has(> :global([data-slot="field-content"])) > :global([role="checkbox"]),
+	.field_responsive:has(> :global([data-slot="field-content"])) > :global([role="radio"]) {
+		margin-top: 1px;
+	}
+}
+
+.content {
+	display: flex;
+	flex: 1 1 0%;
+	flex-direction: column;
+	gap: 4px;
+	line-height: 1.375;
+}
+
+.label {
+	display: flex;
+	width: fit-content;
+	gap: 8px;
+	line-height: 1.375;
+}
+:global([data-slot="field"][data-disabled="true"]) .label {
+	opacity: 0.5;
+}
+.label:has(:global([data-state="checked"])) {
+	border-color: color-mix(in oklch, var(--primary), transparent 70%);
+	background-color: color-mix(in oklch, var(--primary), transparent 95%);
+}
+:global(.dark) .label:has(:global([data-state="checked"])) {
+	border-color: color-mix(in oklch, var(--primary), transparent 80%);
+	background-color: color-mix(in oklch, var(--primary), transparent 90%);
+}
+.label:has(> :global([data-slot="field"])) {
+	border-radius: 6px;
+	border: 1px solid transparent;
+	border-color: var(--border);
+	width: 100%;
+	flex-direction: column;
+}
+.label:has(> :global([data-slot="field"])):not(:has(:disabled, :global([data-disabled]))):hover {
+	background-color: color-mix(in oklch, var(--muted), transparent 50%);
+}
+.label:has(> :global([data-slot="field"])):has(:focus-visible) {
+	border-color: var(--ring);
+	box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring), transparent 50%);
+}
+.label > :global([data-slot="field"]) {
+	padding: 12px;
+}
+
+.title {
+	display: flex;
+	width: fit-content;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+	font-weight: 500;
+}
+:global([data-slot="field"][data-disabled="true"]) .title {
+	opacity: 0.5;
+}
+
+.description {
+	text-align: left;
+	font-size: 14px;
+	line-height: 1.5;
+	font-weight: 400;
+	color: var(--muted-foreground);
+}
+:global([data-orientation="horizontal"]) .description {
+	text-wrap: balance;
+}
+:global([data-variant="legend"]) + .description {
+	margin-top: -6px;
+}
+.description:last-child {
+	margin-top: 0;
+}
+.description:nth-last-child(2) {
+	margin-top: -4px;
+}
+.description > a {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+.description > a:hover {
+	color: var(--primary);
+}
+
+.separator {
+	position: relative;
+	margin-top: -8px;
+	margin-bottom: -8px;
+	height: 20px;
+	font-size: 14px;
+}
+:global([data-variant="outline"]) .separator {
+	margin-bottom: -8px;
+}
+
+.separatorContent {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: fit-content;
+	background-color: var(--background);
+	padding-left: 8px;
+	padding-right: 8px;
+	color: var(--muted-foreground);
+}
+
+.separatorLine {
+	position: absolute;
+	inset: 0;
+	top: 50%;
+}
+
+.error {
+	font-size: 14px;
+	font-weight: 400;
+	color: var(--destructive);
+}

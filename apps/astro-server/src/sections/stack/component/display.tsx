@@ -1,13 +1,13 @@
 import styles from "./display.module.css";
 import clsx from "clsx";
-import Inset from "@components/inset/inset";
+import Inset from "@/components/inset/inset";
 import { skillCategories } from "../skills";
 import { useEffect, useReducer, useRef, useState, type RefObject } from "react";
 import { colord } from "colord";
-import type { TechIcon } from "@lib/technologies/technologies.types";
+import type { TechIcon } from "@/lib/technologies/technologies.types";
 import techIcons, {
 	type ValidTechIcons,
-} from "@lib/technologies/technologies.data";
+} from "@/lib/technologies/technologies.data";
 import RelevantProjects from "./relevantProjects";
 import Connector from "@/components/connector/connector";
 import type { Project } from "@/components/projects/project.types";

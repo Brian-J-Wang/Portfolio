@@ -1,0 +1,24 @@
+.base {
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	font-weight: 500;
+	white-space: nowrap;
+	transition: all 150ms;
+	outline: none;
+	user-select: none;
+}
+
+.base:hover {
+	color: var(--color-primary);
+}
+
+.active {
+	color: var(--color-primary);
+	text-underline-offset: 4px;
+	text-decoration: underline;
+}
+
+.inactive {
+	color: oklch(var(--color-primary-values) / 0.5);
+}

@@ -1,4 +1,4 @@
-import techIcons from "@lib/technologies/technologies.data";
+import techIcons from "@/lib/technologies/technologies.data";
 
 type SkillCategory = {
 	name: string;

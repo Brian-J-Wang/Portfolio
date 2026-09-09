@@ -23,13 +23,14 @@
 	display: flex;
 	width: 100%;
 	flex-direction: column;
-	gap: 28px;
 	container-type: normal;
 	container-name: field-group;
 }
+
 .group[data-slot="checkbox-group"] {
 	gap: 12px;
 }
+
 .group > :global([data-slot="field-group"]) {
 	gap: 16px;
 }
@@ -61,8 +62,10 @@
 .field_horizontal > :global([data-slot="field-label"]) {
 	flex: 1 1 auto;
 }
-.field_horizontal:has(> :global([data-slot="field-content"])) > :global([role="checkbox"]),
-.field_horizontal:has(> :global([data-slot="field-content"])) > :global([role="radio"]) {
+.field_horizontal:has(> :global([data-slot="field-content"]))
+	> :global([role="checkbox"]),
+.field_horizontal:has(> :global([data-slot="field-content"]))
+	> :global([role="radio"]) {
 	margin-top: 1px;
 }
 
@@ -89,8 +92,10 @@
 	.field_responsive > :global([data-slot="field-label"]) {
 		flex: 1 1 auto;
 	}
-	.field_responsive:has(> :global([data-slot="field-content"])) > :global([role="checkbox"]),
-	.field_responsive:has(> :global([data-slot="field-content"])) > :global([role="radio"]) {
+	.field_responsive:has(> :global([data-slot="field-content"]))
+		> :global([role="checkbox"]),
+	.field_responsive:has(> :global([data-slot="field-content"]))
+		> :global([role="radio"]) {
 		margin-top: 1px;
 	}
 }
@@ -127,7 +132,9 @@
 	width: 100%;
 	flex-direction: column;
 }
-.label:has(> :global([data-slot="field"])):not(:has(:disabled, :global([data-disabled]))):hover {
+.label:has(> :global([data-slot="field"])):not(
+		:has(:disabled, :global([data-disabled]))
+	):hover {
 	background-color: color-mix(in oklch, var(--muted), transparent 50%);
 }
 .label:has(> :global([data-slot="field"])):has(:focus-visible) {
@@ -143,7 +150,7 @@
 	width: fit-content;
 	align-items: center;
 	gap: 8px;
-	font-size: 14px;
+	font-size: var(--text-lg);
 	font-weight: 500;
 }
 :global([data-slot="field"][data-disabled="true"]) .title {
@@ -210,4 +217,5 @@
 	font-size: 14px;
 	font-weight: 400;
 	color: var(--destructive);
+	max-height: 20px;
 }

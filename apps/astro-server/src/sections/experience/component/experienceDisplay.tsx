@@ -1,6 +1,6 @@
 import TechIcon from "@/components/techIcon/techIcon";
 import styles from "./experienceDisplay.module.css";
-import type { ValidTechIcons } from "@lib/technologies/technologies.data";
+import type { ValidTechIcons } from "@/lib/technologies/technologies.data";
 
 type ExperienceEntry = {
 	company: string;

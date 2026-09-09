@@ -38,31 +38,6 @@
 	margin-left: auto;
 }
 
-.header__navBar {
-	list-style: none;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	height: 100%;
-	gap: 12px;
-	padding: 0px var(--content-padding);
-}
-
-.header__navBar a {
-	text-decoration: none;
-	color: var(--color-neutral-400);
-	font-size: 18px;
-	transition: var(--transition-fast);
-}
-
-.header__navBar a:hover {
-	color: var(--color-neutral-900);
-}
-
-.header__navBar a:active {
-	color: var(--color-secondary);
-}
-
 .header__contactButton {
 	background-color: #292929;
 	color: white;

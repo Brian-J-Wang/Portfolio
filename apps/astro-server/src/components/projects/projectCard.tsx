@@ -1,6 +1,4 @@
 import styles from "./styles/projectCard.module.css";
-import TechChip from "@/components/techChip/techChip.tsx";
-import LinkButton from "@/components/linkButton/linkButton.astro";
 import Inset from "@/components/inset/inset";
 import type { Project } from "./project.types";
 import getLinkIcon from "./getLinkIcon";
@@ -21,13 +19,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ className, project }) => {
 						anchor="topRight"
 						className={styles.card__whiteSpace}
 					>
-						{Object.entries(links).map(([key, value]) => (
-							<LinkButton
-								link={value}
-								icon={getLinkIcon(key)}
-								alt={`link to ${key} repo`}
-							/>
-						))}
+						Something is supposed to be here
 					</Inset>
 				)}
 			</div>

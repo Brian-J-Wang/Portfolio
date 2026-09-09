@@ -1,4 +1,4 @@
-import type { ValidTechIcons } from "@lib/technologies/technologies.data";
+import type { ValidTechIcons } from "@/lib/technologies/technologies.data";
 import type { Project } from "@/components/projects/project.types";
 import TechIcon from "@/components/techIcon/techIcon";
 

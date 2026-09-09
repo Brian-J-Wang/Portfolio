@@ -24,7 +24,7 @@ const TechIcon: React.FC<TechIconProps> = ({
 	className,
 	showName = false,
 }) => {
-	const { icon, color, backgroundColor } = new TechSkill(name);
+	const { icon, backgroundColor } = new TechSkill(name);
 
 	return (
 		<div

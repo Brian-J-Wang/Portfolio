@@ -2,7 +2,15 @@
 import Footer from "@/components/footer/footer";
 import "../styles/global.css";
 import styles from "./layout.module.css";
-import { buttonVariants } from "@/components/ui/button";
+import NavLink from "@/components/navlink/navLink";
+
+const path = Astro.url.pathname;
+
+const links = [
+	{ name: "Home", href: "/" },
+	{ name: "Projects", href: "/projects" },
+	{ name: "Resume", href: "/resume.pdf" },
+];
 ---
 
 <html lang="en">
@@ -20,27 +28,21 @@ import { buttonVariants } from "@/components/ui/button";
 					<span class={styles.logo__name}> Brian Wang </span>
 					<span class={styles.logo__job}> Software Developer </span>
 				</div>
-				<ul class={styles.header__navBar}>
-					<li>
-						<a href="/" class={buttonVariants({ variant: "link" })}
-							>Home</a
-						>
-					</li>
-					<li>
-						<a
-							href="/projects"
-							class={buttonVariants({ variant: "link" })}
-							>Projects</a
-						>
-					</li>
-					<li>
-						<a
-							class={buttonVariants({ variant: "link" })}
-							href="/resume.pdf"
-							target="_blank"
-							rel="noopener noreferrer">Resume</a
-						>
-					</li>
+				<ul class="flex gap-6 items-center">
+					{
+						links.map((link) => {
+							return (
+								<li>
+									<NavLink
+										href={link.href}
+										isActive={link.href == path}
+									>
+										{link.name}
+									</NavLink>
+								</li>
+							);
+						})
+					}
 				</ul>
 			</div>
 		</header>

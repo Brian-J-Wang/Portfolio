@@ -102,7 +102,6 @@ export class TechSkill {
 			name: techName,
 		};
 
-		console.log(icon, color, name);
 		this.icon = icon;
 		this.color = color;
 		this.backgroundColorSolid = colord(color).alpha(0.25).toHex();

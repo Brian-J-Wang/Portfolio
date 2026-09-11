@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import Button from "@/components/ui/button";
 import {
 	Field,
 	FieldDescription,
@@ -6,8 +6,8 @@ import {
 	FieldGroup,
 	FieldLabel,
 } from "../ui/field";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
+import Input from "../ui/input";
+import Textarea from "../ui/textarea";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 type FormData = {
@@ -29,13 +29,14 @@ const Footer = () => {
 	};
 
 	return (
-		<footer className="p-120">
+		<footer className="p-120 ">
 			<form
+				noValidate
 				action="submit"
-				className="w-100"
+				className="w-100 p-8"
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<FieldGroup gap="narrow">
+				<FieldGroup>
 					<Field>
 						<FieldLabel htmlFor="query-name">Name</FieldLabel>
 						<Input

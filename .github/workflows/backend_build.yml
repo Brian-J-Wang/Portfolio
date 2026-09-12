@@ -11,9 +11,6 @@ permissions:
 jobs:
     build:
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: ./apps/github-service
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -28,8 +25,8 @@ jobs:
             - name: Build and push to GHCR
               uses: docker/build-push-action@v6
               with:
-                  context: ./apps/github-service
-                  file: ./apps/github-service/Dockerfile
+                  context: ./apps/backend
+                  file: ./apps/backend/Dockerfile
                   push: true
                   cache-from: type=gha
                   cache-to: type=gha,mode=max

@@ -20,7 +20,15 @@
 		&:hover {
 			background-color: color-mix(
 				in oklab,
-				var(--color-primary) 90%,
+				var(--color-foreground) 80%,
+				transparent
+			);
+		}
+
+		&:active {
+			background-color: color-mix(
+				in oklab,
+				var(--color-secondary) 80%,
 				transparent
 			);
 		}

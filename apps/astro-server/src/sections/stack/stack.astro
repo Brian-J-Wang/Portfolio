@@ -6,7 +6,7 @@ import { getProjects } from "@/components/projects/project.api";
 const projects = getProjects();
 ---
 
-<section class={styles.stack}>
+<section>
 	{
 		projects.then((projects) => (
 			<SkillDisplay client:load projects={projects} />

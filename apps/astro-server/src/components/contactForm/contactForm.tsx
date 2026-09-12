@@ -12,6 +12,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormDataSchema, type FormData } from "./contactForm.schema";
 import useSendMessage from "./contactForm.hook";
+import Spinner from "../ui/spinner";
 
 const ContactForm = () => {
 	const {
@@ -83,7 +84,11 @@ const ContactForm = () => {
 				<Button type="submit" disabled={Object.keys(errors).length > 0}>
 					{status === "success" && "Message sent!"}
 					{status === "error" && "Failed to send message"}
-					{status === "loading" && "Sending..."}
+					{status === "loading" && (
+						<>
+							<Spinner /> Sending...
+						</>
+					)}
 					{status === "waiting" && "Send"}
 				</Button>
 			</FieldGroup>

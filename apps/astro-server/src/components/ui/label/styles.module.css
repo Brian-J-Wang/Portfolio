@@ -1,5 +1,5 @@
 .label {
-	font-size: var(--text-sm);
+	font-size: var(--text-base);
 	font-weight: var(--font-weight-medium);
 	line-height: var(--leading-none);
 	user-select: none;

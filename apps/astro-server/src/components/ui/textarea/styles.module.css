@@ -11,7 +11,7 @@
 	background-color: transparent;
 	box-shadow: var(--shadow-xs);
 	color: var(--color-foreground);
-	font-size: var(--text-sm);
+	font-size: var(--text-base);
 	line-height: var(--text-sm--line-height);
 	resize: vertical;
 

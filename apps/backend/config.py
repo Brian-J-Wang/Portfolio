@@ -7,6 +7,8 @@ class Settings(BaseSettings):
 	DB_USER: str
 	DB_PASS: str
 	DB_HOST: str
+	RS_TOKEN: str
+	TARGET_EMAIL: str
 
 	@computed_field
 	@property

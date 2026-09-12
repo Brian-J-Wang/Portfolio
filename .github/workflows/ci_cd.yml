@@ -27,7 +27,6 @@ jobs:
                   filters: |
                       frontend: "apps/astro-server/**"
                       backend: "apps/github-service/**"
-                      compose: "docker-compose.yml"
 
     frontend-lint:
         needs: changes

@@ -5,7 +5,7 @@ type SectionSubtitleProps = PropsWithChildren & {};
 const SectionSubtitle: React.FC<SectionSubtitleProps> = ({
 	children,
 }: SectionSubtitleProps) => {
-	return <p className="text-center">{children}</p>;
+	return <p className="text-left">{children}</p>;
 };
 
 export default SectionSubtitle;

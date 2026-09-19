@@ -1,6 +1,5 @@
 import TechIcon from "@/components/techIcon/techIcon";
 import styles from "./experienceDisplay.module.css";
-import type { ValidTechIcons } from "@/lib/technologies/technologies.data";
 
 type ExperienceEntry = {
 	company: string;
@@ -9,14 +8,14 @@ type ExperienceEntry = {
 	location: string;
 	description: string;
 	highlights: string[];
-	techStack: (ValidTechIcons | string)[];
+	techStack: string[];
 };
 
 const experiences: ExperienceEntry[] = [
 	{
 		company: "Freelance",
 		role: "Full Stack Developer",
-		period: "Jan 2023 – Present",
+		period: "April 2026 – Present",
 		location: "Remote",
 		description:
 			"Designed and deployed full-stack web applications for small businesses and personal projects, handling everything from design to deployment.",

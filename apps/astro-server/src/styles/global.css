@@ -212,8 +212,7 @@
 		display: flex;
 		flex-direction: column;
 		width: var(--max-page-width);
-		margin: 0px auto;
-		margin-bottom: var(--padding-7);
+		margin: var(--padding-7) auto var(--padding-8) auto;
 	}
 
 	footer.w-full {

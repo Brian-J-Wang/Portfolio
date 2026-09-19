@@ -1,8 +1,8 @@
-import techIcons from "@/lib/technologies/technologies.data";
+import type { SkillKeys } from "@/components/techIcon/skills";
 
 type SkillCategory = {
 	name: string;
-	skills: (keyof typeof techIcons)[];
+	skills: SkillKeys[];
 };
 
 export const skillCategories: SkillCategory[] = [

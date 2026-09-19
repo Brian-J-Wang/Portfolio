@@ -4,10 +4,7 @@ import Inset from "@/components/inset/inset";
 import { skillCategories } from "../skills";
 import { useEffect, useReducer, useRef, useState, type RefObject } from "react";
 import { colord } from "colord";
-import type { TechIcon } from "@/lib/technologies/technologies.types";
-import techIcons, {
-	type ValidTechIcons,
-} from "@/lib/technologies/technologies.data";
+import { TechSkill, type SkillKeys } from "@/components/techIcon/skills";
 import RelevantProjects from "./relevantProjects";
 import Connector from "@/components/connector/connector";
 import type { Project } from "@/components/projects/project.types";
@@ -21,12 +18,12 @@ type SkillDisplayProps = {
 
 const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 	const skillContainer = useRef<HTMLDivElement>(null);
-	const [activeSkill, setActiveSkill] = useState<TechIcon | null>(null);
+	const [activeSkill, setActiveSkill] = useState<TechSkill | null>(null);
 	const [highlightedElement, setHighlightedElement] =
 		useState<HTMLElement | null>(null);
 
 	const toggleSkillChip =
-		(skill: TechIcon) =>
+		(skill: TechSkill) =>
 		(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 			setActiveSkill(skill);
 			setHighlightedElement(evt.currentTarget);
@@ -60,10 +57,9 @@ const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 									</h3>
 									<div className="flex gap-4">
 										{category.skills.map((skill) => {
-											const techIcon =
-												techIcons[
-													skill as ValidTechIcons
-												];
+											const techIcon = new TechSkill(
+												skill as SkillKeys,
+											);
 											const hoverColor = colord(
 												techIcon.color,
 											)
@@ -151,7 +147,7 @@ const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects }) => {
 						</Inset>
 						<div className="flex flex-col gap-4 pt-16 px-4">
 							<RelevantProjects
-								tagFilter={activeSkill.name as ValidTechIcons}
+								tagFilter={activeSkill.name as SkillKeys}
 								projects={projects.filter((project) =>
 									project.project_data.tech_stack.includes(
 										activeSkill.name,

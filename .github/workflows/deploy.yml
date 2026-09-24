@@ -21,6 +21,8 @@ jobs:
                 DB_PASS=${{ secrets.DB_PASS }}
                 DB_HOST=${{ secrets.DB_HOST }}
                 GH_TOKEN=${{ secrets.GH_TOKEN }}
+                RS_TOKEN=${{ secrets.RS_TOKEN }}
+                TARGET_EMAIL=${{ secrets.TARGET_EMAIL }}
                 EOF
             - name: Create Mongo Env Variables
               run: |

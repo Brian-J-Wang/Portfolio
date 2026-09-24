@@ -8,9 +8,7 @@ export const sendMessage = async (data: FormData) => {
 		},
 		body: JSON.stringify(data),
 	}).then((res) => {
-		if (res.ok) {
-			return res.json();
-		} else {
+		if (!res.ok) {
 			throw new Error(res.statusText);
 		}
 	});

@@ -2,15 +2,11 @@
 	--border-radius: 16px;
 	--content-padding: 32px;
 	height: 720px;
-	display: flex;
 	flex-direction: row;
-	gap: 32px;
-	width: var(--max-page-width);
-}
+    }
 
 .hero__profileImageContainer {
 	position: relative;
-	flex: 1;
 	background: linear-gradient(290deg, #4b6cb7 0%, #182848 100%);
 	border-radius: var(--border-radius) var(--border-radius) 0px
 		var(--border-radius);
@@ -38,8 +34,6 @@
 	flex-direction: column;
 	justify-content: center;
 	flex: 1;
-	max-width: 600px;
-	padding: 0px var(--border-radius);
 }
 
 .heroContent__header {

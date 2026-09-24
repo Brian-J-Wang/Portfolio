@@ -1,10 +1,11 @@
 ---
 import Inset from "../../components/inset/inset.tsx";
 import styles from "./hero.module.css";
+import { clsx } from "clsx";
 ---
 
-<section class={styles.hero}>
-	<div class="flex flex-col justify-end">
+<section class={clsx("h-180 flex-row gap-8", styles.hero)}>
+	<div class="flex flex-col justify-end flex-1">
 		<div class={styles.heroContent__message}>
 			<h2 class={styles.heroContent__header}>Hello!</h2>
 			<p>
@@ -18,26 +19,28 @@ import styles from "./hero.module.css";
 			</p>
 		</div>
 	</div>
-	<div class={styles.hero__profileImageContainer}>
-		<img
-			src="profile.png"
-			alt="Casual image of me waving"
-			class={styles.hero__profileImage}
-		/>
-		<Inset anchor="bottomRight" className={styles.hero__socials}>
-			<div class={styles.hero__socialsIcon}>
-				<a
-					href="https://www.linkedin.com/in/brian-j-wang/"
-					target="_blank"
-				>
-					<img src="linkedin.svg" alt="linkedin svg" /></a
-				>
-			</div>
-			<div class={styles.hero__socialsIcon}>
-				<a href="https://github.com/Brian-J-Wang" target="_blank">
-					<img src="github.svg" alt="github svg" />
-				</a>
-			</div>
-		</Inset>
+	<div class="flex flex-1">
+		<div class={styles.hero__profileImageContainer}>
+			<img
+				src="profile.png"
+				alt="Casual image of me waving"
+				class={styles.hero__profileImage}
+			/>
+			<Inset anchor="bottomRight" className={styles.hero__socials}>
+				<div class={styles.hero__socialsIcon}>
+					<a
+						href="https://www.linkedin.com/in/brian-j-wang/"
+						target="_blank"
+					>
+						<img src="linkedin.svg" alt="linkedin svg" /></a
+					>
+				</div>
+				<div class={styles.hero__socialsIcon}>
+					<a href="https://github.com/Brian-J-Wang" target="_blank">
+						<img src="github.svg" alt="github svg" />
+					</a>
+				</div>
+			</Inset>
+		</div>
 	</div>
 </section>

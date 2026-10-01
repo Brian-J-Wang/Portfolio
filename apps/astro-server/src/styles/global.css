@@ -76,6 +76,9 @@
 	/* Custom Design Tokens */
 	--max-page-width: 1231px;
 	--content-width: 1100px;
+	--page-margins: 32px;
+
+	--border-radius: 16px;
 
 	--transition-fast: all 0.1s ease-out;
 	--transition: all 0.2s ease-out;
@@ -180,11 +183,22 @@
 		@apply border-border outline-ring/50;
 	}
 
+	html {
+		scrollbar-width: thin;
+	}
+
 	body {
 		--inset-radius: var(--radius-xl);
 		margin: 0;
 		padding: 0;
 		@apply bg-background text-foreground;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0px var(--page-margins);
 	}
 
 	h2 {
@@ -205,20 +219,21 @@
 	p {
 		font-size: var(--text-lg);
 		color: var(--color-neutral-700);
+		margin-bottom: 12px;
 	}
 
-	section,
+	section {
+		display: flex;
+		flex-direction: column;
+		max-width: var(--max-page-width);
+		width: 100%;
+		margin: 32px var(--page-margins);
+	}
+
 	footer {
 		display: flex;
 		flex-direction: column;
-		width: var(--max-page-width);
-		margin: var(--padding-7) auto var(--padding-8) auto;
-	}
-
-	footer.w-full {
 		width: 100%;
-		margin: 0px 0px;
-		padding: 0px calc((100vw - var(--max-page-width)) / 2);
 	}
 
 	audio,

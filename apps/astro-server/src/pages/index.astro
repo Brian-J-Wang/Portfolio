@@ -1,14 +1,12 @@
 ---
+import Experience from "@/sections/experience/experience.astro";
 import Layout from "../layouts/layout.astro";
 import Hero from "../sections/hero/hero.astro";
-import Stack from "../sections/stack/stack.astro";
-import Experience from "../sections/experience/experience.astro";
-import Footer from "@/components/footer/footer";
+import Skills from "../sections/skills/skills.astro";
 ---
 
 <Layout>
 	<Hero />
-	<Stack />
+	<Skills />
 	<Experience />
-	<Footer client:visible />
 </Layout>

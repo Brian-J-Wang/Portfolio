@@ -1,0 +1,17 @@
+---
+import SkillDisplay from "./components/display";
+import { getProjects } from "@/components/projects/project.api";
+
+const projects = await getProjects();
+---
+
+<section>
+	<div class="flex ml-(--page-margins) gap-16">
+		<h2 class="text-nowrap">Skills & Tools</h2>
+		<p class="text-lg">
+			The tools and libraries I use in my day to day. You can click on the
+			icons to filter the projects based on the technologies that it uses.
+		</p>
+	</div>
+	<SkillDisplay client:load projects={projects} />
+</section>

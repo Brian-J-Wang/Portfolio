@@ -5,42 +5,44 @@ import { clsx } from "clsx";
 ---
 
 <section class={clsx("h-180 flex-row gap-8", styles.hero)}>
-	<div class="flex flex-col justify-end flex-1">
-		<div class={styles.heroContent__message}>
-			<h2 class={styles.heroContent__header}>Hello!</h2>
-			<p>
-				I build full-stack web apps using Astro, TypeScript, HTML/CSS,
-				and React for the frontend while using NodeJs, ExpressJS, and
-				Docker for the backend.
+	<div
+		class={clsx(
+			"relative flex mh-(--page-margins)",
+			styles.hero__container,
+		)}
+	>
+		<div
+			class="h-full flex flex-col justify-center flex-1 ml-(--page-margins)"
+		>
+			<h2 class="text-left mb-4">Hello!</h2>
+			<p class={styles.heroContent__message}>
+				I build full-stack web applications using Astro, TypeScript, and
+				React.
 			</p>
-			<p>
+			<p class={styles.heroContent__message}>
 				When I'm not building projects, you can find me hiking in New
 				England. I'm currently trying to complete the Terrifying 25.
 			</p>
 		</div>
-	</div>
-	<div class="flex flex-1">
-		<div class={styles.hero__profileImageContainer}>
-			<img
-				src="profile.png"
-				alt="Casual image of me waving"
-				class={styles.hero__profileImage}
-			/>
-			<Inset anchor="bottomRight" className={styles.hero__socials}>
-				<div class={styles.hero__socialsIcon}>
-					<a
-						href="https://www.linkedin.com/in/brian-j-wang/"
-						target="_blank"
-					>
-						<img src="linkedin.svg" alt="linkedin svg" /></a
-					>
-				</div>
-				<div class={styles.hero__socialsIcon}>
-					<a href="https://github.com/Brian-J-Wang" target="_blank">
-						<img src="github.svg" alt="github svg" />
-					</a>
-				</div>
-			</Inset>
-		</div>
+		<img
+			src="profile.png"
+			alt="Casual image of me waving"
+			class={styles.hero__profileImage}
+		/>
+		<Inset anchor="bottomRight" className={styles.hero__socials}>
+			<div class={styles.hero__socialsIcon}>
+				<a
+					href="https://www.linkedin.com/in/brian-j-wang/"
+					target="_blank"
+				>
+					<img src="linkedin.svg" alt="linkedin svg" /></a
+				>
+			</div>
+			<div class={styles.hero__socialsIcon}>
+				<a href="https://github.com/Brian-J-Wang" target="_blank">
+					<img src="github.svg" alt="github svg" />
+				</a>
+			</div>
+		</Inset>
 	</div>
 </section>

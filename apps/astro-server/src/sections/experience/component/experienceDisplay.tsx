@@ -22,17 +22,9 @@ const experiences: ExperienceEntry[] = [
 		highlights: [
 			"Delivered client projects end-to-end, from design mockups to production",
 			"Containerized apps with Docker and deployed to cloud via CI/CD pipelines",
-			"Built REST APIs with Express.js backed by PostgreSQL databases",
 			"Created custom Astro-based portfolio sites with dynamic content management",
 		],
-		techStack: [
-			"astro",
-			"react",
-			"nodejs",
-			"docker",
-			"postgresql",
-			"github",
-		],
+		techStack: ["astro", "react", "nodejs", "docker", "git"],
 	},
 ];
 
@@ -77,7 +69,12 @@ const ExperienceDisplay: React.FC = () => {
 
 				<div className="flex flex-wrap gap-2">
 					{active.techStack.map((tech) => (
-						<TechIcon key={tech} name={tech} showName />
+						<TechIcon
+							key={tech}
+							name={tech}
+							showName
+							variant="chip"
+						/>
 					))}
 				</div>
 			</div>

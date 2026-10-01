@@ -1,20 +1,17 @@
 .hero {
 	--border-radius: 16px;
 	--content-padding: 32px;
-	height: 720px;
-	flex-direction: row;
 }
 
-.hero__profileImageContainer {
-	position: relative;
+.hero__container {
 	background: linear-gradient(290deg, #4b6cb7 0%, #182848 100%);
-	border-radius: var(--border-radius) var(--border-radius) 0px
-		var(--border-radius);
+	border-radius: var(--border-radius);
+	border-bottom-right-radius: 0px;
 	overflow: hidden;
 }
 
 .hero__profileImage {
-	width: 100%;
+	flex: 1;
 	height: 100%;
 	object-fit: cover;
 	object-position: calc(30%) 50%;
@@ -30,23 +27,7 @@
 }
 
 .heroContent__message {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	flex: 1;
-}
-
-.heroContent__header {
-	font-weight: 600;
-	font-size: var(--text-6xl);
-	line-height: 1;
-	margin-bottom: 24px;
-	letter-spacing: -0.03em;
-	color: var(--color-secondary);
-}
-
-.heroContent__message p {
-	margin-bottom: 12px;
+	color: white;
 }
 
 .hero__socials {

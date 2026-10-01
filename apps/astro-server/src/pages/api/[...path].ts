@@ -10,15 +10,15 @@ export const ALL: APIRoute = async ({ params, request }) => {
 
 	const backendUrl = `${config.BACKEND_URL}/${path}${incomingUrl.search}`;
 
-	const body =
-		request.method === "GET" || request.method === "HEAD"
-			? undefined
-			: await request.arrayBuffer();
+	console.log(backendUrl);
 
 	const response = await fetch(backendUrl, {
 		method: request.method,
 		headers: request.headers,
-		body,
+		body:
+			request.method === "GET" || request.method === "HEAD"
+				? undefined
+				: await request.arrayBuffer(),
 	});
 
 	return response;

@@ -1,112 +1,96 @@
 import { colord } from "colord";
+import type { IconName } from "tech-stack-icons";
 
-const skills = {
+type TechStackSkills = Record<
+	IconName,
+	{
+		bg: string;
+		displayName: string;
+		iconOverride?: string;
+	}
+>;
+
+const techStackSkills: TechStackSkills = {
 	astro: {
-		icon: "icons/Astro.svg",
-		color: "#ff5d01",
-		name: "Astro",
+		bg: "#ff5d01",
+		displayName: "Astro",
 	},
-	css: {
-		icon: "icons/CSS3.svg",
-		color: "#1572B6",
-		name: "CSS3",
+	css3: {
+		bg: "#1572B6",
+		displayName: "CSS3",
 	},
 	csharp: {
-		icon: "icons/CSharp.svg",
-		color: "#512BD4",
-		name: "C#",
+		bg: "#512BD4",
+		displayName: "C#",
 	},
 	cloudflare: {
-		icon: "icons/Cloudflare.svg",
-		color: "#F38020",
-		name: "Cloudflare",
+		bg: "#F38020",
+		displayName: "Cloudflare",
 	},
-	express: {
-		icon: "icons/Express.svg",
-		color: "#000000",
-		name: "ExpressJS",
+	expressjs: {
+		bg: "#000000",
+		displayName: "ExpressJS",
+		iconOverride: "Express.svg",
 	},
 	figma: {
-		icon: "icons/Figma.svg",
-		color: "#F24E1E",
-		name: "Figma",
+		bg: "#F24E1E",
+		displayName: "Figma",
 	},
 	git: {
-		icon: "icons/Git.svg",
-		color: "#F05032",
-		name: "Git",
+		bg: "#F05032",
+		displayName: "Git",
 	},
-	googleCloud: {
-		icon: "icons/Google Cloud.svg",
-		color: "#4285F4",
-		name: "Google Cloud",
+	gcloud: {
+		bg: "#4285F4",
+		displayName: "Google Cloud",
 	},
-	html: {
-		icon: "icons/HTML5.svg",
-		color: "#E34F26",
-		name: "HTML5",
+	html5: {
+		bg: "#E34F26",
+		displayName: "HTML5",
 	},
-	javascript: {
-		icon: "icons/JavaScript.svg",
-		color: "#F7DF1E",
-		name: "JavaScript",
+	js: {
+		bg: "#F7DF1E",
+		displayName: "JavaScript",
 	},
 	mongodb: {
-		icon: "icons/MongoDB.svg",
-		color: "#47A248",
-		name: "MongoDB",
+		bg: "#47A248",
+		displayName: "MongoDB",
 	},
 	nodejs: {
-		icon: "icons/Node.js.svg",
-		color: "#339933",
-		name: "Node.js",
+		bg: "#339933",
+		displayName: "Node.js",
 	},
 	react: {
-		icon: "icons/React.svg",
-		color: "#61DAFB",
-		name: "React",
+		bg: "#61DAFB",
+		displayName: "React",
 	},
 	typescript: {
-		icon: "icons/TypeScript.svg",
-		color: "#3178C6",
-		name: "TypeScript",
-	},
-	video: {
-		icon: "icons/gridicons--video.svg",
-		color: "#888888",
-		name: "Video Editing",
-	},
-	camera: {
-		icon: "icons/mdi--camera.svg",
-		color: "#888888",
-		name: "Photography",
+		bg: "#3178C6",
+		displayName: "TypeScript",
 	},
 };
 
-export type SkillKeys = keyof typeof skills;
-
 export class TechSkill {
-	icon?: string;
+	icon: IconName;
 	color: string;
 	backgroundColorSolid: string;
 	backgroundColor: string;
 	textColor: string;
 	name: string;
+	iconOverride?: string;
 
-	constructor(techName: SkillKeys | string) {
-		const { icon, color, name } = skills[
-			techName.toLowerCase() as SkillKeys
-		] ?? {
-			icon: undefined,
-			color: "#888888",
-			name: techName,
+	constructor(techName: IconName) {
+		const { bg, displayName, iconOverride } = techStackSkills[techName] ?? {
+			bg: "#00000000",
+			displayName: techName,
 		};
 
-		this.icon = icon;
-		this.color = color;
-		this.backgroundColorSolid = colord(color).alpha(0.25).toHex();
-		this.backgroundColor = colord(color).alpha(0.25).toHex();
-		this.textColor = colord(color).darken(0.4).toHex();
-		this.name = name;
+		this.iconOverride = iconOverride;
+		this.icon = techName;
+		this.color = bg;
+		this.backgroundColorSolid = colord(this.color).alpha(0.25).toHex();
+		this.backgroundColor = colord(this.color).alpha(0.25).toHex();
+		this.textColor = colord(this.color).darken(0.4).toHex();
+		this.name = displayName;
 	}
 }

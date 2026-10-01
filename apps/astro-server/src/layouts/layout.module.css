@@ -27,7 +27,8 @@
 	flex-direction: row;
 	justify-content: space-between;
 	width: var(--max-page-width);
-	padding: 16px 0px;
+	margin: 0px var(--page-margins);
+	padding: 16px var(--page-margins);
 }
 
 .header__logo {

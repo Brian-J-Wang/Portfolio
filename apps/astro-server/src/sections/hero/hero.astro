@@ -1,4 +1,5 @@
 ---
+import IconLink from "@/components/IconLink/IconLink.tsx";
 import Inset from "../../components/inset/inset.tsx";
 import styles from "./hero.module.css";
 import { clsx } from "clsx";
@@ -14,7 +15,7 @@ import { clsx } from "clsx";
 		<div
 			class="h-full flex flex-col justify-center flex-1 ml-(--page-margins)"
 		>
-			<h2 class="text-left mb-4">Hello!</h2>
+			<h2 class="text-left mb-4 text-7xl">Hello!</h2>
 			<p class={styles.heroContent__message}>
 				I build full-stack web applications using Astro, TypeScript, and
 				React.
@@ -29,20 +30,12 @@ import { clsx } from "clsx";
 			alt="Casual image of me waving"
 			class={styles.hero__profileImage}
 		/>
-		<Inset anchor="bottomRight" className={styles.hero__socials}>
-			<div class={styles.hero__socialsIcon}>
-				<a
-					href="https://www.linkedin.com/in/brian-j-wang/"
-					target="_blank"
-				>
-					<img src="linkedin.svg" alt="linkedin svg" /></a
-				>
-			</div>
-			<div class={styles.hero__socialsIcon}>
-				<a href="https://github.com/Brian-J-Wang" target="_blank">
-					<img src="github.svg" alt="github svg" />
-				</a>
-			</div>
+		<Inset anchor="bottomRight" className="flex flex-col gap-2 p-2">
+			<IconLink
+				href="https://www.linkedin.com/in/brian-j-wang/"
+				icon="linkedin"
+			/>
+			<IconLink href="https://github.com/Brian-J-Wang" icon="github" />
 		</Inset>
 	</div>
 </section>

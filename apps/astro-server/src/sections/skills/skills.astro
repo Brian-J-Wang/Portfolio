@@ -1,17 +1,16 @@
 ---
 import SkillDisplay from "./components/display";
 import { getProjects } from "@/components/projects/project.api";
+import type { Project } from "@/components/projects/project.types";
 
-const projects = await getProjects();
+let projects: Project[] = [];
+try {
+	projects = await getProjects();
+} catch (error) {
+	console.error("Failed to fetch projects in skills section:", error);
+}
 ---
 
 <section>
-	<div class="flex ml-(--page-margins) gap-16">
-		<h2 class="text-nowrap">Skills & Tools</h2>
-		<p class="text-lg">
-			The tools and libraries I use in my day to day. You can click on the
-			icons to filter the projects based on the technologies that it uses.
-		</p>
-	</div>
 	<SkillDisplay client:load projects={projects} />
 </section>

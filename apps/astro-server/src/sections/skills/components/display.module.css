@@ -9,3 +9,28 @@
 	font-size: 24px;
 	padding: 8px 16px;
 }
+
+.skillBadge {
+	cursor: pointer;
+	user-select: none;
+	transition:
+		transform 0.15s ease,
+		filter 0.15s ease,
+		box-shadow 0.15s ease;
+}
+
+.skillBadge:hover {
+	transform: translateY(-2px);
+}
+
+.skillBadge:active {
+	transform: scale(0.95);
+}
+
+.skillsSidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	position: sticky;
+	top: 96px;
+}

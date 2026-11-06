@@ -4,7 +4,6 @@
 	justify-content: end;
 	position: relative;
 	border-radius: var(--border-radius);
-	box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.07);
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
@@ -12,25 +11,16 @@
 	transition:
 		transform 0.2s ease,
 		box-shadow 0.2s ease;
+	user-select: none;
 }
 
 .projectCard__background {
 	height: 100%;
 	background: linear-gradient(135deg, #0b1528 0%, #172a45 50%, #1e293b 100%);
+	border-radius: var(--border-radius);
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 0;
-}
-
-.projectCard__CTA {
-	text-align: center;
-	height: 0px;
-	padding-bottom: 0px;
-	font-size: 0.925rem;
-	font-weight: 500;
-	color: var(--color-secondary);
-	transition: all 0.15s ease;
-	overflow: hidden;
 }

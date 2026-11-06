@@ -2,3 +2,140 @@
 	flex: 0 0 calc(50% - 16px);
 	height: calc(50% - 16px);
 }
+
+.exploreCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	position: relative;
+	border-radius: var(--border-radius);
+	border: 2px dotted var(--color-neutral-300);
+	background: transparent;
+	width: 100%;
+	height: 100%;
+	min-height: 0;
+	padding: 28px 24px;
+	text-decoration: none;
+	color: var(--color-neutral-900);
+	cursor: pointer;
+	transition: border-color 0.2s ease;
+}
+
+.exploreCard:hover {
+	border-color: var(--color-secondary);
+}
+
+.exploreCard__icon {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: transparent;
+	border: 1.5px dotted var(--color-neutral-300);
+	color: var(--color-neutral-500);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 12px;
+	transition:
+		border-color 0.2s ease,
+		color 0.2s ease;
+}
+
+.exploreCard:hover .exploreCard__icon {
+	border-color: var(--color-secondary);
+	color: var(--color-secondary);
+}
+
+.exploreCard__title {
+	font-size: var(--text-2xl);
+	font-weight: 600;
+	color: var(--color-neutral-900);
+	margin-bottom: 6px;
+	letter-spacing: -0.02em;
+	line-height: 1.25;
+}
+
+.exploreCard__desc {
+	font-size: var(--text-base);
+	color: var(--color-neutral-600);
+	max-width: 420px;
+	margin-bottom: 16px;
+	line-height: 1.5;
+}
+
+.exploreCard__cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 0.925rem;
+	font-weight: 500;
+	color: var(--color-secondary);
+	padding: 6px 14px;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--color-neutral-200);
+	transition:
+		border-color 0.2s ease,
+		background-color 0.2s ease;
+}
+
+.exploreCard:hover .exploreCard__cta {
+	border-color: var(--color-secondary);
+	background-color: color-mix(
+		in oklab,
+		var(--color-secondary) 8%,
+		transparent
+	);
+}
+
+.pagination {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	position: absolute;
+	right: -24px;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 20;
+}
+
+@media (max-width: 1024px) {
+	.pagination {
+		right: 8px;
+		background: rgba(255, 255, 255, 0.75);
+		backdrop-filter: blur(8px);
+		padding: 8px 4px;
+		border-radius: 9999px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	}
+}
+
+.paginationDot {
+	width: 8px;
+	height: 8px;
+	border-radius: 9999px;
+	background-color: var(--color-neutral-300);
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	outline: none;
+}
+
+.paginationDot:hover {
+	background-color: var(--color-neutral-500);
+	transform: scale(1.25);
+}
+
+.paginationDot:focus-visible {
+	box-shadow: 0 0 0 2px var(--color-secondary);
+}
+
+.paginationDotActive {
+	background-color: var(--color-secondary);
+	height: 24px;
+	border-radius: 9999px;
+}

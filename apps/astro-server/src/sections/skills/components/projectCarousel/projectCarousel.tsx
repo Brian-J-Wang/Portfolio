@@ -26,7 +26,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
 			opts={{
 				align: "start",
 			}}
-			className={className}
+			className=""
 		>
 			<CarouselContent className="h-240">
 				{projects.map((project) => (

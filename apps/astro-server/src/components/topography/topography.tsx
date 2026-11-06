@@ -75,7 +75,7 @@ function createProgram(
 export default function Topography({
 	className,
 	bgColor = [1.0, 0.988, 0.98], // #fffcfa (--color-neutral-50)
-	lineColor = [0.902, 0.89, 0.882], // #e6e3e1 (--color-neutral-100)
+	lineColor = [0.951, 0.939, 0.931], // #f3f0ee (50/50 mix of --color-neutral-50 & --color-neutral-100)
 	scale = 16,
 	levels = 10,
 	lineWidth = 0.5,
@@ -167,7 +167,7 @@ export default function Topography({
 		const startTime = performance.now();
 
 		const render = (now: number) => {
-			currentScroll += (targetScroll - currentScroll) * 0.01;
+			currentScroll += (targetScroll - currentScroll) * 0.05;
 
 			gl.useProgram(program);
 			gl.bindVertexArray(vao);

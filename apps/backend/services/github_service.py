@@ -1,9 +1,11 @@
+from schemas.portfolio_md import Portfolio_Links
 from schemas.github_events import PingEvent
 from schemas.github_events import PushEvent
 from services.project_service import ProjectService
 from schemas.portfolio_md import Portfolio_MD
 from config import settings
 from .project_service import get_project_service
+import frontmatter
 import requests
 import yaml
 
@@ -13,36 +15,32 @@ class Github_Service:
 		self.project_service: ProjectService = project_service
 
 	#gets and returns portfolio.yaml
-	def get_portfolio_yaml(self, project_name: str) -> Portfolio_MD:
+	def get_portfolio_md(self, project_name: str) -> Portfolio_MD:
 		headers = {
 				"Authorization": "Bearer " + self.token,
 				"Accept": "application/vnd.github.raw",
 				"User-Agent": "Brian-J-Wang/portfolio-service"
 			}
 
-		response = requests.get("https://api.github.com/repos/{}/contents/portfolio.yaml".format(project_name), headers=headers)
+		response = requests.get(f"https://api.github.com/repos/{project_name}/contents/portfolio.md", headers=headers)
 		response.raise_for_status();
 
-		return Portfolio_MD.model_validate(yaml.safe_load(response.text))
-	
-	#TODO: add some extra checks to see if the payload has actually changed the project.yaml file
+		#Should add more checks to the file when I get the chance:
+		# - check to make the sure that the markdown file is properly formed etc.
+		return Portfolio_MD.model_validate(frontmatter.loads(response.text).metadata)
+
 	async def handle_push_event(self, payload: PushEvent):
 		if payload.ref != "refs/heads/main":
 			return
 
-		portfolio_yaml = self.get_portfolio_yaml(payload.repository.full_name)
-		
-		if ("repo" not in portfolio_yaml.links):
-			portfolio_yaml.links["repo"] = "https://github.com/{}".format(payload.repository.full_name)
+		portfolio_md = self.get_portfolio_md(payload.repository.full_name)
 
-		await self.project_service.upsert_project(payload.repository.node_id, portfolio_yaml)
+		await self.project_service.upsert_project(payload.repository, portfolio_md)
 		
 	async def handle_ping_event(self, payload: PingEvent):
-		portfolio_yaml = self.get_portfolio_yaml(payload.repository.full_name)
-		if ("repo" not in portfolio_yaml.links):
-			portfolio_yaml.links["repo"] = "https://github.com/{}".format(payload.repository.full_name)
-			
-		await self.project_service.upsert_project(payload.repository.node_id, portfolio_yaml)
+		portfolio_md = self.get_portfolio_md(payload.repository.full_name)
+
+		await self.project_service.upsert_project(payload.repository, portfolio_md)
 
 github_service = Github_Service(settings.GH_TOKEN, get_project_service())
 def get_github_service():

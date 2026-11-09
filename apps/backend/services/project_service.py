@@ -1,14 +1,15 @@
 from typing import Literal
 from beanie.odm.operators.update.general import Set
 from repository.schemas.project import Project
+from schemas.github_events import Repository
 
 class ProjectService:
-	async def upsert_project(self, node_id, portfolio_document):
-		await Project.find_one({ Project.node_id: node_id}).upsert(
+	async def upsert_project(self, repository: Repository, portfolio_document):
+		Project.find_one({ Project.node_id: repository.node_id}).upsert(
 				Set({ "project_data" : portfolio_document}),
-				on_insert = Project(
-					node_id = node_id,
-					project_data = portfolio_document
+				on_insert = Project.from_source(
+					repository,
+					portfolio_document
 				)
 			)
 
@@ -21,13 +22,7 @@ class ProjectService:
 		if tagFilter is not None:
 			query["project_data.tech_stack"] = tagFilter
 
-		print("type:", repr(type))
-		print("tagFilter:", repr(tagFilter))
-		print(query)
-
 		projects = await Project.find(query).limit(limit).sort("-updated_at").to_list()
-
-		print(projects)
 
 		return projects
 	

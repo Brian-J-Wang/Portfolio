@@ -2,7 +2,8 @@ from datetime import timezone
 from typing import Annotated
 from datetime import datetime
 from beanie import Replace, Insert, Save, Indexed, Document, before_event
-from schemas.portfolio_md import Portfolio_MD
+from schemas.github_events import Repository
+from schemas.portfolio_md import Portfolio_Links, Portfolio_MD
 
 class Project(Document):
 	node_id: Annotated[str, Indexed(unique=True)]
@@ -12,6 +13,11 @@ class Project(Document):
 	
 	class Settings:
 		name = "projects"
+
+	@classmethod
+	def from_source(cls, repository: Repository, project_data: Portfolio_MD):
+		project_data.links.append(Portfolio_Links(link_type="github", href=f"https://github.com/{repository.full_name}"))
+		return Project(node_id=repository.node_id, project_data=project_data)
 	
 	@before_event([Insert])
 	def set_updated(self):

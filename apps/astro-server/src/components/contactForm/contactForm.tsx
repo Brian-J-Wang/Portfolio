@@ -30,6 +30,7 @@ const ContactForm = () => {
 			action="submit"
 			className="w-100 bg-foreground pt-7 pb-8 px-8 box-content rounded-xl"
 			onSubmit={handleSubmit(handleSend)}
+			autoComplete="off"
 		>
 			<FieldGroup>
 				<h3 className="text-2xl font-semibold mb-4">Send a Message</h3>
@@ -53,6 +54,7 @@ const ContactForm = () => {
 						required
 						{...register("email")}
 						aria-invalid={errors.email != undefined}
+						autoComplete="email"
 					/>
 					<FieldError>{errors.email?.message}</FieldError>
 				</Field>

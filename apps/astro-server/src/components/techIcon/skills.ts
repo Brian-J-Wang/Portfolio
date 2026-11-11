@@ -76,7 +76,7 @@ export class TechSkill {
 	backgroundColorSolid: string;
 	backgroundColor: string;
 	textColor: string;
-	name: string;
+	displayName: string;
 	iconOverride?: string;
 
 	constructor(techName: IconName) {
@@ -91,6 +91,6 @@ export class TechSkill {
 		this.backgroundColorSolid = colord(this.color).alpha(0.25).toHex();
 		this.backgroundColor = colord(this.color).alpha(0.25).toHex();
 		this.textColor = colord(this.color).darken(0.4).toHex();
-		this.name = displayName;
+		this.displayName = displayName;
 	}
 }

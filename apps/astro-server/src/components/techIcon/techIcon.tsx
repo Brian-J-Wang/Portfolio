@@ -54,7 +54,7 @@ const TechIcon: React.FC<TechIconProps> = ({
 	size,
 	onClick,
 }) => {
-	const { icon, backgroundColor } = new TechSkill(name);
+	const { icon, backgroundColor, displayName } = new TechSkill(name);
 
 	return (
 		<div
@@ -74,7 +74,7 @@ const TechIcon: React.FC<TechIconProps> = ({
 				variant={inactive ? "grayscale" : "light"}
 			/>
 			{showName && (
-				<small className={textVariants({ size })}>{name}</small>
+				<small className={textVariants({ size })}>{displayName}</small>
 			)}
 		</div>
 	);

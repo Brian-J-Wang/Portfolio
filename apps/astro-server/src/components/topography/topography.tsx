@@ -87,7 +87,7 @@ export default function Topography({
 		if (!canvas) return;
 
 		const gl = canvas.getContext("webgl2", {
-			alpha: false,
+			alpha: true,
 			antialias: true,
 			powerPreference: "low-power",
 		});

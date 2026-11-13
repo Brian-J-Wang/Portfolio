@@ -9,7 +9,8 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"lint": "prettier --check **/*.{js,ts,astro,css}",
-		"format": "prettier --write **/*.{js,ts,astro,css}"
+		"format": "prettier --write **/*.{js,ts,astro,css}",
+        "generate:api": "openapi-typescript http://localhost:4000/openapi.json -o src/types/api.d.ts"
 	},
 	"dependencies": {
 		"@astrojs/node": "^11.0.2",
@@ -45,6 +46,7 @@
 		"eslint": "^10.3.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-astro": "^1.7.0",
+		"openapi-typescript": "^7.13.0",
 		"prettier": "^3.8.3",
 		"prettier-plugin-astro": "^0.14.1"
 	}

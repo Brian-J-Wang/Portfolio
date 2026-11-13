@@ -4,15 +4,12 @@ import linkedinSVG from "./icons/linkedin.svg";
 import siteSVG from "./icons/site.svg";
 
 import type { PropsWithChildren } from "react";
+import type { ProjectLink } from "../projects/project.types";
 
-export enum LinkIconsEnum {
-	linkedin = "linkedin",
-	github = "github",
-	site = "site",
-}
+type LinkType = ProjectLink | "linkedin";
 
 const linkIconMap: Record<
-	LinkIconsEnum,
+	LinkType,
 	{
 		src: SvgComponent & ImageMetadata;
 		alt: string;
@@ -20,16 +17,16 @@ const linkIconMap: Record<
 > = {
 	linkedin: { src: linkedinSVG, alt: "linkedin" },
 	github: { src: githubSVG, alt: "github" },
-	site: { src: siteSVG, alt: "site" },
+	live: { src: siteSVG, alt: "live" },
 };
 
 type LinkProps = PropsWithChildren & {
-	icon: "linkedin" | "github" | "site";
+	type: LinkType;
 	href: string;
 };
 
-const IconLink: React.FC<LinkProps> = ({ href, icon }) => {
-	const { src, alt } = linkIconMap[icon];
+const IconLink: React.FC<LinkProps> = ({ href, type }) => {
+	const { src, alt } = linkIconMap[type];
 
 	return (
 		<a

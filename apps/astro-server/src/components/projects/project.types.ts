@@ -1,15 +1,7 @@
-export type Project = {
-	node_id: string;
-	project_data: ProjectData;
-};
+import { type components } from "@/types/api";
 
-export type ProjectType = "work" | "personal" | "all";
+export type Project = components["schemas"]["Project"];
 
-export type ProjectData = {
-	name: string;
-	project_type: ProjectType;
-	description: string;
-	tech_stack: string[];
-	links: Record<string, string>;
-	featured: boolean;
-};
+export type ProjectData = components["schemas"]["Portfolio_MD"];
+
+export type ProjectLink = components["schemas"]["Portfolio_Links"]["link_type"];

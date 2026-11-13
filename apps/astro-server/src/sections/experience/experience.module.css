@@ -1,0 +1,74 @@
+.detail {
+	width: 100%;
+	max-width: 780px;
+	padding: 40px 48px;
+	animation: fadeSlide 0.25s ease-out both;
+}
+
+.detail__role {
+	font-weight: 700;
+	color: var(--color-neutral-900);
+	margin-bottom: 6px;
+	letter-spacing: -0.02em;
+}
+
+.detail__company {
+	margin: 0;
+	font-size: var(--text-base);
+	color: var(--color-neutral-600);
+}
+
+.detail__location {
+	color: var(--color-neutral-400);
+}
+
+.detail__period {
+	flex-shrink: 0;
+	font-size: var(--text-sm);
+	font-weight: 500;
+	color: var(--color-secondary);
+	background-color: color-mix(
+		in oklab,
+		var(--color-secondary) 10%,
+		transparent
+	);
+	padding: 4px 12px;
+	border-radius: 9999px;
+	white-space: nowrap;
+}
+
+.detail__description {
+	font-size: var(--text-base);
+	color: var(--color-neutral-600);
+	line-height: 1.7;
+	margin-bottom: 28px;
+}
+
+.detail__highlight {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	font-size: var(--text-base);
+	color: var(--color-neutral-700);
+	line-height: 1.6;
+}
+
+.detail__bullet {
+	flex-shrink: 0;
+	width: 6px;
+	height: 6px;
+	border-radius: 9999px;
+	background-color: var(--color-secondary);
+	margin-top: 8px;
+}
+
+@keyframes fadeSlide {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

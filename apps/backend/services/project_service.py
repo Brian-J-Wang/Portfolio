@@ -5,7 +5,7 @@ from schemas.github_events import Repository
 
 class ProjectService:
 	async def upsert_project(self, repository: Repository, portfolio_document):
-		Project.find_one({ Project.node_id: repository.node_id}).upsert(
+		await Project.find_one({ Project.node_id: repository.node_id}).upsert(
 				Set({ "project_data" : portfolio_document}),
 				on_insert = Project.from_source(
 					repository,

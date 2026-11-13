@@ -1,16 +1,18 @@
 ---
 import SkillDisplay from "./components/display";
 import { getProjects } from "@/components/projects/project.api";
-import type { Project } from "@/components/projects/project.types";
 
-let projects: Project[] = [];
-try {
-	projects = await getProjects();
-} catch (error) {
-	console.error("Failed to fetch projects in skills section:", error);
-}
+const projectAPI = getProjects();
 ---
 
 <section>
-	<SkillDisplay client:load projects={projects} />
+	{
+		projectAPI
+			.then((projects) => {
+				return <SkillDisplay client:load projects={projects} />;
+			})
+			.catch((err) => {
+				console.error("failed to retrieve projects");
+			})
+	}
 </section>

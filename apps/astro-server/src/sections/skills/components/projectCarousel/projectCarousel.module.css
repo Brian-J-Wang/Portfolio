@@ -25,6 +25,10 @@
 
 .exploreCard:hover {
 	border-color: var(--color-secondary);
+
+	.exploreCard__title {
+		color: var(--color-secondary);
+	}
 }
 
 .exploreCard__icon {
@@ -51,10 +55,11 @@
 .exploreCard__title {
 	font-size: var(--text-2xl);
 	font-weight: 600;
-	color: var(--color-neutral-900);
+	color: var(--color-primary);
 	margin-bottom: 6px;
 	letter-spacing: -0.02em;
 	line-height: 1.25;
+	transition: color 0.2s ease;
 }
 
 .exploreCard__desc {

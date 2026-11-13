@@ -7,26 +7,22 @@ import {
 	useCarousel,
 } from "@/components/ui/carousel";
 import ProjectCard from "../projectCard/projectCard";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
 
 type ProjectCarouselProps = {
 	projects: Project[];
-	className?: string;
 };
 
-const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
-	projects,
-	className,
-}) => {
+const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
 	return (
 		<Carousel
 			orientation="vertical"
 			opts={{
 				align: "start",
 			}}
-			className=""
+			className="mr-8"
 		>
 			<CarouselContent className="h-240">
 				{projects.map((project) => (
@@ -44,9 +40,6 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
 						className={styles.exploreCard}
 						aria-label="View all projects in the archive"
 					>
-						<div className={styles.exploreCard__icon}>
-							<Sparkles className="w-5 h-5" />
-						</div>
 						<h3 className={styles.exploreCard__title}>
 							Explore More Projects
 						</h3>

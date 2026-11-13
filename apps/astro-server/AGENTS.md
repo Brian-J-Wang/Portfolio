@@ -7,3 +7,9 @@ When to use Tailwindcss vs CSS modules:
 Use the provided ui components whenever applicable.
 
 Make as little change as possible, while also fulfilling the prompt.
+
+For any changes to the frontend, run 
+```
+npm run format
+```
+to ensure that code meets a certain format.

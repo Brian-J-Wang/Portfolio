@@ -7,7 +7,6 @@ from config import settings
 from .project_service import get_project_service
 import frontmatter
 import requests
-import yaml
 
 class Github_Service:
 	def __init__(self, token, project_service):

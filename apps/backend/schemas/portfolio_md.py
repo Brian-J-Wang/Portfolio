@@ -8,9 +8,9 @@ class Portfolio_Links(BaseModel):
 class Portfolio_MD(BaseModel):
 	name: str
 	project_type: Literal["personal", "work"] = "personal"
-	description: str
-	tech_stack: list[str]
-	links: list[Portfolio_Links]
+	description: str = ""
+	tech_stack: list[str] = []
+	links: list[Portfolio_Links] = []
 	featured: bool = False
 
 	@field_validator("links", mode="before")

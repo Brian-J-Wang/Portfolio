@@ -1,5 +1,7 @@
 //FOR DEVELOPMENT ONLY
-db.createUser({
+const projectDatabase = db.getSiblingDB("projects")
+
+projectDatabase.createUser({
     user: "devUser",
     pwd: "devPassword",
     roles: [

@@ -1,0 +1,11 @@
+{
+    "folders": [
+        {
+            "name": "frontend",
+            "path": "./apps/astro-server"
+        }, {
+            "name": "backend",
+            "path": "./apps/backend"
+        }
+    ]
+}

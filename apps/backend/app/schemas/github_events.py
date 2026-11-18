@@ -16,11 +16,12 @@ class Commits(BaseModel):
 	modified: list[str]
 	timestamp: str
 
-class PushEvent(BaseModel):
+class GithubWebhookEvent(BaseModel):
+	repository: Repository
+
+class PushEvent(GithubWebhookEvent):
 	ref: str
 	commits: list[Commits]
-	repository: Repository
 
-
-class PingEvent(BaseModel):
-	repository: Repository
+class PingEvent(GithubWebhookEvent):
+	pass

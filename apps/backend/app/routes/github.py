@@ -14,23 +14,19 @@ async def github_webhook(
 	event_type = Header(alias="X-GitHub-Event"), 
 	github_service = Depends(get_github_service)
 ):
-
-	if event_type == "push":
-		try:
+	try:
+		if event_type == "push":
 			payload = PushEvent.model_validate(await request.json())
-			await github_service.handle_push_event(payload)
-		except Exception as exc:
-			print(exc)
-			return Response(status_code=500)
-	elif event_type == "ping":
-		try:
+		elif event_type == "ping":
 			payload = PingEvent.model_validate(await request.json())
-			await github_service.handle_ping_event(payload)
-		except Exception as exc:
-			print(exc)
-			return Response(status_code=500, content=str(exc), headers={
-				"Content-Type": "application/json"
-			})
+		else:
+			return Response(status_code=200)
+	except Exception as exc:
+		return Response(status_code=500, content=str(exc), headers={
+							"Content-Type": "application/json"
+						})
+
+	await github_service.update_github_repo(payload)
 
 	return Response(status_code=200)
 

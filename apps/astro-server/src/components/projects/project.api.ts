@@ -1,5 +1,5 @@
 import { config } from "@/config/config";
-import type { Project, ProjectType } from "./project.types";
+import type { Project } from "./project.types";
 
 export const getProjects = (): Promise<Project[]> => {
 	return fetch(`${config.BACKEND_URL}/projects`).then((res) => {

@@ -8,8 +8,8 @@
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
-		"lint": "prettier --check **/*.{js,ts,astro,css}",
-		"format": "prettier --write **/*.{js,ts,astro,css}",
+		"lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx,astro,css}\"",
+		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,astro,css}\"",
         "generate:api": "openapi-typescript http://localhost:4000/openapi.json -o src/types/api.d.ts"
 	},
 	"dependencies": {

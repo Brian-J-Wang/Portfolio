@@ -3,7 +3,7 @@ import type { Project } from "@/components/projects/project.types";
 export const defaultProjects: Project[] = [
 	{
 		node_id: "portfolio-site",
-		project_data: {
+		project_metadata: {
 			name: "Personal Portfolio & Showcase",
 			project_type: "personal",
 			description:
@@ -15,10 +15,11 @@ export const defaultProjects: Project[] = [
 			],
 			featured: true,
 		},
+		project_content: { content: "" },
 	},
 	{
 		node_id: "agentic-evaluator",
-		project_data: {
+		project_metadata: {
 			name: "Agentic Essay Evaluator",
 			project_type: "work",
 			description:
@@ -30,10 +31,11 @@ export const defaultProjects: Project[] = [
 			],
 			featured: true,
 		},
+		project_content: { content: "" },
 	},
 	{
 		node_id: "edge-analytics",
-		project_data: {
+		project_metadata: {
 			name: "Edge Analytics & Request Router",
 			project_type: "work",
 			description:
@@ -42,10 +44,11 @@ export const defaultProjects: Project[] = [
 			links: [{ link_type: "github", href: "https://github.com" }],
 			featured: false,
 		},
+		project_content: { content: "" },
 	},
 	{
 		node_id: "voxel-physics-engine",
-		project_data: {
+		project_metadata: {
 			name: "Cross-Platform Physics Engine",
 			project_type: "personal",
 			description:
@@ -54,10 +57,11 @@ export const defaultProjects: Project[] = [
 			links: [{ link_type: "github", href: "https://github.com" }],
 			featured: false,
 		},
+		project_content: { content: "" },
 	},
 	{
 		node_id: "gcloud-k8s-platform",
-		project_data: {
+		project_metadata: {
 			name: "Cloud Infrastructure & Deployment Hub",
 			project_type: "work",
 			description:
@@ -69,10 +73,11 @@ export const defaultProjects: Project[] = [
 			],
 			featured: false,
 		},
+		project_content: { content: "" },
 	},
 	{
 		node_id: "canvas-visualizer",
-		project_data: {
+		project_metadata: {
 			name: "Interactive SVG & Canvas Graph Studio",
 			project_type: "personal",
 			description:
@@ -84,5 +89,6 @@ export const defaultProjects: Project[] = [
 			],
 			featured: false,
 		},
+		project_content: { content: "" },
 	},
 ];

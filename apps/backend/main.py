@@ -1,13 +1,16 @@
-from app.repository.mongodb import init_database
 from contextlib import asynccontextmanager
-from app.routes import contact, projects
 from fastapi import FastAPI
-from app.routes import github
+from app.repository.mongodb import init_database
+from app.routes import contact, github, projects
+from config import get_settings
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-	await init_database();
+	settings = get_settings()
+	await init_database(settings.MONGO_URI)
 	yield
+
 
 app = FastAPI(lifespan=lifespan)
 app.include_router(github.router, prefix="/github/webhook")

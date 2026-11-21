@@ -1,10 +1,11 @@
-from config import settings
+from fastapi import Depends
 import resend
 from resend import exceptions
+from config import Settings, get_settings
 
 
 class Contact_Service:
-	def __init__(self, rs_token, target_email):
+	def __init__(self, rs_token: str, target_email: str):
 		self.target_email = target_email
 		resend.api_key = rs_token
 
@@ -22,8 +23,7 @@ class Contact_Service:
 		except exceptions.ResendError as e:
 			print(f"Error with sending messages: {e}")
 			return False
-		
 
-contact_service = Contact_Service(settings.RS_TOKEN, settings.TARGET_EMAIL)
-def get_contact_service():
-	return contact_service
+
+def get_contact_service(settings: Settings = Depends(get_settings)) -> Contact_Service:
+	return Contact_Service(settings.RS_TOKEN, settings.TARGET_EMAIL)

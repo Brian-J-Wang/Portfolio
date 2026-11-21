@@ -1,34 +1,35 @@
-from typing import Literal
-from beanie.odm.operators.update.general import Set
+from app.repository.project_repository import get_project_repository
+from app.repository.project_repository import ProjectRepository
+from app.repository.project_repository import project_repository
 from app.repository.model.project import Project
-from app.schemas.github_events import Repository
+from app.schemas.github_project import ProjectLinks
+from fastapi import Depends
+from app.schemas.github_events import GithubWebhookEvent, PushEvent
+from app.services.github_service import GithubService, get_github_service
 
-class ProjectService:
-	async def upsert_project(self, repository: Repository, portfolio_document):
-		await Project.find_one({ Project.node_id: repository.node_id}).upsert(
-				Set({ "project_metadata" : portfolio_document}),
-				on_insert = Project.from_source(
-					repository,
-					portfolio_document
-				)
-			)
 
-	async def get_projects(self, project_type: Literal["work", "personal", "all"], limit: int = 5, tagFilter: None | str = None) -> list[Project]:
-		query = {}
+class ProjectService():
+	def __init__(self, github_service: GithubService, project_repository: ProjectRepository):
+		self.github_service = github_service
+		self.project_repository = project_repository
 
-		if project_type != "all": 
-			query["project_data.project_type"] = project_type
+	async def sync_project_from_webhook(self, webhook_payload: GithubWebhookEvent):
+		#only update db if the event was to the main branch
+		if isinstance(webhook_payload, PushEvent) and webhook_payload.ref != "refs/heads/main":
+			return
 
-		if tagFilter is not None:
-			query["project_data.tech_stack"] = tagFilter
+		github_repo = self.github_service.get_github_project(webhook_payload.repository.name)
 
-		projects = await Project.find(query).limit(limit).sort("-updated_at").to_list()
+		if not any(link.link_type == "github" for link in github_repo.metadata.links):
+			github_repo.metadata.links.append(ProjectLinks(link_type="github", href=webhook_payload.repository.html_url))
+		
+		project = Project(node_id=webhook_payload.repository.node_id, project_metadata=github_repo.metadata, project_content=github_repo.content)
 
-		return projects
-	
-	async def get_project(self, node_id: str ) -> Project | None:
-		return await Project.find_one({ "node_id": node_id })
+		await self.project_repository.upsert_project(webhook_payload.repository.node_id, project)
 
-project_service = ProjectService()
-def get_project_service():
-	return project_service
+
+def get_project_service(
+	github_service = Depends(get_github_service),
+	project_repository = Depends(get_project_repository)
+):
+	return ProjectService(github_service, project_repository)

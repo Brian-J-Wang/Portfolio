@@ -3,9 +3,7 @@ from typing import Annotated
 from datetime import datetime
 from beanie import Replace, Insert, Save, Indexed, Document, Update, before_event
 from pydantic import Field, field_validator
-from app.schemas.github_events import Repository
-from app.schemas.project_content import ProjectContent
-from app.schemas.project_metadata import ProjectLinks, ProjectMetadata
+from app.schemas.github_project import ProjectContent, ProjectMetadata
 
 class Project(Document):
 	node_id: Annotated[str, Indexed(unique=True)]
@@ -30,12 +28,6 @@ class Project(Document):
 		if value is None:
 			return datetime.now(timezone.utc)
 		return value
-
-	@classmethod
-	def from_source(cls, repository: Repository, project_metadata: ProjectMetadata):
-		if not any(link.link_type == "github" for link in project_metadata.links):
-			project_metadata.links.append(ProjectLinks(link_type="github", href=repository.html_url))
-		return cls(node_id=repository.node_id, project_metadata=project_metadata)
 	
 	@before_event([Insert])
 	def before_insert(self):

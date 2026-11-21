@@ -1,9 +1,6 @@
 from app.schemas.github_events import PingEvent
-from app.services.project_service import get_project_service
-from app.services.github_service import get_github_service
-from repository.model.project import Project
-from pydantic import ValidationError
 from app.schemas.github_events import PushEvent
+from app.services.project_service import get_project_service
 from fastapi import Response, Depends, Request, APIRouter, Header 
 
 router = APIRouter()
@@ -12,7 +9,7 @@ router = APIRouter()
 async def github_webhook(
 	request: Request, 
 	event_type = Header(alias="X-GitHub-Event"), 
-	github_service = Depends(get_github_service)
+	project_service = Depends(get_project_service)
 ):
 	try:
 		if event_type == "push":
@@ -26,7 +23,7 @@ async def github_webhook(
 							"Content-Type": "application/json"
 						})
 
-	await github_service.update_github_repo(payload)
+	await project_service.sync_project_from_webhook()
 
 	return Response(status_code=200)
 

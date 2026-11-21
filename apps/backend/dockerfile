@@ -1,17 +1,16 @@
 FROM python:3.12-slim AS build
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
-
-COPY requirements.txt requirements.txt
-
-RUN pip install -r requirements.txt
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev
 
 COPY . .
 
 FROM build AS development
 
-CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "4000", "--reload"]
+CMD [ "uv", "run", "--no-dev", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "4000", "--reload"]
 
 FROM build AS production
 
-CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "4000"]
+CMD [ "uv", "run", "--no-dev", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "4000"]

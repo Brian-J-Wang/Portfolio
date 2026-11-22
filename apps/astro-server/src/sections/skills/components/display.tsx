@@ -1,7 +1,6 @@
 import styles from "./display.module.css";
 import clsx from "clsx";
 import { skillCategories } from "../skills";
-import { defaultProjects } from "../defaultProjects";
 import type { Project } from "@/components/projects/project.types";
 import TechIcon from "@/components/techIcon/techIcon";
 import useList from "@/hooks/useList";
@@ -14,13 +13,11 @@ type SkillDisplayProps = {
 const SkillDisplay: React.FC<SkillDisplayProps> = ({ projects = [] }) => {
 	const { list: activeSkills, toggle, clear } = useList<string>([]);
 
-	const availableProjects = projects.length > 0 ? projects : defaultProjects;
-
 	const filteredProjects =
 		activeSkills.length === 0
-			? availableProjects
-			: availableProjects.filter((project) =>
-					project?.project_data?.tech_stack?.some((tech) =>
+			? projects
+			: projects.filter((project) =>
+					project?.project_metadata?.tech_stack?.some((tech) =>
 						activeSkills.some(
 							(skill) =>
 								skill.toLowerCase() === tech.toLowerCase(),

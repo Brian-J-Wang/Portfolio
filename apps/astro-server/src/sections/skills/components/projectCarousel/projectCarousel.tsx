@@ -30,7 +30,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
 						key={project.node_id}
 						className={styles.carouselItem}
 					>
-						<ProjectCard projectData={project.project_data} />
+						<ProjectCard projectData={project.project_metadata} />
 					</CarouselItem>
 				))}
 

@@ -3,31 +3,44 @@ import Layout from "src/layouts/layout.astro";
 import SectionHeader from "@/components/section/sectionHeader";
 import SectionSubtitle from "@/components/section/sectionSubtitle";
 import SectionTitle from "@/components/section/sectionTitle";
+import ProjectCard from "@/sections/skills/components/projectCard/projectCard";
 import { getProjects } from "@/components/projects/project.api";
+import type { Project } from "@/components/projects/project.types";
 
 export const prerender = false;
 
-const projects = getProjects();
+let projects: Project[] = [];
+try {
+	projects = await getProjects();
+} catch (error) {
+	console.error("Failed to fetch projects:", error);
+}
 
-const workProjects = projects.then((projects) => {
-	return projects.filter(
-		(project) => project.project_data.project_type === "work",
-	);
-});
-
-const personalProjects = projects.then((projects) => {
-	return projects.filter(
-		(project) => project.project_data.project_type === "personal",
-	);
-});
+const workProjects = projects.filter(
+	(project) => project.project_metadata.project_type === "work",
+);
+const personalProjects = projects.filter(
+	(project) => project.project_metadata.project_type === "personal",
+);
 ---
 
 <Layout>
-	<section>
+	<section class="mb-16">
 		<SectionHeader>
 			<SectionTitle>My Work</SectionTitle>
 			<SectionSubtitle> Some work I did for my clients. </SectionSubtitle>
 		</SectionHeader>
+		{
+			workProjects.length > 0 ? (
+				<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-[28rem] gap-6 mt-8">
+					{workProjects.map((project) => (
+						<ProjectCard client:visible projectData={project.project_metadata} />
+					))}
+				</div>
+			) : (
+				<p class="mt-6 text-neutral-500">No work projects found.</p>
+			)
+		}
 	</section>
 	<section>
 		<SectionHeader>
@@ -36,5 +49,16 @@ const personalProjects = projects.then((projects) => {
 				Personal Projects that I did for fun.
 			</SectionSubtitle>
 		</SectionHeader>
+		{
+			personalProjects.length > 0 ? (
+				<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-[28rem] gap-6 mt-8">
+					{personalProjects.map((project) => (
+						<ProjectCard client:visible projectData={project.project_metadata} />
+					))}
+				</div>
+			) : (
+				<p class="mt-6 text-neutral-500">No personal projects found.</p>
+			)
+		}
 	</section>
 </Layout>

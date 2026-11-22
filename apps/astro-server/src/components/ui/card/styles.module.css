@@ -49,3 +49,170 @@
 		padding-inline: calc(var(--spacing) * 6);
 	}
 }
+
+.card-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	--inset-w: 0px;
+	--inset-h: 0px;
+	--inset-r: var(--inset-radius, 16px);
+}
+
+.card-masked {
+	mask-size:
+		100% 100%,
+		calc(var(--inset-w) - var(--inset-r)) var(--inset-h),
+		var(--inset-w) calc(var(--inset-h) - var(--inset-r)),
+		calc(var(--inset-r) * 2) calc(var(--inset-r) * 2),
+		var(--inset-r) var(--inset-r),
+		var(--inset-r) var(--inset-r);
+	mask-repeat: no-repeat;
+	mask-composite: subtract, add, add, add, add;
+}
+
+.card-masked[data-inset-anchor="bottomRight"] {
+	mask-image:
+		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0),
+		radial-gradient(
+			circle,
+			#000 calc(var(--inset-r) - 0.5px),
+			transparent var(--inset-r)
+		),
+		radial-gradient(
+			circle at 0 0,
+			transparent calc(var(--inset-r) - 0.5px),
+			#000 var(--inset-r)
+		),
+		radial-gradient(
+			circle at 0 0,
+			transparent calc(var(--inset-r) - 0.5px),
+			#000 var(--inset-r)
+		);
+	mask-position:
+		0 0,
+		right 0 bottom 0,
+		right 0 bottom 0,
+		right calc(var(--inset-w) - var(--inset-r) * 2) bottom
+			calc(var(--inset-h) - var(--inset-r) * 2),
+		right 0 bottom var(--inset-h),
+		right var(--inset-w) bottom 0;
+}
+
+.card-masked[data-inset-anchor="bottomLeft"] {
+	mask-image:
+		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0),
+		radial-gradient(
+			circle,
+			#000 calc(var(--inset-r) - 0.5px),
+			transparent var(--inset-r)
+		),
+		radial-gradient(
+			circle at 100% 0,
+			transparent calc(var(--inset-r) - 0.5px),
+			#000 var(--inset-r)
+		),
+		radial-gradient(
+			circle at 100% 0,
+			transparent calc(var(--inset-r) - 0.5px),
+			#000 var(--inset-r)
+		);
+	mask-position:
+		0 0,
+		left 0 bottom 0,
+		left 0 bottom 0,
+		left calc(var(--inset-w) - var(--inset-r) * 2) bottom
+			calc(var(--inset-h) - var(--inset-r) * 2),
+		left 0 bottom var(--inset-h),
+		left var(--inset-w) bottom 0;
+}
+
+.card-masked[data-inset-anchor="topRight"] {
+	mask-image:
+		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0),
+		radial-gradient(
+			circle,
+			#000 calc(var(--inset-r) - 0.5px),
+			transparent var(--inset-r)
+		),
+		radial-gradient(
+			circle at 0 100%,
+			transparent calc(var(--inset-r) - 0.5px),
+			#000 var(--inset-r)
+		),
+		radial-gradient(
+			circle at 0 100%,
+			transparent calc(var(--inset-r) - 0.5px),
+			#000 var(--inset-r)
+		);
+	mask-position:
+		0 0,
+		right 0 top 0,
+		right 0 top 0,
+		right calc(var(--inset-w) - var(--inset-r) * 2) top
+			calc(var(--inset-h) - var(--inset-r) * 2),
+		right 0 top var(--inset-h),
+		right var(--inset-w) top 0;
+}
+
+.card-masked[data-inset-anchor="topLeft"] {
+	mask-image:
+		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0),
+		radial-gradient(
+			circle,
+			#000 calc(var(--inset-r) - 0.5px),
+			transparent var(--inset-r)
+		),
+		radial-gradient(
+			circle at 100% 100%,
+			transparent calc(var(--inset-r) - 0.5px),
+			#000 var(--inset-r)
+		),
+		radial-gradient(
+			circle at 100% 100%,
+			transparent calc(var(--inset-r) - 0.5px),
+			#000 var(--inset-r)
+		);
+	mask-position:
+		0 0,
+		left 0 top 0,
+		left 0 top 0,
+		left calc(var(--inset-w) - var(--inset-r) * 2) top
+			calc(var(--inset-h) - var(--inset-r) * 2),
+		left 0 top var(--inset-h),
+		left var(--inset-w) top 0;
+}
+
+.card-inset {
+	position: absolute;
+	width: fit-content;
+	height: fit-content;
+}
+
+.card-inset--topLeft {
+	top: 0;
+	left: 0;
+}
+
+.card-inset--topRight {
+	top: 0;
+	right: 0;
+}
+
+.card-inset--bottomLeft {
+	bottom: 0;
+	left: 0;
+}
+
+.card-inset--bottomRight {
+	bottom: 0;
+	right: 0;
+}

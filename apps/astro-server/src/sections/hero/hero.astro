@@ -1,41 +1,9 @@
 ---
-import IconLink from "@/components/IconLink/IconLink.tsx";
-import Inset from "../../components/inset/inset.tsx";
+import HeroCard from "./heroCard";
 import styles from "./hero.module.css";
 import { clsx } from "clsx";
 ---
 
 <section class={clsx("h-180 flex-row gap-8", styles.hero)}>
-	<div
-		class={clsx(
-			"relative flex mh-(--page-margins)",
-			styles.hero__container,
-		)}
-	>
-		<div
-			class="h-full flex flex-col justify-center flex-1 ml-(--page-margins)"
-		>
-			<h2 class="text-left mb-4 text-7xl">Hello!</h2>
-			<p class={styles.heroContent__message}>
-				I build full-stack web applications using Astro, TypeScript, and
-				React.
-			</p>
-			<p class={styles.heroContent__message}>
-				When I'm not building projects, you can find me hiking in New
-				England. I'm currently trying to complete the Terrifying 25.
-			</p>
-		</div>
-		<img
-			src="profile.png"
-			alt="Casual image of me waving"
-			class={styles.hero__profileImage}
-		/>
-		<Inset anchor="bottomRight" className="flex flex-col gap-2 p-2">
-			<IconLink
-				href="https://www.linkedin.com/in/brian-j-wang/"
-				type="linkedin"
-			/>
-			<IconLink href="https://github.com/Brian-J-Wang" type="github" />
-		</Inset>
-	</div>
+	<HeroCard client:load />
 </section>

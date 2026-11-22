@@ -75,7 +75,7 @@ function createProgram(
 export default function Topography({
 	className,
 	bgColor = [1.0, 0.988, 0.98], // #fffcfa (--color-neutral-50)
-	lineColor = [0.951, 0.939, 0.931], // #f3f0ee (50/50 mix of --color-neutral-50 & --color-neutral-100)
+	lineColor = [0.902, 0.89, 0.882], // #e6e3e1 (--color-neutral-100)
 	scale = 16,
 	levels = 10,
 	lineWidth = 0.5,
@@ -121,8 +121,6 @@ export default function Topography({
 
 		// Uniform locations
 		const uResolution = gl.getUniformLocation(program, "u_resolution");
-		const uTime = gl.getUniformLocation(program, "u_time");
-		const uMouse = gl.getUniformLocation(program, "u_mouse");
 		const uScroll = gl.getUniformLocation(program, "u_scroll");
 		const uBgColor = gl.getUniformLocation(program, "u_bgColor");
 		const uLineColor = gl.getUniformLocation(program, "u_lineColor");
@@ -164,7 +162,6 @@ export default function Topography({
 		window.addEventListener("scroll", handleScroll, { passive: true });
 
 		let animationFrameId = 0;
-		const startTime = performance.now();
 
 		const render = (now: number) => {
 			currentScroll += (targetScroll - currentScroll) * 0.05;
@@ -172,7 +169,7 @@ export default function Topography({
 			gl.useProgram(program);
 			gl.bindVertexArray(vao);
 
-			gl.uniform2f(uResolution, canvas.width, canvas.height);
+			gl.uniform2f(uResolution, canvas.clientWidth, canvas.clientHeight);
 			gl.uniform1f(uScroll, currentScroll);
 			gl.uniform3f(uBgColor, bgColor[0], bgColor[1], bgColor[2]);
 			gl.uniform3f(uLineColor, lineColor[0], lineColor[1], lineColor[2]);

@@ -105,18 +105,57 @@ float perlinNoise(vec3 P) {
 	return 2.2 * n_xyz;
 }
 
+// 1. Fractal Brownian Motion (fBm) with 4 octaves
+float fbm(vec3 p) {
+	float value = 0.0;
+	float amplitude = 0.5;
+	float frequency = 1.0;
+	for (int i = 0; i < 4; i++) {
+		value += amplitude * perlinNoise(p * frequency);
+		frequency *= 2.02;
+		amplitude *= 0.5;
+	}
+	return value;
+}
+
+// 3. Ridged multifractal noise for sharper mountain spines and valleys
+float ridgedFbm(vec3 p) {
+	float value = 0.0;
+	float amplitude = 0.5;
+	float frequency = 1.0;
+	for (int i = 0; i < 3; i++) {
+		float n = 1.0 - abs(perlinNoise(p * frequency));
+		value += amplitude * (n * n);
+		frequency *= 2.05;
+		amplitude *= 0.5;
+	}
+	return value;
+}
+
 void main() {
-	// Aspect-corrected coordinates
-	float aspect = u_resolution.x / max(u_resolution.y, 1.0);
-	vec2 uv = v_uv;
-	vec2 pos = vec2(uv.x * aspect, uv.y);
+	// Display-size independent coordinates (in CSS pixels normalized to a fixed 2000px reference)
+	vec2 pos = (v_uv * u_resolution) / 2000.0;
 
 	// Apply scroll offset vertically
 	vec2 scrolledPos = pos + vec2(0.0, -u_scroll * 0.0004);
+	vec3 baseCoord = vec3(scrolledPos * u_scale, 0.0);
 
-	// Compute elevation field using 3D Perlin noise with slow time evolution
-	vec3 noiseCoord = vec3(scrolledPos * u_scale, 0);
-	float elevation = perlinNoise(noiseCoord);
+	// 2. Domain warping for organic, non-repetitive ridges and valleys
+	vec2 warp = vec2(
+		perlinNoise(baseCoord * 0.6 + vec3(5.2, 1.3, 0.0)),
+		perlinNoise(baseCoord * 0.6 + vec3(1.7, 9.2, 0.0))
+	);
+	vec3 warpedCoord = baseCoord + vec3(warp * 0.45, 0.0);
+
+	// Blend fBm and ridged noise for realistic terrain contrast
+	float elevation = mix(fbm(warpedCoord), ridgedFbm(warpedCoord), 0.35);
+
+	// 4. Subtle cartographic hillshading from screen-space elevation gradient
+	vec2 grad = vec2(dFdx(elevation), dFdy(elevation));
+	vec3 normal = normalize(vec3(-grad * 80.0, 1.0));
+	vec3 lightDir = normalize(vec3(-0.6, 0.6, 1.0));
+	float shade = clamp(dot(normal, lightDir), 0.0, 1.0);
+	vec3 shadedBg = mix(u_bgColor * 0.975, u_bgColor, shade);
 
 	// Minor contour lines using screen-space derivatives (fwidth) for uniform pixel width
 	float scaledMinor = elevation * u_levels;
@@ -133,6 +172,6 @@ void main() {
 	// Combine minor and major contour intensities
 	float contourAlpha = clamp(minorLine * 0.45 + majorLine * 0.55, 0.0, 1.0);
 
-	vec3 finalColor = mix(u_bgColor, u_lineColor, contourAlpha);
+	vec3 finalColor = mix(shadedBg, u_lineColor, contourAlpha);
 	outColor = vec4(finalColor, 1.0);
 }

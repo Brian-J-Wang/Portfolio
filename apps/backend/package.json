@@ -13,6 +13,7 @@
     "scripts": {
         "test": "uv run pytest",
         "build": "docker build -t portfolio/github-service .",
-        "dev": "docker run -p 8000:8000 --env-file .env portfolio/github-service"
+        "dev": "docker run -p 8000:8000 --env-file .env portfolio/github-service",
+		"shell": "docker compose -f ../../docker-compose.yml -f ../../docker-compose.dev.yml exec mongo_db mongosh \"mongodb://devUser:devPassword@localhost:27017/projects\""
     }
 }

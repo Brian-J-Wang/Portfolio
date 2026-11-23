@@ -14,7 +14,7 @@ async def lifespan(app: FastAPI):
 	settings = get_settings()
 	await init_database(settings.MONGO_URI)
 
-	project_service = ProjectService(get_github_service(), get_project_repository())
+	project_service = ProjectService(get_github_service(settings), get_project_repository())
 	sync_task = asyncio.create_task(project_service.sync_malformed_projects())
 
 	yield

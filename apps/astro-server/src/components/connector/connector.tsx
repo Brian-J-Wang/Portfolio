@@ -1,9 +1,7 @@
-import { cva } from "class-variance-authority";
 import styles from "./connector.module.css";
 import clsx from "clsx";
 import {
 	useEffect,
-	useLayoutEffect,
 	useRef,
 	useState,
 	type RefObject,

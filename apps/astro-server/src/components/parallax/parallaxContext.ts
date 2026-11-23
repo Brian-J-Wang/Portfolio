@@ -1,4 +1,4 @@
-import { createContext, useRef, type RefObject } from "react";
+import { createContext } from "react";
 
 type ParallaxContextType = {
 	frame?: HTMLDivElement;

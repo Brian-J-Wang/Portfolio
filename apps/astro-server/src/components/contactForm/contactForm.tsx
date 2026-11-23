@@ -4,13 +4,12 @@ import {
 	Field,
 	FieldLabel,
 	FieldError,
-	FieldLegend,
 } from "@/components/ui/field";
 import Input from "@/components/ui/input";
 import Textarea from "@/components/ui/textarea";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormDataSchema, type FormData } from "./contactForm.schema";
+import { FormDataSchema } from "./contactForm.schema";
 import useSendMessage from "./contactForm.hook";
 import Spinner from "../ui/spinner";
 

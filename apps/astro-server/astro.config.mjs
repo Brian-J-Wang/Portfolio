@@ -11,7 +11,7 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss(), react()],
 		resolve: {
-			//@ts-ignore
+			//@t-expect-error
 			tsconfigPaths: true,
 		},
 	},

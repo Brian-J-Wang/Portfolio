@@ -75,7 +75,7 @@ function createProgram(
 export default function Topography({
 	className,
 	bgColor = [1.0, 0.988, 0.98], // #fffcfa (--color-neutral-50)
-	lineColor = [0.951, 0.939, 0.931], // #e6e3e1 (--color-neutral-100)
+	lineColor = [0.902, 0.89, 0.882], // #e6e3e1 (--color-neutral-100)
 	scale = 16,
 	levels = 10,
 	lineWidth = 0.5,
@@ -132,11 +132,6 @@ export default function Topography({
 		let targetScroll = window.scrollY;
 		let currentScroll = window.scrollY;
 
-		const handlePointerMove = (e: PointerEvent) => {
-			const rect = canvas.getBoundingClientRect();
-			if (rect.width === 0 || rect.height === 0) return;
-		};
-
 		const handleScroll = () => {
 			targetScroll = window.scrollY / 10;
 		};
@@ -156,14 +151,11 @@ export default function Topography({
 		resizeObserver.observe(canvas);
 		resizeCanvas();
 
-		window.addEventListener("pointermove", handlePointerMove, {
-			passive: true,
-		});
 		window.addEventListener("scroll", handleScroll, { passive: true });
 
 		let animationFrameId = 0;
 
-		const render = (now: number) => {
+		const render = () => {
 			currentScroll += (targetScroll - currentScroll) * 0.05;
 
 			gl.useProgram(program);
@@ -190,7 +182,6 @@ export default function Topography({
 		return () => {
 			cancelAnimationFrame(animationFrameId);
 			resizeObserver.disconnect();
-			window.removeEventListener("pointermove", handlePointerMove);
 			window.removeEventListener("scroll", handleScroll);
 			gl.deleteBuffer(positionBuffer);
 			gl.deleteVertexArray(vao);

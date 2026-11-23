@@ -11,7 +11,7 @@ const projectAPI = getProjects();
 			.then((projects) => {
 				return <SkillDisplay client:load projects={projects} />;
 			})
-			.catch((err) => {
+			.catch(() => {
 				console.error("failed to retrieve projects");
 			})
 	}

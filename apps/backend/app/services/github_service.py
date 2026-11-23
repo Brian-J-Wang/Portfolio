@@ -1,3 +1,4 @@
+from urllib.parse import urlparse
 from fastapi import Depends
 from app.schemas.github_project import GithubProject
 from app.schemas.github_events import GithubWebhookEvent, PushEvent
@@ -15,7 +16,7 @@ class GithubService:
 		}
 
 	def get_github_project_from_url(self, github_link: str):
-		return GithubProject.from_github(github_link, headers=self.header)
+		return self.get_github_project(self.get_github_url_from_github_link(github_link))
 
 	def get_github_project(self, repo: str):
 		url = self.get_github_url(repo)
@@ -23,6 +24,10 @@ class GithubService:
 
 	def get_github_url(self, repo_name: str) -> str:
 		return f"https://api.github.com/repos/{repo_name}/contents/portfolio.md"
+	
+	def get_github_url_from_github_link(self, github_link):
+		return urlparse(github_link).path.strip("/")
+	
 
 
 def get_github_service(

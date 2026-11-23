@@ -18,7 +18,7 @@ async def get_projects(
 
 @router.get("/{project_id:str}")
 async def get_project(
-	project_id: int,
+	project_id: str,
 	project_service = Depends(get_project_repository)
 ):
 	return await project_service.get_project(project_id)

@@ -75,7 +75,7 @@ function createProgram(
 export default function Topography({
 	className,
 	bgColor = [1.0, 0.988, 0.98], // #fffcfa (--color-neutral-50)
-	lineColor = [0.902, 0.89, 0.882], // #e6e3e1 (--color-neutral-100)
+	lineColor = [0.951, 0.939, 0.931], // #e6e3e1 (--color-neutral-100)
 	scale = 16,
 	levels = 10,
 	lineWidth = 0.5,

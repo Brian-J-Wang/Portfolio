@@ -1,3 +1,4 @@
+from pydantic import model_validator
 from datetime import timezone
 from typing import Annotated
 from datetime import datetime

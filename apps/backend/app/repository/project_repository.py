@@ -1,7 +1,8 @@
+from pydantic import ValidationError
+from typing import Any
 from typing import Literal
 from beanie.odm.operators.update.general import Set
 from app.repository.model.project import Project
-from app.schemas.github_events import Repository
 
 class ProjectRepository:
 	async def upsert_project(self, repository_id: str, project: Project):
@@ -25,6 +26,20 @@ class ProjectRepository:
 	
 	async def get_project(self, node_id: str ) -> Project | None:
 		return await Project.find_one({ "node_id": node_id })
+
+	async def get_malformed_projects(self):
+		collection = Project.get_pymongo_collection()
+		malformed: list[dict[str, Any]] = []
+
+		async for project in collection.find({}):
+			try:
+				Project.model_validate(project)
+			except ValidationError:
+				malformed.append(project)
+
+		return malformed
+				
+
 
 project_repository = ProjectRepository()
 def get_project_repository():

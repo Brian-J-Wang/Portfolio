@@ -14,6 +14,9 @@ class GithubService:
 			"User-Agent": "Brian-J-Wang/portfolio-service",
 		}
 
+	def get_github_project_from_url(self, github_link: str):
+		return GithubProject.from_github(github_link, headers=self.header)
+
 	def get_github_project(self, repo: str):
 		url = self.get_github_url(repo)
 		return GithubProject.from_github(url, headers=self.header)

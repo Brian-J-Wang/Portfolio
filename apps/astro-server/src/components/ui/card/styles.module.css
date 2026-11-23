@@ -73,8 +73,7 @@
 
 .card-masked[data-inset-anchor="bottomRight"] {
 	mask-image:
-		linear-gradient(#000 0 0),
-		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0), linear-gradient(#000 0 0),
 		linear-gradient(#000 0 0),
 		radial-gradient(
 			circle,
@@ -103,8 +102,7 @@
 
 .card-masked[data-inset-anchor="bottomLeft"] {
 	mask-image:
-		linear-gradient(#000 0 0),
-		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0), linear-gradient(#000 0 0),
 		linear-gradient(#000 0 0),
 		radial-gradient(
 			circle,
@@ -133,8 +131,7 @@
 
 .card-masked[data-inset-anchor="topRight"] {
 	mask-image:
-		linear-gradient(#000 0 0),
-		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0), linear-gradient(#000 0 0),
 		linear-gradient(#000 0 0),
 		radial-gradient(
 			circle,
@@ -163,8 +160,7 @@
 
 .card-masked[data-inset-anchor="topLeft"] {
 	mask-image:
-		linear-gradient(#000 0 0),
-		linear-gradient(#000 0 0),
+		linear-gradient(#000 0 0), linear-gradient(#000 0 0),
 		linear-gradient(#000 0 0),
 		radial-gradient(
 			circle,

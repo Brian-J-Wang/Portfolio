@@ -1,13 +1,11 @@
 interface SectionProps {
-    children: React.ReactNode;
+	children: React.ReactNode;
 }
 
 const Section = ({ children }: SectionProps) => {
-    return (
-        <section className="flex flex-row justify-center">
-            { children }
-        </section>
-    )
-}
+	return (
+		<section className="flex flex-row justify-center">{children}</section>
+	);
+};
 
-export default Section
+export default Section;

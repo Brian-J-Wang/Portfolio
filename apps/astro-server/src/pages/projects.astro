@@ -34,7 +34,10 @@ const personalProjects = projects.filter(
 			workProjects.length > 0 ? (
 				<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-[28rem] gap-6 mt-8">
 					{workProjects.map((project) => (
-						<ProjectCard client:visible projectData={project.project_metadata} />
+						<ProjectCard
+							client:visible
+							projectData={project.project_metadata}
+						/>
 					))}
 				</div>
 			) : (
@@ -53,7 +56,10 @@ const personalProjects = projects.filter(
 			personalProjects.length > 0 ? (
 				<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-[28rem] gap-6 mt-8">
 					{personalProjects.map((project) => (
-						<ProjectCard client:visible projectData={project.project_metadata} />
+						<ProjectCard
+							client:visible
+							projectData={project.project_metadata}
+						/>
 					))}
 				</div>
 			) : (

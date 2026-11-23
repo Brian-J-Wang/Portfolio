@@ -39,4 +39,5 @@ services:
             - "127.0.0.1:4000:4000"
     mongo_db:
         volumes:
-            - "./apps/mongo-db/init.js:/docker-entrypoint-initdb.d/init.js:ro"
+            - "./apps/mongo-db/init.js:/docker-entrypoint-initdb.d/01-init.js:ro"
+            - "./apps/mongo-db/02-seed.js:/docker-entrypoint-initdb.d/02-seed.js:ro"

@@ -1,11 +1,20 @@
 {
     "folders": [
         {
+            "name": "CI/CD",
+            "path": ".github/workflows",
+        },
+        {
             "name": "frontend",
-            "path": "./apps/astro-server"
-        }, {
+            "path": "./apps/astro-server",
+        },
+        {
             "name": "backend",
-            "path": "./apps/backend"
-        }
-    ]
+            "path": "./apps/backend",
+        },
+        {
+            "name": "mongo",
+            "path": "./apps/mongo-db",
+        },
+    ],
 }

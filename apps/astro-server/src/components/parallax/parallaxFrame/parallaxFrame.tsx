@@ -12,7 +12,6 @@ const ParallaxFrame: React.FC<ParallaxFrameProps> = ({
 
 	useEffect(() => {
 		const onMouseMove = (e: MouseEvent) => {
-			window.innerWidth;
 			mouseOffset.current = {
 				x: e.clientX,
 				y: e.clientY,

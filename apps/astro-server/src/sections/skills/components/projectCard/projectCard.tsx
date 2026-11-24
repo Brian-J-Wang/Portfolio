@@ -3,7 +3,7 @@ import clsx from "clsx";
 import styles from "./projectCard.module.css";
 import ConcaveRadius from "@/components/concaveRadius/concaveRadius";
 import TechIcon from "@/components/techIcon/techIcon";
-import type { ProjectData } from "@/components/projects/project.types";
+import type { ProjectData } from "@/features/projects/project.types";
 import IconLink from "@/components/IconLink/IconLink";
 
 type ProjectCardProps = {

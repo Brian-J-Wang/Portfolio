@@ -1,7 +1,7 @@
 import styles from "./display.module.css";
 import clsx from "clsx";
 import { skillCategories } from "../skills";
-import type { Project } from "@/components/projects/project.types";
+import type { Project } from "@/features/projects/project.types";
 import TechIcon from "@/components/techIcon/techIcon";
 import useList from "@/hooks/useList";
 import ProjectCarousel from "./projectCarousel/projectCarousel";

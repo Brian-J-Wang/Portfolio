@@ -4,17 +4,13 @@ import SectionHeader from "@/components/section/sectionHeader";
 import SectionSubtitle from "@/components/section/sectionSubtitle";
 import SectionTitle from "@/components/section/sectionTitle";
 import ProjectCard from "@/sections/skills/components/projectCard/projectCard";
-import { getProjects } from "@/components/projects/project.api";
-import type { Project } from "@/components/projects/project.types";
+import { getProjects } from "@/features/projects/project.server";
+import type { Project } from "@/features/projects/project.types";
 
-export const prerender = false;
-
-let projects: Project[] = [];
-try {
-	projects = await getProjects();
-} catch (error) {
-	console.error("Failed to fetch projects:", error);
-}
+let projects: Project[] = await getProjects().catch((err) => {
+	console.error("Failed to fetch projects", err);
+	return [];
+});
 
 const workProjects = projects.filter(
 	(project) => project.project_metadata.project_type === "work",
@@ -32,7 +28,7 @@ const personalProjects = projects.filter(
 		</SectionHeader>
 		{
 			workProjects.length > 0 ? (
-				<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-[28rem] gap-6 mt-8">
+				<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-112 gap-6 mt-8">
 					{workProjects.map((project) => (
 						<ProjectCard
 							client:visible
@@ -54,7 +50,7 @@ const personalProjects = projects.filter(
 		</SectionHeader>
 		{
 			personalProjects.length > 0 ? (
-				<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-[28rem] gap-6 mt-8">
+				<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-112 gap-6 mt-8">
 					{personalProjects.map((project) => (
 						<ProjectCard
 							client:visible

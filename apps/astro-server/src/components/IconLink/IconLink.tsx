@@ -4,7 +4,7 @@ import linkedinSVG from "./icons/linkedin.svg";
 import siteSVG from "./icons/site.svg";
 
 import type { PropsWithChildren } from "react";
-import type { ProjectLink } from "../projects/project.types";
+import type { ProjectLink } from "../../features/projects/project.types";
 
 type LinkType = ProjectLink | "linkedin";
 

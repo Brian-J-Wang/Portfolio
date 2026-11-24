@@ -1,5 +1,5 @@
 import styles from "./projectCarousel.module.css";
-import type { Project } from "@/components/projects/project.types";
+import type { Project } from "@/features/projects/project.types";
 import {
 	Carousel,
 	CarouselContent,

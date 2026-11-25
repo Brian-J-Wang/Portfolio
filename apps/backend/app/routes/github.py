@@ -23,7 +23,7 @@ async def github_webhook(
 							"Content-Type": "application/json"
 						})
 
-	await project_service.sync_project_from_webhook()
+	await project_service.sync_project_from_webhook(payload)
 
 	return Response(status_code=200)
 
